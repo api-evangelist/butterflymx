@@ -1,0 +1,92 @@
+generated: '2026-08-08'
+method: searched
+source: https://apidocs.butterflymx.com/docs/authorization
+docs: https://apidocs.butterflymx.com/docs/authorization
+summary:
+  types:
+  - oauth2
+  - apiKey
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+  - password
+  - refreshToken
+  note: >-
+    The published OpenAPI declares only a generic `Bearer` apiKey scheme on the `Authorization` header. The
+    real contract is OAuth 2.0 — the docs and the live authorization-server metadata at
+    accounts.butterflymx.com both document the authorization-code flow that mints that bearer token. This
+    profile records both: the spec-level scheme, and the searched OAuth 2.0 model the spec understates.
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: JWT necessary to make API calls
+  sources:
+  - openapi/butterflymx-api-openapi.yml
+- name: OAuth2
+  type: oauth2
+  description: >-
+    OAuth 2.0 authorization-code flow. The resident or admin authenticates at the ButterflyMX accounts host
+    and the resulting authorization code is exchanged for an access token used as the API bearer token.
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://accounts.butterflymx.com/oauth/authorize
+    tokenUrl: https://accounts.butterflymx.com/oauth/token
+  - flow: clientCredentials
+    tokenUrl: https://accounts.butterflymx.com/oauth/token
+  sources:
+  - https://apidocs.butterflymx.com/docs/authorization
+  - well-known/butterflymx-openid-configuration.json
+authorization_server:
+  issuer: https://accounts.butterflymx.com
+  discovery:
+  - https://accounts.butterflymx.com/.well-known/openid-configuration
+  - https://accounts.butterflymx.com/.well-known/oauth-authorization-server
+  authorization_endpoint: https://accounts.butterflymx.com/oauth/authorize
+  token_endpoint: https://accounts.butterflymx.com/oauth/token
+  revocation_endpoint: https://accounts.butterflymx.com/oauth/revoke
+  introspection_endpoint: https://accounts.butterflymx.com/oauth/introspect
+  userinfo_endpoint: https://accounts.butterflymx.com/oauth/userinfo
+  jwks_uri: https://accounts.butterflymx.com/oauth/discovery/keys
+  grant_types_supported:
+  - authorization_code
+  - client_credentials
+  - password
+  - implicit_oidc
+  - refresh_token
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  - client_secret_post
+  code_challenge_methods_supported:
+  - plain
+  - S256
+  id_token_signing_alg_values_supported:
+  - RS256
+tokens:
+  access_token_lifetime_seconds: 86400
+  access_token_lifetime_note: Access token is valid for 24 hours (per the authorization guide).
+  refresh_token: >-
+    Issued alongside the access token. The docs state the refresh token does not expire and can be exchanged
+    for a new access token at any time.
+  default_redirect_uri: 'urn:ietf:wg:oauth:2.0:oob'
+  redirect_uri_note: >-
+    `urn:ietf:wg:oauth:2.0:oob` is the documented development default; a custom redirect_uri is available on
+    request.
+sandbox:
+  issuer: https://accounts.na.sandbox.butterflymx.com
+  discovery:
+  - https://accounts.na.sandbox.butterflymx.com/.well-known/openid-configuration
+  - https://accounts.na.sandbox.butterflymx.com/.well-known/oauth-authorization-server
+x-evidence:
+- url: https://apidocs.butterflymx.com/docs/authorization.md
+  http_status: 200
+  fetched: '2026-08-08'
+- url: https://accounts.butterflymx.com/.well-known/openid-configuration
+  http_status: 200
+  fetched: '2026-08-08'
+- url: https://accounts.butterflymx.com/.well-known/oauth-authorization-server
+  http_status: 200
+  fetched: '2026-08-08'

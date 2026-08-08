@@ -1,0 +1,39 @@
+generated: '2026-08-08'
+method: searched
+source: https://apidocs.butterflymx.com/
+versioning:
+  scheme: uri-path
+  current: v4
+  docs: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  policy_published: false
+  note: >-
+    v4 is the only version in the public reference. ButterflyMX's own docs branch tree exposes a 3.0 branch
+    alongside 4.0, so a v3 existed, but no migration guide, support window, or end-of-life notice for it is
+    published.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation or sunset policy is published, and no operation in the OpenAPI carries `deprecated: true`
+    (0 matches across all 57 operations).
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page: https://status.butterflymx.com/
+status_page_note: >-
+  A dedicated ButterflyMX status page is served at status.butterflymx.com (HTTP 200, page title
+  "ButterflyMX Status"). The page renders client-side, so incident history is not machine-readable from the
+  served HTML.
+changelog: https://apidocs.butterflymx.com/changelog
+support: https://help.butterflymx.com/hc/en-us
+deprecated_operations: []
+x-evidence:
+- url: https://status.butterflymx.com/
+  http_status: 200
+  fetched: '2026-08-08'
+- url: https://apidocs.butterflymx.com/llms.txt
+  http_status: 200
+  fetched: '2026-08-08'

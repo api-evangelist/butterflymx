@@ -1,0 +1,111 @@
+generated: '2026-08-08'
+method: probed
+source: probe of every ButterflyMX host in apis.yml and in the OpenAPI servers[]
+hosts:
+- host: https://accounts.butterflymx.com
+  role: authorization-server
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json; charset=utf-8
+    file: butterflymx-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json; charset=utf-8
+    file: butterflymx-oauth-authorization-server.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://accounts.na.sandbox.butterflymx.com
+  role: authorization-server (sandbox)
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json; charset=utf-8
+    note: sandbox issuer; not saved separately — mirrors the production document with the sandbox issuer
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json; charset=utf-8
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.butterflymx.com
+  role: api (production, OpenAPI servers[0])
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.na.sandbox.butterflymx.com
+  role: api (sandbox, OpenAPI servers[1])
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://apidocs.butterflymx.com
+  role: developer portal
+  documents:
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain; charset=utf-8
+    file: ../llms/butterflymx-llms.txt
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://butterflymx.com
+  role: website
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    verdict: soft-404
+    note: >-
+      The marketing site answers 200 for EVERY unknown path by redirecting to the homepage — /developers/,
+      /integrations/, /trust/ and /.well-known/security.txt all resolve to https://butterflymx.com/ with
+      status 200. This is not a security.txt; no RFC 9116 document is published. Recorded so a later run
+      does not credit the 200.
+  - path: /.well-known/agent-card.json
+    status: 200
+    verdict: soft-404
+    note: same homepage redirect; body is the marketing homepage HTML, not an AgentCard
+summary:
+  oidc_discovery: true
+  oauth_authorization_server_metadata: true
+  security_txt: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+  llms_txt: true

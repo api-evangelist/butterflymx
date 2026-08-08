@@ -42,5 +42,50 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-ButterflyMX is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/butterflymx_stock/
+ButterflyMX is a property-access technology company — smart video intercoms, keypads, smart locks,
+elevator controls, vehicle-access readers and package rooms installed in 20,000+ multifamily, commercial,
+gated-community, student-housing and senior-living buildings.
+
+## The API surface
+
+- **Developer hub:** <https://apidocs.butterflymx.com/> (ReadMe)
+- **API:** ButterflyMX API **v4** — `https://api.butterflymx.com`
+- **Sandbox:** `https://api.na.sandbox.butterflymx.com` (NDA + Developer ToS required)
+- **OpenAPI:** 3.0.1, 43 paths / **57 operations**, harvested from the provider's own reference pages
+  and saved verbatim at [`openapi/_original/butterflymx-api-openapi.json`](openapi/_original/butterflymx-api-openapi.json)
+- **Auth:** OAuth 2.0 authorization-code, issuer `https://accounts.butterflymx.com`, with live OIDC and
+  RFC 8414 discovery documents
+- **Events:** building- and tenant-scoped webhook integrations for `door_release.create` and `call.create`
+- **SDKs:** iOS (Swift Package Manager / CocoaPods) and Android (raw AAR); **no server-side SDK in any language**
+
+## What the profile records
+
+| Area | File |
+|---|---|
+| OpenAPI (verbatim + YAML) | `openapi/` |
+| Our enhancements (57 missing operationIds, root security, tag declarations) | `overlays/butterflymx-api-overlay.yaml` |
+| OAuth 2.0 / OIDC profile | `authentication/`, `scopes/`, `well-known/` |
+| Request/response semantics | `conventions/butterflymx-conventions.yml` |
+| Error catalog derived from the spec's own examples | `errors/butterflymx-problem-types.yml` |
+| Webhook catalog (no AsyncAPI published) | `asyncapi/butterflymx-webhooks.yml` |
+| Entity graph (the spec ships zero reusable schemas) | `data-model/butterflymx-data-model.yml` |
+| Sandbox and onboarding | `sandbox/butterflymx-sandbox.yml` |
+| Packages / SDKs | `packages/butterflymx-packages.yml` |
+| Standards conformance | `conformance/butterflymx-conformance.yml` |
+| Domain security, trust center | `security/` |
+| Versioning, status page, changelog | `lifecycle/`, `changelog/` |
+| Agent skills for the four marquee flows | `skills/` |
+| Candidate MCP tool surface (ButterflyMX operates no MCP server) | `mcp/butterflymx-mcp.yml` |
+
+## Notable gaps found in this pass
+
+- **Zero `operationId`s** across all 57 operations, and `components.schemas` is **empty** — nothing in the
+  contract is addressable or reusable by name.
+- **No idempotency contract**, on an API whose write path physically unlocks doors.
+- **No webhook signature** by default; the docs make verification the integrator's problem.
+- **No AsyncAPI**, no rate-limit contract, no `403`, no `5xx` declared on any operation.
+- **No security.txt** and no vulnerability-disclosure program on any host.
+- The developer-hub **changelog holds one entry, a welcome post from 2019**, while the spec itself was
+  regenerated in June 2026 — the contract moves silently.
+
+Company reference: <https://forgeglobal.com/butterflymx_stock/>

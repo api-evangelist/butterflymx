@@ -1,0 +1,107 @@
+generated: '2026-08-08'
+method: derived
+source: openapi/butterflymx-api-openapi.yml
+format: custom
+format_note: >-
+  ButterflyMX does NOT use RFC 9457 problem+json. Errors return `application/json` with an `errors` array of
+  `{field, code, message}` objects. There is no `type` URI, no `title`, no `status` member and no error
+  reference page in the docs. Everything below is derived from the response examples the provider ships
+  inside its own OpenAPI — no titles or remediation were invented.
+envelope:
+  media_type: application/json
+  shape: '{"errors": [{"field": "...", "code": "...", "message": "..."}]}'
+  inconsistency: >-
+    The 401 example uses a plural `messages` key; the 404 and 422 examples use singular `message`. A client
+    has to read both.
+statuses:
+- status: 401
+  description: unauthorized
+  operations_declaring_it: 52
+  codes:
+  - code: unauthorized
+    field: base
+    message: Unauthorized
+- status: 404
+  description: not found
+  operations_declaring_it: 11
+  codes:
+  - code: not_found
+    field: base
+    message: Resource not found
+- status: 422
+  description: unprocessable content
+  operations_declaring_it: 19
+  codes:
+  - code: blank
+    field: active_at
+    message: can't be blank
+  - code: blank
+    field: building
+    message: must exist
+  - code: blank
+    field: floor_id
+    message: can't be blank
+  - code: blank
+    field: item.identifier
+    message: can't be blank
+  - code: blank
+    field: label
+    message: can't be blank
+  - code: blank
+    field: user
+    message: can't be blank
+  - code: end_time_must_be_after_the_start_time
+    field: ends_at
+    message: End time must be after the start time
+  - code: failed_to_delete_resource
+    field: base
+    message: Failed to delete resource
+  - code: failed_to_destroy
+    field: base
+    message: failed to destroy
+  - code: invalid
+    field: item.identifier
+    message: >-
+      Unrecognized character. The fobs, cards, and tags do not accept special characters or letters outside
+      of a-f
+  - code: is_protected
+    field: base
+    message: is protected
+  - code: low_entropy
+    field: code
+    message: isn't strong enough, try a different value
+    context: >-
+      PIN complexity. Sequences (123456, 654321) and repeated digits (111111) are rejected; 4-digit PINs are
+      grandfathered and exempt from the rule.
+  - code: must_be_greater_than_time_from
+    field: time_to
+    message: must be greater than time from
+  - code: must_be_less_than_time_to
+    field: time_from
+    message: must be less than time to
+  - code: must_have_an_associated_tenant
+    field: units_user_id
+    message: must have an associated tenant
+  - code: must_have_an_associated_unit
+    field: unit_id
+    message: must have an associated unit
+  - code: must_have_an_associated_unit_or_tenant
+    field: base
+    message: must have an associated unit or tenant
+  - code: not_found
+    field: tenant_ids
+    message: No valid tenants found
+  - code: not_found
+    field: unit_ids
+    message: No valid units found
+  - code: start_time_must_be_before_the_end_time
+    field: starts_at
+    message: Start time must be before the end time
+  - code: wrong_length
+    field: code
+    message: is the wrong length (should be 6 characters)
+gaps:
+- No 403 is declared anywhere, although the API is explicitly permission-scoped (tenant vs building admin).
+- No 429 is declared and no rate-limit contract is published.
+- No 5xx response is declared on any of the 57 operations.
+- No error-reference page exists in the developer docs; this catalog is the only consolidated list.

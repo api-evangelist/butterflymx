@@ -1,0 +1,75 @@
+# ButterflyMX Documentation
+
+> ButterflyMX's API provides you with the tools needed to build tools and services that rely on physical access to buildings in the commercial and multi-family residential space.
+
+## Guides
+- [Sandbox](https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox.md)
+- [Authorization](https://apidocs.butterflymx.com/docs/authorization.md): ButterflyMX uses the OAuth 2.0 protocol for authorization.
+- [Supported use cases](https://apidocs.butterflymx.com/docs/supported-use-cases.md): This section outlines common workflows supported via the ButterflyMX Public API, including access control, visitor management, and tenant operations.
+- [Grant Access](https://apidocs.butterflymx.com/docs/grant-access.md): The ButterflyMX system enables residents to grant access to an Access Point or a device in the building, either for themselves or a visitor.
+- [Visitor Passes](https://apidocs.butterflymx.com/docs/virtual-keys.md): Learn how to issue temporary virtual keys that enable seamless, time-limited access to buildings, units, or shared spaces.
+- [Manage Resident PIN](https://apidocs.butterflymx.com/docs/manage-resident-pin.md): Residents can view or edit their ButterflyMX PIN code.
+- [Webhooks](https://apidocs.butterflymx.com/docs/webhooks.md): Learn how to use ButterflyMX's webhook system to receive real-time updates on access events and video calls. This guide explains how to set up and manage webhooks for both building-wide and tenant-specific integrations.
+- [Access and Call Logs](https://apidocs.butterflymx.com/docs/access-and-call-logs.md): This guide explains how to programmatically access door release records and video call history for buildings or tenants.
+
+## API Reference
+- [list access points](https://apidocs.butterflymx.com/reference/get_v4-access-points-1.md): An **Access Point** is any one, or a set of, doors, ramps, gates, entrances or exits that behave as a single entity.  An Access Point can be one physical door, but in the case of a vestibule or a mantrap, it can be two doors that are controlled together.  Through Access Points one can manage access across the system and exercise control over physical doors.
+- [show access point](https://apidocs.butterflymx.com/reference/get_v4-access-points-id-1.md)
+- [show schedules](https://apidocs.butterflymx.com/reference/get_v4-access-points-id-schedules.md): Times during which this access point can be used by current user.
+- [create a PIN access tool](https://apidocs.butterflymx.com/reference/post_v4-access-tools-pins-1.md): Create a PIN access tool.  PINs have strict complexity requirements. They can't be sequences (like 123456 or 654321), or repeated numbers (like 111111 or 222222), and some additional rules apply. If a PIN has 4 digits then the above rule doesn't apply. 4-digit PINs are grandfathered in and require people to enter a Unit label along with their PIN to be granted access.
+- [change the PIN of an access tool](https://apidocs.butterflymx.com/reference/put_v4-access-tools-pins-id-1.md)
+- [create a RFID tag access tool](https://apidocs.butterflymx.com/reference/post_v4-access-tools-rfid-tags-1.md): Creates a RFID tag access tool.  Note that RFID access tools can't be updated. If you wish to "update" an RFID access tool, you must delete it and create a new one.
+- [list access tools](https://apidocs.butterflymx.com/reference/get_v4-access-tools-1.md): An **Access Tool** is anything that gives a person permanent access to the building. This includes personal door **PINs** and **RFID Tags** (like **Keyfobs**, **Keycards**, and **Vehicle stickers**).  Please look at the documentation for creating **PINs** and **RFID Tags** for more information on how to create and update them.
+- [show access tool](https://apidocs.butterflymx.com/reference/get_v4-access-tools-id-1.md)
+- [delete access tool](https://apidocs.butterflymx.com/reference/delete_v4-access-tools-id-1.md)
+- [list access logs](https://apidocs.butterflymx.com/reference/get_v4-buildings-building-id-access-logs-1.md)
+- [show access log](https://apidocs.butterflymx.com/reference/get_v4-buildings-building-id-access-logs-id-1.md)
+- [list calls](https://apidocs.butterflymx.com/reference/get_v4-buildings-building-id-calls-1.md)
+- [show call](https://apidocs.butterflymx.com/reference/get_v4-buildings-building-id-calls-id-1.md)
+- [list integrations](https://apidocs.butterflymx.com/reference/get_v4-buildings-building-id-integrations-1.md)
+- [create integration](https://apidocs.butterflymx.com/reference/post_v4-buildings-building-id-integrations-1.md)
+- [show integration](https://apidocs.butterflymx.com/reference/get_v4-buildings-building-id-integrations-id-1.md)
+- [update integration](https://apidocs.butterflymx.com/reference/put_v4-buildings-building-id-integrations-id-1.md)
+- [delete integration](https://apidocs.butterflymx.com/reference/delete_v4-buildings-building-id-integrations-id-1.md)
+- [list buildings](https://apidocs.butterflymx.com/reference/get_v4-buildings-1.md): A **Building** represents a physical building that contains one or more **Units**, and **Devices**.
+- [show building](https://apidocs.butterflymx.com/reference/get_v4-buildings-id-1.md)
+- [show building capabilities](https://apidocs.butterflymx.com/reference/get_v4-buildings-id-capabilities.md): Returns the capabilities and configuration options available for a specific building.
+- [list devices](https://apidocs.butterflymx.com/reference/get_v4-devices-1.md): A **Device** is a physical device that is installed in a building, through which one can control access to one or multiple **Access Points**, to an amenity like the KeyLocker, or to common rooms controlled by devices from 3rd parties.
+- [show device](https://apidocs.butterflymx.com/reference/get_v4-devices-id-1.md)
+- [create door release requests](https://apidocs.butterflymx.com/reference/post_v4-door-release-requests-1.md): **Door Release Requests** enable you to request from a device to open one or all of its **Access Points**.  This can be used to build experiences like *swipe-to-open* or *tap-to-open*.
+- [create a custom keychain](https://apidocs.butterflymx.com/reference/post_v4-keychains-custom-1.md)
+- [create a delivery pass keychain](https://apidocs.butterflymx.com/reference/post_v4-keychains-delivery-pass-1.md)
+- [create a one-time keychain](https://apidocs.butterflymx.com/reference/post_v4-keychains-one-time-1.md)
+- [create a recurring keychain](https://apidocs.butterflymx.com/reference/post_v4-keychains-recurring-1.md)
+- [list keychains](https://apidocs.butterflymx.com/reference/get_v4-keychains-1.md): **Keychains** and **Virtual Keys** provide a mechanism for people to grant temporary access to a building, unit, access points or key lockers.  A **Keychain** is the configuration object for one or more **Virtual Keys**. It holds the duration, owner, and other information about the Virtual Keys attached to it. While the Virtual Keys contain the recipient information and usage statistics.  There are multiple types of Keychains available that provide different access scheduling mechanisms for the Virtual Keys attached to them.  * **Custom** keychains grant access from a given start time and date,     to an end time and date. * **Recurring** keychains grant access on a recurring schedule,     specified by a list of weekdays on which the key is active, a start     and an end time. Additionally a start and end date must be specified. * **One Time** keychains are alike **custom keychains** but grant the     recipient access only once. *After the key is used it can be re-used     for an additional 15min after which it expires.* * **Delivery Pass** keychains are alike **one time keychains** but have     a much shorter grace period of 5min after the key is used. And they     always hold exactly one Virtual Key. Not much can be specified or     updated on them. Their main purpose is to provide a quick way to     generate a virtual key and share it with a delivery person.
+- [show keychain](https://apidocs.butterflymx.com/reference/get_v4-keychains-id-1.md)
+- [delete keychain](https://apidocs.butterflymx.com/reference/delete_v4-keychains-id-1.md)
+- [Add tenants to access group](https://apidocs.butterflymx.com/reference/post_v4-access-groups-id-tenants-1.md)
+- [Remove tenants from access group](https://apidocs.butterflymx.com/reference/delete_v4-access-groups-id-tenants-bulk-destroy-1.md)
+- [Add units to access group](https://apidocs.butterflymx.com/reference/post_v4-access-groups-id-units-1.md)
+- [Remove units from access group](https://apidocs.butterflymx.com/reference/delete_v4-access-groups-id-units-bulk-destroy-1.md)
+- [list access groups](https://apidocs.butterflymx.com/reference/get_v4-access-groups-1.md): **Access Group** access lets you grant certain tenants and building staff  access to different parts of your property at different times.
+- [show access group](https://apidocs.butterflymx.com/reference/get_v4-access-groups-id-1.md)
+- [list integrations](https://apidocs.butterflymx.com/reference/get_v4-tenants-tenant-id-integrations-1.md)
+- [create integration](https://apidocs.butterflymx.com/reference/post_v4-tenants-tenant-id-integrations-1.md)
+- [show integration](https://apidocs.butterflymx.com/reference/get_v4-tenants-tenant-id-integrations-id-1.md)
+- [update integration](https://apidocs.butterflymx.com/reference/put_v4-tenants-tenant-id-integrations-id-1.md)
+- [delete integration](https://apidocs.butterflymx.com/reference/delete_v4-tenants-tenant-id-integrations-id-1.md)
+- [list tenants](https://apidocs.butterflymx.com/reference/get_v4-tenants-1.md): A **Tenant** is a person living in a unit.  Tenants are the primary way to manage people in a building, and therefore access to the building.  A Tenant can have one or more **Access Tools** with which they gain permanent access to the building.  A Tenant can also create **Virtual Keys** which they can share with other people to grant them temporary access to the building.
+- [create tenant](https://apidocs.butterflymx.com/reference/post_v4-tenants-1.md)
+- [show tenant](https://apidocs.butterflymx.com/reference/get_v4-tenants-id-1.md)
+- [update tenant](https://apidocs.butterflymx.com/reference/put_v4-tenants-id-1.md)
+- [delete tenant](https://apidocs.butterflymx.com/reference/delete_v4-tenants-id-1.md)
+- [resend confirmation email](https://apidocs.butterflymx.com/reference/post_v4-tenants-tenant-id-resend-confirmation.md): Re-sends the invitation email to a tenant whose status is still `invited`.
+- [list units](https://apidocs.butterflymx.com/reference/get_v4-units-1.md): A Unit is a physical space within a Building in which one or multiple tenants can reside.
+- [show unit](https://apidocs.butterflymx.com/reference/get_v4-units-id-1.md)
+- [create unit](https://apidocs.butterflymx.com/reference/post_v4-buildings-building-id-units.md)
+- [update unit](https://apidocs.butterflymx.com/reference/put_v4-buildings-building-id-units-id.md)
+- [delete unit](https://apidocs.butterflymx.com/reference/delete_v4-buildings-building-id-units-id.md)
+- [list virtual keys](https://apidocs.butterflymx.com/reference/get_v4-virtual-keys-1.md): **Virtual keys** provide temporary access to guests. Please see the **Keychain** documentation for more details.  A guest can be sent a Virtual Key via email or via SMS.
+- [create virtual key](https://apidocs.butterflymx.com/reference/post_v4-virtual-keys-1.md)
+- [show virtual keys](https://apidocs.butterflymx.com/reference/get_v4-virtual-keys-id-1.md)
+- [delete virtual key](https://apidocs.butterflymx.com/reference/delete_v4-virtual-keys-id-1.md)
+
+## Changelog
+- [Welcome to ButterflyMX](https://apidocs.butterflymx.com/changelog/welcome-to-butterflymx.md)

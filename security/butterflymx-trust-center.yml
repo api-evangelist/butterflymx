@@ -1,0 +1,53 @@
+generated: '2026-08-08'
+method: probed
+probe: true
+url: https://trust.butterflymx.com/
+platform: Vanta Trust Center
+title: ButterflyMX Trust Center
+statement: >-
+  At ButterflyMX, we acknowledge the paramount importance of safeguarding sensitive information and ensuring
+  the utmost privacy for our clients, partners, and stakeholders. Our dedication to information security
+  remains steadfast, grounded in the principles of transparency, integrity, and a commitment to continuous
+  improvement.
+statement_source: og:description meta tag served by https://trust.butterflymx.com/
+certifications: []
+certifications_note: >-
+  NO certification is recorded because none could be verified. The trust center is a client-side Vanta
+  application: the served HTML is a 7KB shell whose only rendered text is the page title, and the report
+  contents load from Vanta after script execution. The automated trust-center probe therefore returned no
+  hit. Any SOC 2 / ISO 27001 claim ButterflyMX makes on this page exists only after JavaScript runs and was
+  not asserted here rather than guessed. Because no certification could be read, this profile carries a
+  `TrustCenter` pointer but deliberately does NOT carry a `Compliance` pointer.
+vulnerability_disclosure:
+  published: false
+  security_txt: false
+  bug_bounty: false
+  checked:
+  - https://butterflymx.com/.well-known/security.txt
+  - https://api.butterflymx.com/.well-known/security.txt
+  - https://apidocs.butterflymx.com/.well-known/security.txt
+  - https://accounts.butterflymx.com/.well-known/security.txt
+  - https://hackerone.com/butterflymx
+  - https://bugcrowd.com/butterflymx
+  note: >-
+    No RFC 9116 security.txt on any host, no responsible-disclosure page, and no public bug-bounty program.
+    The only machine-readable security contact ButterflyMX publishes anywhere is the CAA `iodef` record on
+    butterflymx.com — `mailto:devops@butterflymx.com` — which is a certificate-incident mailbox, not a
+    vulnerability-disclosure policy.
+x-evidence:
+- url: https://trust.butterflymx.com/
+  http_status: 200
+  content_type: text/html
+  fetched: '2026-08-08'
+  keywords:
+  - trust center
+  - security
+  - compliance
+  - privacy
+- url: https://butterflymx.com/.well-known/security.txt
+  http_status: 200
+  verdict: soft-404 (redirects to the marketing homepage; no security.txt exists)
+  fetched: '2026-08-08'
+- url: https://hackerone.com/butterflymx
+  http_status: 404
+  fetched: '2026-08-08'

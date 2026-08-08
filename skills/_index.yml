@@ -1,0 +1,29 @@
+generated: '2026-08-08'
+method: generated
+source: openapi/butterflymx-api-openapi.yml
+note: >-
+  ButterflyMX publishes no AGENTS.md and no provider-authored skill files. These four are generated from
+  the provider's own OpenAPI and guides, one per marquee flow. Every step names a literal method + path
+  verified against openapi/_original/butterflymx-api-openapi.json; the symbolic operationIds come from
+  overlays/butterflymx-api-overlay.yaml because the published spec declares none.
+skills:
+- file: butterflymx-open-a-door.md
+  name: Open a ButterflyMX door programmatically
+  api: openapi/butterflymx-api-openapi.yml
+  operations: [listTenants, listAccessPoints, listDevices, showSchedules, createDoorReleaseRequests, listAccessLogs]
+- file: butterflymx-issue-visitor-pass.md
+  name: Issue a ButterflyMX visitor pass
+  api: openapi/butterflymx-api-openapi.yml
+  operations: [listTenants, showBuilding, listAccessPoints, listDevices, createAOneTimeKeychain,
+    createACustomKeychain, createADeliveryPassKeychain, listVirtualKeys, deleteKeychain]
+- file: butterflymx-manage-resident-access.md
+  name: Manage ButterflyMX resident access credentials
+  api: openapi/butterflymx-api-openapi.yml
+  operations: [listBuildings, createUnit, createTenant, listTenants, resendConfirmationEmail, listAccessTools,
+    createAPinAccessTool, changeThePinOfAnAccessTool, createARfidTagAccessTool, deleteAccessTool,
+    listAccessGroups, addTenantsToAccessGroup, removeTenantsFromAccessGroup]
+- file: butterflymx-subscribe-to-events.md
+  name: Subscribe to ButterflyMX access and call events
+  api: openapi/butterflymx-api-openapi.yml
+  operations: [listBuildings, listBuildingIntegrations, createBuildingIntegration, updateBuildingIntegration,
+    deleteBuildingIntegration, createTenantIntegration, listAccessLogs, listCalls]

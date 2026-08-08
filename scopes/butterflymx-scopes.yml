@@ -1,0 +1,74 @@
+generated: '2026-08-08'
+method: probed
+source: https://accounts.butterflymx.com/.well-known/openid-configuration
+docs: https://apidocs.butterflymx.com/docs/authorization
+note: >-
+  The published OpenAPI declares no oauth2 securityScheme, so no scopes are derivable from the spec. These
+  scopes come from the live OAuth 2.0 / OpenID Connect discovery documents the ButterflyMX authorization
+  server serves anonymously. ButterflyMX publishes no scope-reference page in its developer docs, so the
+  descriptions below are marked `undocumented` where the provider does not explain the scope — they are NOT
+  guessed. The sample token response in the authorization guide shows `"scope": "public"`, confirming
+  `public` is the default scope granted to a developer application.
+schemes:
+- name: OAuth2
+  source: https://accounts.butterflymx.com/.well-known/oauth-authorization-server
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://accounts.butterflymx.com/oauth/authorize
+    tokenUrl: https://accounts.butterflymx.com/oauth/token
+  - flow: clientCredentials
+    tokenUrl: https://accounts.butterflymx.com/oauth/token
+scopes:
+- scope: public
+  description: >-
+    Default scope returned in the documented sample token response; grants access to the public ButterflyMX
+    API v4 surface for the authenticated tenant or admin.
+  documented: true
+  sources:
+  - https://apidocs.butterflymx.com/docs/authorization
+  - https://accounts.butterflymx.com/.well-known/openid-configuration
+- scope: openid
+  description: Standard OpenID Connect scope; requests an ID token.
+  documented: false
+  standard: openid-connect-core
+  sources:
+  - https://accounts.butterflymx.com/.well-known/openid-configuration
+- scope: profile
+  description: Standard OpenID Connect scope for basic profile claims.
+  documented: false
+  standard: openid-connect-core
+  sources:
+  - https://accounts.butterflymx.com/.well-known/openid-configuration
+- scope: email
+  description: Standard OpenID Connect scope for the `email` and `email_verified` claims.
+  documented: false
+  standard: openid-connect-core
+  sources:
+  - https://accounts.butterflymx.com/.well-known/openid-configuration
+- scope: os
+  description: undocumented — advertised by the authorization server but not explained in the public docs.
+  documented: false
+  sources:
+  - https://accounts.butterflymx.com/.well-known/openid-configuration
+- scope: caterpillar
+  description: undocumented — advertised by the authorization server but not explained in the public docs.
+  documented: false
+  sources:
+  - https://accounts.butterflymx.com/.well-known/openid-configuration
+claims_supported:
+- iss
+- sub
+- aud
+- exp
+- iat
+- email
+- email_verified
+gaps:
+- >-
+  There is no published scopes/permissions reference. Two of the six advertised scopes (`os`, `caterpillar`)
+  are undocumented, and the OpenAPI does not bind any operation to a scope, so an integrator cannot
+  determine least-privilege access from the contract.
+x-evidence:
+- url: https://accounts.butterflymx.com/.well-known/openid-configuration
+  http_status: 200
+  fetched: '2026-08-08'

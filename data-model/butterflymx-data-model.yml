@@ -1,0 +1,219 @@
+generated: '2026-08-08'
+method: derived
+source: openapi/butterflymx-api-openapi.yml
+note: >-
+  Derived from the response examples embedded in the ButterflyMX OpenAPI, because the spec ships
+  `components.schemas` EMPTY — all 57 operations inline their payloads as examples with no named, reusable
+  schema. Field lists below are exactly the keys the provider's own examples return; relationships are the
+  `*_id` / `*_ids` reference fields those payloads carry. Nothing is inferred beyond what the examples show.
+root: building
+entities:
+- name: building
+  collection: /v4/buildings
+  fields: [id, name, address, time_zone, created_at, updated_at]
+  sub_resources:
+  - /v4/buildings/{id}/capabilities
+  - /v4/buildings/{building_id}/units
+  - /v4/buildings/{building_id}/access_logs
+  - /v4/buildings/{building_id}/calls
+  - /v4/buildings/{building_id}/integrations
+- name: unit
+  collection: /v4/units
+  fields: [id, label, floor, building_id, created_at, updated_at]
+- name: tenant
+  collection: /v4/tenants
+  fields: [id, first_name, last_name, full_name, email, building_id, building_name, building_timezone,
+    unit, contact_preference, notification_preference, registration_status, invitation, inactive_after,
+    created_at, updated_at]
+- name: access_point
+  collection: /v4/access_points
+  fields: [id, name, building_id, device_ids, open_hours, created_at, updated_at]
+- name: device
+  collection: /v4/devices
+  fields: [id, name, type, model, serial_number, building_id, created_at, updated_at]
+  types_observed: [smart_lock]
+- name: access_group
+  collection: /v4/access_groups
+  fields: [id, name, building_id, tenants_ids, units_ids, created_at, updated_at]
+- name: access_tool
+  collection: /v4/access_tools
+  fields: [id, type, code, tenant_id, building_id, created_at, updated_at]
+  subtypes:
+  - name: pin
+    create: POST /v4/access_tools/pins
+    update: PUT /v4/access_tools/pins/{id}
+    constraint: one PIN per tenant; complexity rules reject sequences and repeated digits (4-digit legacy exempt)
+  - name: rfid_tag
+    create: POST /v4/access_tools/rfid_tags
+    constraint: immutable — delete and re-create instead of updating
+- name: keychain
+  collection: /v4/keychains
+  fields: [id, name, type, tenant_id, unit_id, building_id, access_point_ids, device_ids, virtual_key_ids,
+    starts_at, ends_at, created_at, updated_at]
+  subtypes:
+  - name: custom
+    create: POST /v4/keychains/custom
+  - name: one_time
+    create: POST /v4/keychains/one_time
+  - name: delivery_pass
+    create: POST /v4/keychains/delivery_pass
+  - name: recurring
+    create: POST /v4/keychains/recurring
+    extra_fields: [start_date, end_date, time_from, time_to, weekdays]
+- name: virtual_key
+  collection: /v4/virtual_keys
+  fields: [id, name, keychain_id, building_id, email, sms_number, pin_code, qr_code_url, instructions_url,
+    sent_at, first_used_at, last_used_at, usage_count, created_at, updated_at]
+- name: door_release_request
+  collection: /v4/door_release_requests
+  fields: [id, guid, tenant_id, access_point_id, device_id, release_method, created_at, updated_at]
+  note: Write-only action resource — the API's single physical side effect.
+- name: access_log
+  collection: /v4/buildings/{building_id}/access_logs
+  fields: [id, logged_at, access_point, unit, tenant_id, name, entry_method, release_status, release_type,
+    image_url]
+- name: call
+  collection: /v4/buildings/{building_id}/calls
+  fields: [id, logged_at, building_id, device, unit, recipient, notification_type, status, image_url]
+- name: integration
+  collection: /v4/buildings/{building_id}/integrations, /v4/tenants/{tenant_id}/integrations
+  fields: [type, attributes.integrator, attributes.configuration.url, attributes.configuration.method,
+    attributes.bindings]
+  note: The webhook subscription resource. See asyncapi/butterflymx-webhooks.yml.
+- name: schedule
+  collection: /v4/access_points/{id}/schedules
+  fields: [id, from, to, weekdays]
+- name: capability
+  collection: /v4/buildings/{id}/capabilities
+  fields: [delivery_pass_enabled, delivery_pickup_pins_enabled, user_photo_required]
+relationships:
+- from: building
+  to: unit
+  kind: has_many
+  via: building_id
+- from: building
+  to: access_point
+  kind: has_many
+  via: building_id
+- from: building
+  to: device
+  kind: has_many
+  via: building_id
+- from: building
+  to: access_group
+  kind: has_many
+  via: building_id
+- from: building
+  to: access_log
+  kind: has_many
+  via: path (/v4/buildings/{building_id}/access_logs)
+- from: building
+  to: call
+  kind: has_many
+  via: path (/v4/buildings/{building_id}/calls)
+- from: building
+  to: integration
+  kind: has_many
+  via: path (/v4/buildings/{building_id}/integrations)
+- from: unit
+  to: tenant
+  kind: has_many
+  via: unit (embedded on tenant)
+- from: tenant
+  to: unit
+  kind: belongs_to
+  via: unit.id
+- from: tenant
+  to: building
+  kind: belongs_to
+  via: building_id
+- from: tenant
+  to: access_tool
+  kind: has_many
+  via: tenant_id
+- from: tenant
+  to: keychain
+  kind: has_many
+  via: tenant_id
+- from: tenant
+  to: integration
+  kind: has_many
+  via: path (/v4/tenants/{tenant_id}/integrations)
+- from: access_point
+  to: device
+  kind: has_many
+  via: device_ids
+- from: access_point
+  to: schedule
+  kind: has_many
+  via: path (/v4/access_points/{id}/schedules)
+- from: access_group
+  to: tenant
+  kind: has_many
+  via: tenants_ids
+- from: access_group
+  to: unit
+  kind: has_many
+  via: units_ids
+- from: keychain
+  to: virtual_key
+  kind: has_many
+  via: virtual_key_ids
+- from: keychain
+  to: access_point
+  kind: has_many
+  via: access_point_ids
+- from: keychain
+  to: device
+  kind: has_many
+  via: device_ids
+- from: keychain
+  to: tenant
+  kind: belongs_to
+  via: tenant_id
+- from: keychain
+  to: unit
+  kind: belongs_to
+  via: unit_id
+- from: virtual_key
+  to: keychain
+  kind: belongs_to
+  via: keychain_id
+- from: door_release_request
+  to: tenant
+  kind: belongs_to
+  via: tenant_id
+- from: door_release_request
+  to: access_point
+  kind: belongs_to
+  via: access_point_id
+- from: door_release_request
+  to: device
+  kind: belongs_to
+  via: device_id
+- from: access_log
+  to: access_point
+  kind: belongs_to
+  via: access_point
+- from: access_log
+  to: tenant
+  kind: belongs_to
+  via: tenant_id
+- from: call
+  to: device
+  kind: belongs_to
+  via: device.id
+- from: call
+  to: tenant
+  kind: belongs_to
+  via: recipient.id (recipient.type == "Tenant")
+identifiers:
+  style: integer surrogate keys
+  prefixes: none
+  note: >-
+    All ids are bare integers with no type prefix, so an id carries no self-describing type — a client
+    cannot tell an access_point_id from a device_id from a tenant_id by inspection. `door_release_request`
+    additionally carries a `guid`.
+gaps:
+- components.schemas is empty across the whole spec — zero reusable schemas, zero $refs.
+- No relationship links, `type` discriminators, or expansion parameters in responses.

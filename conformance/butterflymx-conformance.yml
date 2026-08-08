@@ -1,0 +1,81 @@
+generated: '2026-08-08'
+method: derived
+source: openapi/butterflymx-api-openapi.yml
+also_from:
+- well-known/butterflymx-openid-configuration.json
+- well-known/butterflymx-oauth-authorization-server.json
+- https://apidocs.butterflymx.com/docs/authorization
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: 'Published document declares openapi: 3.0.1 with 43 paths / 57 operations.'
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Authorization-code and refresh-token flows documented at apidocs.butterflymx.com/docs/authorization;
+    authorization, token, revocation and introspection endpoints advertised by the authorization server.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: 'https://accounts.butterflymx.com/.well-known/oauth-authorization-server returns 200 with valid AS metadata.'
+- id: oidc-discovery
+  conforms: true
+  evidence: >-
+    https://accounts.butterflymx.com/.well-known/openid-configuration returns 200; advertises the `openid`,
+    `profile` and `email` scopes, RS256 id_token signing, a jwks_uri and the standard OIDC claim set.
+- id: rfc7636-pkce
+  conforms: true
+  evidence: 'code_challenge_methods_supported advertises S256 (and plain).'
+  caveat: >-
+    `plain` is still advertised alongside S256, and the authorization guide's worked example passes
+    `client_secret` on the front-channel /oauth/authorize redirect — neither is current OAuth 2.1 practice.
+- id: rfc7009-token-revocation
+  conforms: true
+  evidence: 'revocation_endpoint: https://accounts.butterflymx.com/oauth/revoke'
+- id: rfc7662-token-introspection
+  conforms: true
+  evidence: 'introspection_endpoint: https://accounts.butterflymx.com/oauth/introspect'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are a custom `{"errors":[{field,code,message}]}` envelope on application/json; no
+    application/problem+json anywhere in the spec.
+- id: json-api
+  conforms: partial
+  evidence: >-
+    The webhook integration payloads use a JSON:API-shaped request body (`data.type` = "integrations" with
+    `attributes`), and the first-party iOS SDK depends on the JSON:API parsers Japx and Spine. The v4 REST
+    responses, however, are a plain `data` envelope without `type`, `relationships`, or `links`, so the API
+    is JSON:API-influenced rather than JSON:API-conformant.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support is documented; no deprecation policy is published.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every ButterflyMX host probed.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    A real event surface exists (webhook integrations for `call` and `door_release`) but no AsyncAPI
+    document is published. Captured as a webhook catalog instead — asyncapi/butterflymx-webhooks.yml.
+- id: idempotency-keys
+  conforms: false
+  evidence: No idempotency key header or parameter in the spec or the docs. See conventions/.
+- id: rate-limit-headers
+  conforms: false
+  evidence: No RateLimit/Retry-After headers documented; no 429 declared on any operation.
+- id: hsts
+  conforms: true
+  evidence: >-
+    Strict-Transport-Security present on butterflymx.com, apidocs.butterflymx.com and api.butterflymx.com
+    with max-age >= 31536000. See security/butterflymx-domain-security.yml.
+- id: dnssec
+  conforms: false
+  evidence: butterflymx.com is not DNSSEC-signed.
+compliance_program:
+  published: true
+  url: https://trust.butterflymx.com/
+  certifications_verified: []
+  note: >-
+    A Vanta-hosted trust center exists but renders client-side, so no named certification could be read.
+    Deliberately NOT emitting a `Compliance` pointer on an unverifiable claim — see
+    security/butterflymx-trust-center.yml.

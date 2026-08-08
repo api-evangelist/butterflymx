@@ -1,0 +1,127 @@
+generated: '2026-08-08'
+method: searched
+source: https://apidocs.butterflymx.com/docs/supported-use-cases
+derived_from:
+- openapi/butterflymx-api-openapi.yml
+- https://apidocs.butterflymx.com/docs/webhooks
+- https://apidocs.butterflymx.com/docs/access-and-call-logs
+- https://apidocs.butterflymx.com/docs/virtual-keys
+api: ButterflyMX API v4
+authentication:
+  style: bearer
+  header: Authorization
+  token_source: OAuth 2.0 authorization-code access token (24h lifetime)
+  see: authentication/butterflymx-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v4
+  example: https://api.butterflymx.com/v4/buildings
+  note: >-
+    Version is a path segment. No version header, no dated version train, and no published version-support
+    or migration policy. Earlier majors (v3) are referenced in older ButterflyMX documentation but the
+    current public reference covers v4 only.
+pagination:
+  style: page-number
+  params:
+  - name: page
+    in: query
+    type: integer
+    minimum: 0
+    description: requested page
+  - name: per
+    in: query
+    type: integer
+    minimum: 1
+    maximum: 100
+    description: page size
+  response_fields:
+    collection: data
+  gaps:
+  - >-
+    No total-count, next/prev link, or `Link` header is declared anywhere in the spec or the docs, so a
+    client cannot tell when it has reached the last page except by receiving a short page.
+filtering:
+  style: ransack
+  param_family: 'q[<attribute>_<predicate>]'
+  predicates_observed:
+  - _eq
+  - _start
+  - _in[]
+  - _gteq
+  - _lteq
+  examples:
+  - 'q[building_id_eq]=11879'
+  - 'q[name_start]=A'
+  - 'q[id_in][]=123&q[id_in][]=456'
+  - 'q[logged_at_gteq]=2025-04-01'
+  - 'q[release_method_in][]=swipe_to_open'
+  note: >-
+    Rails/Ransack-style search predicates exposed directly as query parameters. Each list operation declares
+    its own supported subset in the OpenAPI; there is no generic filter grammar reference page.
+scoping:
+  param: scope
+  values_observed:
+  - self
+  applies_to:
+  - GET /v4/tenants
+  description: >-
+    `scope=self` restricts a collection to the authenticated tenant. Permission scoping is otherwise
+    implicit in the token: tenants see their own units and access points, building admins see the buildings
+    they manage.
+response_envelope:
+  success:
+    field: data
+    shape: object for a single resource, array for a collection
+    example: '{"data": [{"id": 22177636, "name": "Back door", "building_id": 577696272}]}'
+  timestamps:
+    format: ISO 8601 UTC (e.g. 2025-04-24T10:24:35Z)
+    note: >-
+      The visitor-pass guide is explicit that all `starts_at`/`ends_at`/`time_from`/`time_to` values must be
+      supplied in UTC, and points at `GET /v4/buildings/{id}` -> `time_zone` for converting from a
+      building's local time.
+error_envelope:
+  field: errors
+  shape: array of objects
+  members:
+  - field
+  - code
+  - message
+  note: >-
+    Not RFC 9457 problem+json. Errors are returned as `{"errors":[{"field":"code","code":"low_entropy",
+    "message":"..."}]}` with `application/json`. Note the inconsistency the spec itself carries: the 401
+    example uses a plural `messages` key while the 404 and 422 examples use singular `message`.
+  see: errors/butterflymx-problem-types.yml
+idempotency:
+  supported: false
+  evidence: >-
+    No idempotency key header or parameter appears anywhere in the OpenAPI (0 matches for /idempot/ across
+    the whole document) and no idempotency contract is documented. The webhooks guide asks the CONSUMER to
+    tolerate duplicate deliveries, which is the opposite direction — it is not a producer-side idempotency
+    guarantee for API writes.
+  impact: >-
+    Retrying a POST /v4/door_release_requests, POST /v4/keychains/* or POST /v4/access_tools/pins after a
+    timeout may repeat a physical-access side effect. This is the sharpest gap in the contract given that
+    the write operations here unlock doors.
+request_tracing:
+  request_id_header: false
+  note: >-
+    The production API host returns an `x-request-id` response header (observed on a probe of
+    https://api.butterflymx.com/), but it is not declared in the OpenAPI or described in the docs, so it is
+    not a contract a client can rely on.
+rate_limiting:
+  documented: false
+  headers: []
+  note: No rate limits, quotas, or throttling headers are published in the spec or the docs.
+webhooks:
+  supported: true
+  model: per-building and per-tenant "integrations" resources
+  see: asyncapi/butterflymx-webhooks.yml
+sandbox:
+  supported: true
+  see: sandbox/butterflymx-sandbox.yml
+cross_links:
+  authentication: authentication/butterflymx-authentication.yml
+  scopes: scopes/butterflymx-scopes.yml
+  errors: errors/butterflymx-problem-types.yml
+  lifecycle: lifecycle/butterflymx-lifecycle.yml
+  data_model: data-model/butterflymx-data-model.yml

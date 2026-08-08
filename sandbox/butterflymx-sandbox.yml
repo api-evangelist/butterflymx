@@ -1,0 +1,81 @@
+generated: '2026-08-08'
+method: searched
+source: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+summary: >-
+  ButterflyMX runs a full sandbox that the docs describe as "a complete replica of the ButterflyMX
+  production environment, supporting all of the same API endpoints", containing only test data and fully
+  separated from a production account. Access is not self-serve: it requires an application, a signed NDA,
+  and agreement to the ButterflyMX Developer Terms of Service.
+environments:
+- name: production
+  api_base_url: https://api.butterflymx.com
+  accounts_base_url: https://accounts.butterflymx.com
+  oidc_discovery: https://accounts.butterflymx.com/.well-known/openid-configuration
+- name: sandbox
+  api_base_url: https://api.na.sandbox.butterflymx.com
+  accounts_base_url: https://accounts.na.sandbox.butterflymx.com
+  dashboard: https://user.na.sandbox.butterflymx.com/
+  oidc_discovery: https://accounts.na.sandbox.butterflymx.com/.well-known/openid-configuration
+  authorize_example: >-
+    https://accounts.na.sandbox.butterflymx.com/oauth/authorize?client_id=...&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code
+  token_endpoint: https://accounts.na.sandbox.butterflymx.com/oauth/token
+separation:
+  mechanism: separate hostnames and separate accounts
+  key_prefixes: none
+  note: >-
+    There are no test-mode key prefixes (no `sk_test_`-style separation). Test versus live is entirely a
+    function of which host you call and which credential pair you were issued. A client that points a
+    production credential at the sandbox host simply fails to authorize; nothing in the token itself marks
+    the mode.
+  declared_in_openapi: true
+  openapi_servers:
+  - url: https://api.butterflymx.com
+    description: Production
+  - url: https://api.na.sandbox.butterflymx.com
+    description: Sandbox
+  - url: https://{environment_name}.butterflymx.com
+    description: Other environment
+onboarding:
+  self_serve: false
+  gate: NDA + ButterflyMX Developer Terms of Service
+  required_information:
+  - valid email address
+  - full name associated with the email
+  - phone number associated with the email
+  - company name
+  - company address
+  flow: >-
+    Apply -> sign the NDA and accept the Developer Terms -> verify the email address -> a sandbox account is
+    created and you are redirected to the sandbox dashboard at user.na.sandbox.butterflymx.com, where test
+    buildings and tenants are managed. The API key and secret are emailed to the address supplied.
+  credential_delivery: email
+test_resources:
+  managed_in_dashboard:
+  - buildings
+  - tenants
+  magic_values: []
+  magic_values_note: >-
+    ButterflyMX publishes NO magic/fixture test identifiers — no test PIN, no test RFID tag, no simulated
+    door-release outcome, no test clock. Sandbox data is whatever you create in the sandbox dashboard. The
+    example IDs that appear throughout the guides (tenant 129227, building 11743, access point 3996, device
+    115677) are illustrative response values from the docs, not usable fixtures.
+documented_example_values:
+  note: Illustrative only — taken verbatim from the public guides, not provisioned for any reader.
+  tenant_id: 129227
+  building_id: 11743
+  unit_id: 101356
+  access_point_id: 3996
+  device_id: 115677
+  pin_access_tool_id: 70091
+gaps:
+- No self-serve sandbox signup — an NDA stands between a developer and a first API call.
+- No published fixtures, magic identifiers, or event simulators for door-release or call outcomes.
+- No test clock or time simulation, despite keychains/virtual keys being entirely time-window driven.
+x-evidence:
+- url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox.md
+  http_status: 200
+  fetched: '2026-08-08'
+- url: https://user.na.sandbox.butterflymx.com/
+  http_status: 200
+  redirects_to: https://accounts.na.sandbox.butterflymx.com/login/new
+  fetched: '2026-08-08'

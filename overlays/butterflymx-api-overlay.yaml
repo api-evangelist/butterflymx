@@ -1,0 +1,235 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ButterflyMX API
+  version: 1.0.0
+extends: openapi/butterflymx-api-openapi.yml
+x-generated: '2026-08-08'
+x-method: generated
+x-rationale:
+- The published ButterflyMX OpenAPI declares ZERO operationIds across all 57 operations, so no SDK generator, Arazzo workflow,
+  MCP tool or agent skill can address an operation by name. This overlay assigns one per operation, derived from that operation's
+  own summary — nothing the provider published is renamed.
+- The spec declares a Bearer securityScheme and applies it per-operation, but sets no root-level security object.
+- The spec uses 14 tags and declares none of them at the document root.
+- openapi/_original/butterflymx-api-openapi.json is never mutated; it stays exactly as harvested.
+actions:
+- target: $.info
+  description: Record the API Evangelist enrichment pass and fill the description/contact metadata the spec omits.
+  update:
+    description: 'Public REST API for the ButterflyMX property-access platform: buildings, units, tenants, access groups,
+      access points, devices, permanent access tools (PINs and RFID tags), keychains and virtual keys for visitor passes,
+      programmatic door release, webhook integrations, and access and call logs.'
+    contact:
+      name: ButterflyMX Developer Hub
+      url: https://apidocs.butterflymx.com/
+    x-apievangelist-enriched: '2026-08-08'
+    x-apievangelist-source: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+- target: $
+  description: Apply the Bearer scheme at the document root — the spec declares it and uses it per-operation but sets no
+    root security.
+  update:
+    security:
+    - Bearer: []
+- target: $
+  description: Declare the 14 tags the operations already reference but the document never defines.
+  update:
+    tags:
+    - name: Access Logs
+      description: Door release and entry events for a building.
+    - name: Access Points
+      description: One or more doors, gates or ramps controlled as a single entity.
+    - name: Access Tools
+      description: 'Permanent access credentials: PINs and RFID tags.'
+    - name: Access groups
+      description: Grouping of tenants and units for scheduled access.
+    - name: Building Integrations
+      description: Building-scoped webhook subscriptions.
+    - name: Buildings
+      description: Physical buildings containing units and devices.
+    - name: Calls
+      description: Historical video call records.
+    - name: Devices
+      description: 'Installed hardware: intercoms, keypads, smart locks.'
+    - name: Door Release Requests
+      description: Programmatic door release (swipe-to-open).
+    - name: Keychains
+      description: Configuration objects for temporary virtual keys.
+    - name: Tenant Integrations
+      description: Tenant-scoped webhook subscriptions.
+    - name: Tenants
+      description: People living in a unit.
+    - name: Units
+      description: Physical spaces within a building.
+    - name: Virtual Keys
+      description: Temporary guest access credentials issued from a keychain.
+- target: $.paths['/v4/access_points'].get
+  update:
+    operationId: listAccessPoints
+- target: $.paths['/v4/access_points/{id}'].get
+  update:
+    operationId: showAccessPoint
+- target: $.paths['/v4/access_points/{id}/schedules'].get
+  update:
+    operationId: showSchedules
+- target: $.paths['/v4/access_tools/pins'].post
+  update:
+    operationId: createAPinAccessTool
+- target: $.paths['/v4/access_tools/pins/{id}'].put
+  update:
+    operationId: changeThePinOfAnAccessTool
+- target: $.paths['/v4/access_tools/rfid_tags'].post
+  update:
+    operationId: createARfidTagAccessTool
+- target: $.paths['/v4/access_tools'].get
+  update:
+    operationId: listAccessTools
+- target: $.paths['/v4/access_tools/{id}'].get
+  update:
+    operationId: showAccessTool
+- target: $.paths['/v4/access_tools/{id}'].delete
+  update:
+    operationId: deleteAccessTool
+- target: $.paths['/v4/buildings/{building_id}/access_logs'].get
+  update:
+    operationId: listAccessLogs
+- target: $.paths['/v4/buildings/{building_id}/access_logs/{id}'].get
+  update:
+    operationId: showAccessLog
+- target: $.paths['/v4/buildings/{building_id}/calls'].get
+  update:
+    operationId: listCalls
+- target: $.paths['/v4/buildings/{building_id}/calls/{id}'].get
+  update:
+    operationId: showCall
+- target: $.paths['/v4/buildings/{building_id}/integrations'].get
+  update:
+    operationId: listBuildingIntegrations
+- target: $.paths['/v4/buildings/{building_id}/integrations'].post
+  update:
+    operationId: createBuildingIntegration
+- target: $.paths['/v4/buildings/{building_id}/integrations/{id}'].get
+  update:
+    operationId: showBuildingIntegration
+- target: $.paths['/v4/buildings/{building_id}/integrations/{id}'].put
+  update:
+    operationId: updateBuildingIntegration
+- target: $.paths['/v4/buildings/{building_id}/integrations/{id}'].delete
+  update:
+    operationId: deleteBuildingIntegration
+- target: $.paths['/v4/buildings/{building_id}/units'].post
+  update:
+    operationId: createUnit
+- target: $.paths['/v4/buildings/{building_id}/units/{id}'].put
+  update:
+    operationId: updateUnit
+- target: $.paths['/v4/buildings/{building_id}/units/{id}'].delete
+  update:
+    operationId: deleteUnit
+- target: $.paths['/v4/buildings'].get
+  update:
+    operationId: listBuildings
+- target: $.paths['/v4/buildings/{id}'].get
+  update:
+    operationId: showBuilding
+- target: $.paths['/v4/buildings/{id}/capabilities'].get
+  update:
+    operationId: showBuildingCapabilities
+- target: $.paths['/v4/devices'].get
+  update:
+    operationId: listDevices
+- target: $.paths['/v4/devices/{id}'].get
+  update:
+    operationId: showDevice
+- target: $.paths['/v4/door_release_requests'].post
+  update:
+    operationId: createDoorReleaseRequests
+- target: $.paths['/v4/keychains/custom'].post
+  update:
+    operationId: createACustomKeychain
+- target: $.paths['/v4/keychains/delivery_pass'].post
+  update:
+    operationId: createADeliveryPassKeychain
+- target: $.paths['/v4/keychains/one_time'].post
+  update:
+    operationId: createAOneTimeKeychain
+- target: $.paths['/v4/keychains/recurring'].post
+  update:
+    operationId: createARecurringKeychain
+- target: $.paths['/v4/keychains'].get
+  update:
+    operationId: listKeychains
+- target: $.paths['/v4/keychains/{id}'].get
+  update:
+    operationId: showKeychain
+- target: $.paths['/v4/keychains/{id}'].delete
+  update:
+    operationId: deleteKeychain
+- target: $.paths['/v4/access_groups/{id}/tenants'].post
+  update:
+    operationId: addTenantsToAccessGroup
+- target: $.paths['/v4/access_groups/{id}/tenants/bulk_destroy'].delete
+  update:
+    operationId: removeTenantsFromAccessGroup
+- target: $.paths['/v4/access_groups/{id}/units'].post
+  update:
+    operationId: addUnitsToAccessGroup
+- target: $.paths['/v4/access_groups/{id}/units/bulk_destroy'].delete
+  update:
+    operationId: removeUnitsFromAccessGroup
+- target: $.paths['/v4/access_groups'].get
+  update:
+    operationId: listAccessGroups
+- target: $.paths['/v4/access_groups/{id}'].get
+  update:
+    operationId: showAccessGroup
+- target: $.paths['/v4/tenants/{tenant_id}/integrations'].get
+  update:
+    operationId: listTenantIntegrations
+- target: $.paths['/v4/tenants/{tenant_id}/integrations'].post
+  update:
+    operationId: createTenantIntegration
+- target: $.paths['/v4/tenants/{tenant_id}/integrations/{id}'].get
+  update:
+    operationId: showTenantIntegration
+- target: $.paths['/v4/tenants/{tenant_id}/integrations/{id}'].put
+  update:
+    operationId: updateTenantIntegration
+- target: $.paths['/v4/tenants/{tenant_id}/integrations/{id}'].delete
+  update:
+    operationId: deleteTenantIntegration
+- target: $.paths['/v4/tenants/{tenant_id}/resend_confirmation'].post
+  update:
+    operationId: resendConfirmationEmail
+- target: $.paths['/v4/tenants'].get
+  update:
+    operationId: listTenants
+- target: $.paths['/v4/tenants'].post
+  update:
+    operationId: createTenant
+- target: $.paths['/v4/tenants/{id}'].get
+  update:
+    operationId: showTenant
+- target: $.paths['/v4/tenants/{id}'].put
+  update:
+    operationId: updateTenant
+- target: $.paths['/v4/tenants/{id}'].delete
+  update:
+    operationId: deleteTenant
+- target: $.paths['/v4/units'].get
+  update:
+    operationId: listUnits
+- target: $.paths['/v4/units/{id}'].get
+  update:
+    operationId: showUnit
+- target: $.paths['/v4/virtual_keys'].get
+  update:
+    operationId: listVirtualKeys
+- target: $.paths['/v4/virtual_keys'].post
+  update:
+    operationId: createVirtualKey
+- target: $.paths['/v4/virtual_keys/{id}'].get
+  update:
+    operationId: showVirtualKeys
+- target: $.paths['/v4/virtual_keys/{id}'].delete
+  update:
+    operationId: deleteVirtualKey

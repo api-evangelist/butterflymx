@@ -1,0 +1,101 @@
+generated: '2026-08-08'
+method: searched
+source: https://github.com/runslikebutter
+note: >-
+  ButterflyMX ships native MOBILE SDKs only — there is no first-party server-side client library in any
+  language. The GitHub organization is `runslikebutter` (display name "ButterflyMX"); the `ButterflyMX`
+  org exists but has 0 public repositories.
+packages:
+- language: swift
+  registry: swift-package-manager
+  name: butterflymx-sdk-ios
+  products:
+  - BMXCore
+  - BMXCall
+  url: https://github.com/runslikebutter/butterflymx-sdk-ios
+  install: '.package(url: "https://github.com/runslikebutter/butterflymx-sdk-ios.git", .upToNextMajor(from: "2.3.7"))'
+  latest_tag: v2.3.10
+  requires: iOS 13.0+, Swift 5.0+, Xcode 14.0+
+  official: true
+  description: >-
+    ButterflyMX iOS SDK. BMXCore covers authentication, user/tenant data, door control and webhooks; BMXCall
+    handles incoming video calls over Twilio WebRTC.
+- language: swift
+  registry: cocoapods
+  name: BMXCore
+  url: https://cocoapods.org/pods/BMXCore
+  install: pod 'BMXCore'
+  latest_version: '2.3.6'
+  owner: ButterflyMX
+  official: true
+  note: >-
+    CocoaPods trunk owner is "ButterflyMX". Trails the Swift Package Manager distribution (2.3.6 vs the
+    v2.3.10 tag), so SPM is the current channel.
+- language: swift
+  registry: cocoapods
+  name: BMXCall
+  url: https://cocoapods.org/pods/BMXCall
+  install: pod 'BMXCall'
+  latest_version: '2.3.6'
+  owner: ButterflyMX
+  official: true
+- language: kotlin
+  registry: github-release
+  name: ButterflyMX Android SDK
+  url: https://github.com/runslikebutter/android-sdk-repository
+  artifacts:
+  - sdk-core-1.1.17.aar
+  - sdk-call-1.2.0.aar
+  install: "implementation files('libs/sdk-core-1.1.17.aar')"
+  official: true
+  description: >-
+    Android SDK distributed as loose AAR files from a public GitHub repository — not published to Maven
+    Central or any Gradle-resolvable repository, so integrators must download and vendor the binaries by
+    hand.
+  docs: https://github.com/runslikebutter/android-demo-app/wiki/Getting-Started
+demo_apps:
+- name: ios-demo-app
+  url: https://github.com/runslikebutter/ios-demo-app
+  language: swift
+  official: true
+- name: android-demo-app
+  url: https://github.com/runslikebutter/android-demo-app
+  language: kotlin
+  official: true
+- name: webhooks-demo-app
+  url: https://github.com/runslikebutter/webhooks-demo-app
+  language: python
+  official: true
+  description: Reference receiver for ButterflyMX webhook integrations.
+third_party:
+- language: python
+  registry: pypi
+  name: butterflymx
+  version: 0.1.3
+  url: https://pypi.org/project/butterflymx/
+  source: https://github.com/Iapetus-11/ButterflyMX
+  official: false
+  description: >-
+    "A reverse-engineered ButterflyMX app API wrapper" by an independent author (Milo Weinberg). Recorded
+    for completeness and explicitly NOT counted as a first-party SDK.
+registries_checked:
+- registry: npm
+  query: butterflymx
+  result: no packages
+- registry: pypi
+  query: butterflymx
+  result: one third-party reverse-engineered wrapper (see third_party)
+- registry: rubygems
+  query: butterflymx
+  result: 404
+- registry: cocoapods
+  query: BMXCore, BMXCall
+  result: both present, owner ButterflyMX
+- registry: maven-central
+  query: butterflymx
+  result: not published — Android SDK ships as raw AAR files from GitHub
+gaps:
+- >-
+  No server-side SDK in any language (no JavaScript/TypeScript, Python, Ruby, Go, Java, PHP or .NET client),
+  despite the REST API being the primary partner integration surface.
+- The Android SDK is not resolvable from any package manager; integrators hand-copy AAR files.

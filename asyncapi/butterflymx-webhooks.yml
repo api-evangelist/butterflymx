@@ -1,0 +1,108 @@
+generated: '2026-08-08'
+method: searched
+source: https://apidocs.butterflymx.com/docs/webhooks
+spec_type: WebhookCatalog
+asyncapi_published: false
+asyncapi_note: >-
+  ButterflyMX has a real event surface but publishes NO AsyncAPI document — no /asyncapi.yaml on any host,
+  nothing in the GitHub organization, no event-catalog page. This file captures the webhook surface exactly
+  as the provider documents it. No AsyncAPI was authored on their behalf.
+model: >-
+  Webhooks are not a standalone resource. They are created as "integrations" against either a building or a
+  tenant, with an `integrator` of `webhook`, a `configuration` (url + method) and a list of event
+  `bindings`.
+scopes:
+- scope: building
+  endpoint: /v4/buildings/{building_id}/integrations
+  configured_by: Building admin (e.g. property manager)
+  event_coverage: Entire building
+  use_cases:
+  - Security dashboards
+  - Delivery monitoring
+- scope: tenant
+  endpoint: /v4/tenants/{tenant_id}/integrations
+  configured_by: Tenant (resident or unit owner)
+  event_coverage: Events tied to the tenant's unit only
+  use_cases:
+  - Personal apps
+  - Smart-home automations
+events:
+- resource_type: call
+  action: create
+  description: New video call placed.
+  note: >-
+    Required by partners integrating the ButterflyMX mobile SDK — the SDK does not initiate connections by
+    itself, so the call webhook is how an application learns an incoming call exists.
+- resource_type: door_release
+  action: create
+  description: Door unlocked (via app, PIN, or QR).
+payload:
+  shape: '{"event": {"resource_type": "...", "action": "...", "data": {...}}}'
+  example_door_release:
+    event:
+      resource_type: door_release
+      action: create
+      data:
+        id: 123456789
+        logged_at: '2025-04-24T10:24:35Z'
+        access_point: 22177636
+        entry_method: Swipe to open
+        release_status: Unlocked
+        name: John Tenant
+        image_url: https://cdn.butterflymx.com/snapshot.png
+subscription_request_example:
+  data:
+    type: integrations
+    attributes:
+      integrator: webhook
+      configuration:
+        url: https://your-webhook-url.com/building-events
+        method: post
+      bindings:
+      - resource_type: door_release
+        actions:
+        - create
+      - resource_type: call
+        actions:
+        - create
+management:
+  list:
+  - GET /v4/buildings/{building_id}/integrations
+  - GET /v4/tenants/{tenant_id}/integrations
+  create:
+  - POST /v4/buildings/{building_id}/integrations
+  - POST /v4/tenants/{tenant_id}/integrations
+  show:
+  - GET /v4/buildings/{building_id}/integrations/{id}
+  - GET /v4/tenants/{tenant_id}/integrations/{id}
+  update:
+  - PUT /v4/buildings/{building_id}/integrations/{id}
+  - PUT /v4/tenants/{tenant_id}/integrations/{id}
+  delete:
+  - DELETE /v4/buildings/{building_id}/integrations/{id}
+  - DELETE /v4/tenants/{tenant_id}/integrations/{id}
+delivery:
+  ack_window_seconds: 5
+  ack_note: Respond with 200 OK within 5 seconds to avoid a retry.
+  retries: documented as occurring, but the retry schedule and cap are not published
+  duplicate_delivery: >-
+    The provider states the consumer must safely handle duplicate deliveries; there is no delivery-id or
+    dedupe key in the documented payload.
+security:
+  signature: >-
+    NOT provided by default. The docs describe signature verification as "optional" and put the burden on
+    the integrator ("Implement IP filtering or shared secret verification"). No signing algorithm, header
+    name, or secret-rotation process is documented.
+  transport: HTTPS endpoint supplied by the subscriber
+testing:
+  tool: https://webhook.site
+  reference_receiver: https://github.com/runslikebutter/webhooks-demo-app
+gaps:
+- No AsyncAPI or machine-readable event schema.
+- No webhook signature contract — the only documented integrity control is DIY IP filtering.
+- No event-id or delivery-id in the payload, yet duplicate delivery is expected.
+- Only two event types (`call.create`, `door_release.create`) for a platform with many more state changes.
+x-evidence:
+- url: https://apidocs.butterflymx.com/docs/webhooks.md
+  http_status: 200
+  fetched: '2026-08-08'

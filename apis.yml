@@ -1,18 +1,78 @@
 aid: butterflymx
 name: ButterflyMX
-description: 'ButterflyMX is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  ButterflyMX is a property-access technology company whose smart video intercoms, keypads, smart locks,
+  elevator controls, vehicle-access readers, package rooms and front-desk stations are installed in more than
+  20,000 multifamily, commercial, gated-community, student-housing and senior-living buildings. Its public
+  ButterflyMX API (v4) exposes the same access-control core to partners and property-technology platforms:
+  buildings, units, tenants, access points, devices, access groups, permanent access tools (PINs and RFID
+  tags), keychains and virtual keys for visitor passes, door-release requests for programmatic swipe-to-open,
+  and access and video-call logs. Real-time delivery is handled by building- and tenant-scoped webhook
+  integrations, and native iOS and Android SDKs add in-app video-call handling on top of the REST surface.
+  Authorization is OAuth 2.0 authorization-code, issued by an OpenID-Connect-discoverable authorization
+  server at accounts.butterflymx.com, with a full sandbox replica for pre-production testing.
+image: https://butterflymx.com/wp-content/uploads/2023/10/gated-community-intercom.webp
 url: https://raw.githubusercontent.com/api-evangelist/butterflymx/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-08'
 modified: '2026-08-08'
 tags:
-- Company
-apis: []
+- access-control
+- physical-access
+- smart-intercom
+- proptech
+- property-management
+- multifamily
+- building-automation
+- visitor-management
+- iot
+- smart-locks
+- oauth2
+- webhooks
+apis:
+- name: ButterflyMX API
+  description: >-
+    Public REST API (v4) for the ButterflyMX property-access platform. Covers buildings, units, tenants,
+    access groups, access points, devices, access tools (PINs and RFID tags), keychains and virtual keys for
+    visitor passes, door-release requests, building and tenant webhook integrations, and access and call logs.
+    JSON over HTTPS with a `data` envelope, `page`/`per` pagination and Ransack-style `q[...]` filter
+    parameters. Authorization is an OAuth 2.0 bearer token sent in the `Authorization` header.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - access-control
+  - physical-access
+  - smart-intercom
+  - proptech
+  - visitor-management
+  - webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+  - type: Overlay
+    url: overlays/butterflymx-api-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +80,86 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/butterflymx_stock/
+  url: https://butterflymx.com/
+- type: DeveloperPortal
+  url: https://apidocs.butterflymx.com/
+- type: Documentation
+  url: https://apidocs.butterflymx.com/
+- type: APIReference
+  url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+- type: GettingStarted
+  url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+- type: Support
+  url: https://help.butterflymx.com/hc/en-us
+- type: Blog
+  url: https://butterflymx.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/runslikebutter
+- type: Pricing
+  url: https://butterflymx.com/cost/
+- type: Login
+  url: https://accounts.butterflymx.com/login/new
+- type: TermsOfService
+  url: https://butterflymx.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://butterflymx.com/privacy-policy/
+- type: StatusPage
+  url: https://status.butterflymx.com/
+- type: ChangeLog
+  url: https://apidocs.butterflymx.com/changelog
+- type: TrustCenter
+  url: https://trust.butterflymx.com/
+- type: LLMsTxt
+  url: llms/butterflymx-llms.txt
+- type: WellKnown
+  url: well-known/butterflymx-well-known.yml
+- type: Authentication
+  url: authentication/butterflymx-authentication.yml
+- type: OAuthScopes
+  url: scopes/butterflymx-scopes.yml
+- type: Conventions
+  url: conventions/butterflymx-conventions.yml
+- type: ErrorCatalog
+  url: errors/butterflymx-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/butterflymx-lifecycle.yml
+- type: Conformance
+  url: conformance/butterflymx-conformance.yml
+- type: DomainSecurity
+  url: security/butterflymx-domain-security.yml
+- type: TrustCenter
+  url: security/butterflymx-trust-center.yml
+- type: Packages
+  url: packages/butterflymx-packages.yml
+- type: SDKs
+  url: packages/butterflymx-packages.yml
+- type: DataModel
+  url: data-model/butterflymx-data-model.yml
+- type: Webhooks
+  url: asyncapi/butterflymx-webhooks.yml
+- type: Sandbox
+  url: sandbox/butterflymx-sandbox.yml
+- type: ChangeLog
+  url: changelog/butterflymx-changelog.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-08-08'
+  status: enriched
+  artifacts_added: 26
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: null
+  detail: >-
+    Full contract discovery succeeded. The provider's own OpenAPI 3.0.1 (43 paths / 57 operations) was
+    harvested from apidocs.butterflymx.com, its llms.txt saved verbatim, and live OIDC + RFC 8414 discovery
+    documents retrieved from accounts.butterflymx.com.
+  evidence:
+  - url: https://apidocs.butterflymx.com/llms.txt
+    status: 200
+  - url: https://accounts.butterflymx.com/.well-known/openid-configuration
+    status: 200
+  - url: https://api.butterflymx.com/
+    status: 200
+  checked: '2026-08-08'

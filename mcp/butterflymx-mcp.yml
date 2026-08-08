@@ -1,0 +1,111 @@
+generated: '2026-08-08'
+method: derived
+status: candidate
+source: openapi/butterflymx-api-openapi.yml
+published_server: null
+search_result: >-
+  ButterflyMX publishes NO MCP server. No mcp.butterflymx.com or comparable host resolves, the developer hub
+  mentions no MCP or agent surface, the GitHub organization (runslikebutter) contains no MCP repository, and
+  /.well-known/oauth-protected-resource returns 404 on both the production and sandbox API hosts. The tools
+  below are a CANDIDATE surface derived from the provider's own OpenAPI operations — nothing here is
+  operated by ButterflyMX.
+pointer_note: >-
+  Deliberately NOT wired as a `type: MCPServer` pointer in apis.yml. A derived candidate list is not a
+  hosted server, and emitting the pointer would credit an agent surface the provider does not run.
+server:
+  name: butterflymx
+  transport: http
+  url: null
+tool_naming: operationIds assigned by overlays/butterflymx-api-overlay.yaml (the source spec declares none)
+tools:
+- name: list_buildings
+  description: List buildings the authenticated user can see.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/buildings'
+  operation_id: listBuildings
+  action_class: read
+- name: show_building
+  description: Show one building, including its time_zone.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/buildings/{id}'
+  operation_id: showBuilding
+  action_class: read
+- name: list_units
+  description: List units.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/units'
+  operation_id: listUnits
+  action_class: read
+- name: list_tenants
+  description: List tenants the authenticated user can see; supports scope=self.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/tenants'
+  operation_id: listTenants
+  action_class: read
+- name: list_access_points
+  description: List access points, filterable by building.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/access_points'
+  operation_id: listAccessPoints
+  action_class: read
+- name: list_devices
+  description: List installed devices such as unit-level smart locks.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/devices'
+  operation_id: listDevices
+  action_class: read
+- name: list_access_logs
+  description: List door-release and entry events for a building.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/buildings/{building_id}/access_logs'
+  operation_id: listAccessLogs
+  action_class: read
+- name: list_calls
+  description: List historical video calls for a building.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/buildings/{building_id}/calls'
+  operation_id: listCalls
+  action_class: read
+- name: list_keychains
+  description: List visitor-pass keychains.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#GET /v4/keychains'
+  operation_id: listKeychains
+  action_class: read
+- name: create_one_time_keychain
+  description: Issue a single-use visitor pass.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#POST /v4/keychains/one_time'
+  operation_id: createAOneTimeKeychain
+  action_class: write
+  consequence: physical
+- name: create_delivery_pass_keychain
+  description: Issue a delivery pass with a 5-minute grace period.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#POST /v4/keychains/delivery_pass'
+  operation_id: createADeliveryPassKeychain
+  action_class: write
+  consequence: physical
+- name: delete_keychain
+  description: Revoke a keychain and deactivate every virtual key attached to it.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#DELETE /v4/keychains/{id}'
+  operation_id: deleteKeychain
+  action_class: write
+  consequence: physical
+- name: create_door_release_request
+  description: Open an access point or device on behalf of a tenant.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#POST /v4/door_release_requests'
+  operation_id: createDoorReleaseRequests
+  action_class: write
+  consequence: safety-critical
+  note: >-
+    Physically unlocks a door. Any agent binding of this operation needs human-in-the-loop confirmation and
+    a short-lived, purpose-bound token — and ButterflyMX ships no idempotency key, so a retry re-opens the
+    door.
+- name: create_pin_access_tool
+  description: Create a permanent PIN credential for a tenant.
+  source_operation: 'openapi/butterflymx-api-openapi.yml#POST /v4/access_tools/pins'
+  operation_id: createAPinAccessTool
+  action_class: write
+  consequence: physical
+tool_crosswalk: null
+tool_crosswalk_note: >-
+  No crosswalk artifact is emitted. The crosswalk exists to record divergence between a real MCP/GraphQL
+  surface and REST; with no published MCP server and no GraphQL endpoint (POST /graphql returns 404 on the
+  API host), every candidate tool above maps 1:1 to a REST operation and there is nothing to reconcile.
+x-evidence:
+- url: https://api.butterflymx.com/.well-known/oauth-protected-resource
+  http_status: 404
+  fetched: '2026-08-08'
+- url: https://api.butterflymx.com/graphql
+  http_status: 404
+  fetched: '2026-08-08'

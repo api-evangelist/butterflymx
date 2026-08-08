@@ -1,0 +1,37 @@
+generated: '2026-08-08'
+method: searched
+source: https://apidocs.butterflymx.com/changelog
+url: https://apidocs.butterflymx.com/changelog
+scheme: none
+current_version: v4
+entry_count: 1
+status: dormant
+summary: >-
+  ButterflyMX publishes a changelog surface on its developer hub, but it is effectively empty. The hub's own
+  changelog index reports `total: 1`, and that single entry is a welcome post created 2019-11-13 — not an
+  API change record. There is no versioned release history, no breaking-change notice, and no additions log
+  anywhere on the developer hub, so an integrator has no way to learn that the v4 contract has changed
+  except by re-reading the reference.
+entries:
+- title: Welcome to ButterflyMX
+  slug: welcome-to-butterflymx
+  url: https://apidocs.butterflymx.com/changelog/welcome-to-butterflymx
+  created: '2019-11-13'
+  updated: '2026-06-22'
+  author: Lee Andrews
+  type: none
+  body: Welcome to the developer hub and documentation for ButterflyMX!
+  breaking: []
+  additions: []
+  note: Welcome post, not an API change entry.
+gaps:
+- The changelog has recorded no API change in the ~7 years since it was created.
+- >-
+  The underlying OpenAPI was last regenerated 2026-06-22 (the same date the welcome entry was touched), so
+  the contract does move — it just moves silently.
+- No deprecation notices, no Sunset headers, no migration guides. See lifecycle/butterflymx-lifecycle.yml.
+x-evidence:
+- url: https://apidocs.butterflymx.com/changelog
+  http_status: 200
+  fetched: '2026-08-08'
+  observed: 'changelogs.total = 1'
