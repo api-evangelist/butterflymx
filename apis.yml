@@ -32,25 +32,16 @@ tags:
 - oauth2
 - webhooks
 apis:
-- name: ButterflyMX API
-  description: >-
-    Public REST API (v4) for the ButterflyMX property-access platform. Covers buildings, units, tenants,
-    access groups, access points, devices, access tools (PINs and RFID tags), keychains and virtual keys for
-    visitor passes, door-release requests, building and tenant webhook integrations, and access and call logs.
-    JSON over HTTPS with a `data` envelope, `page`/`per` pagination and Ransack-style `q[...]` filter
-    parameters. Authorization is an OAuth 2.0 bearer token sent in the `Authorization` header.
+- aid: butterflymx:butterflymx-access-groups-api
+  name: ButterflyMX Access groups API
+  description: The Access groups API from ButterflyMX — 6 operation(s) for access groups.
   humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
   baseURL: https://api.butterflymx.com
   tags:
-  - access-control
-  - physical-access
-  - smart-intercom
-  - proptech
-  - visitor-management
-  - webhooks
+  - Access groups
   properties:
   - type: OpenAPI
-    url: openapi/butterflymx-api-openapi.yml
+    url: openapi/butterflymx-access-groups-api-openapi.yml
   - type: Documentation
     url: https://apidocs.butterflymx.com/
   - type: APIReference
@@ -71,14 +62,408 @@ apis:
     url: asyncapi/butterflymx-webhooks.yml
   - type: Sandbox
     url: sandbox/butterflymx-sandbox.yml
-  - type: Overlay
-    url: overlays/butterflymx-api-overlay.yaml
+- aid: butterflymx:butterflymx-access-logs-api
+  name: ButterflyMX Access Logs API
+  description: The Access Logs API from ButterflyMX — 2 operation(s) for access logs.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Access Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-access-logs-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-access-points-api
+  name: ButterflyMX Access Points API
+  description: The Access Points API from ButterflyMX — 3 operation(s) for access points.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Access Points
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-access-points-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-access-tools-api
+  name: ButterflyMX Access Tools API
+  description: The Access Tools API from ButterflyMX — 5 operation(s) for access tools.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Access Tools
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-access-tools-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-building-integrations-api
+  name: ButterflyMX Building Integrations API
+  description: >-
+    The Building Integrations API from ButterflyMX — 2 operation(s) for building integrations.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Building Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-building-integrations-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-buildings-api
+  name: ButterflyMX Buildings API
+  description: The Buildings API from ButterflyMX — 3 operation(s) for buildings.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Buildings
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-buildings-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-calls-api
+  name: ButterflyMX Calls API
+  description: The Calls API from ButterflyMX — 2 operation(s) for calls.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Calls
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-calls-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-devices-api
+  name: ButterflyMX Devices API
+  description: The Devices API from ButterflyMX — 2 operation(s) for devices.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Devices
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-devices-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-door-release-requests-api
+  name: ButterflyMX Door Release Requests API
+  description: >-
+    The Door Release Requests API from ButterflyMX — 1 operation(s) for door release requests.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Door Release Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-door-release-requests-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-keychains-api
+  name: ButterflyMX Keychains API
+  description: The Keychains API from ButterflyMX — 6 operation(s) for keychains.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Keychains
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-keychains-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-tenant-integrations-api
+  name: ButterflyMX Tenant Integrations API
+  description: The Tenant Integrations API from ButterflyMX — 2 operation(s) for tenant integrations.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Tenant Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-tenant-integrations-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-tenants-api
+  name: ButterflyMX Tenants API
+  description: The Tenants API from ButterflyMX — 3 operation(s) for tenants.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-tenants-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-units-api
+  name: ButterflyMX Units API
+  description: The Units API from ButterflyMX — 4 operation(s) for units.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Units
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-units-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
+- aid: butterflymx:butterflymx-virtual-keys-api
+  name: ButterflyMX Virtual Keys API
+  description: The Virtual Keys API from ButterflyMX — 2 operation(s) for virtual keys.
+  humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  baseURL: https://api.butterflymx.com
+  tags:
+  - Virtual Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/butterflymx-virtual-keys-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.butterflymx.com/
+  - type: APIReference
+    url: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
+  - type: GettingStarted
+    url: https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox
+  - type: Authentication
+    url: authentication/butterflymx-authentication.yml
+  - type: OAuthScopes
+    url: scopes/butterflymx-scopes.yml
+  - type: Conventions
+    url: conventions/butterflymx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/butterflymx-problem-types.yml
+  - type: DataModel
+    url: data-model/butterflymx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/butterflymx-webhooks.yml
+  - type: Sandbox
+    url: sandbox/butterflymx-sandbox.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/butterflymx-mcp.yml
+- type: Overlay
+  url: overlays/butterflymx-api-overlay.yaml
 - type: Website
   url: https://butterflymx.com/
 - type: DeveloperPortal
