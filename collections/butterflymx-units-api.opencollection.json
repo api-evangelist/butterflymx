@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Units API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Units",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/units",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "create unit"
+        },
+        {
+          "info": {
+            "name": "update unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/units/:id",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the unit"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "update unit"
+        },
+        {
+          "info": {
+            "name": "delete unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/units/:id",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the unit"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "delete unit"
+        },
+        {
+          "info": {
+            "name": "list units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/units",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[label_eq]",
+                "value": "A003",
+                "type": "query",
+                "description": "filter by exact match on label (case insensitive)"
+              },
+              {
+                "name": "q[label_start]",
+                "value": "A",
+                "type": "query",
+                "description": "filter by label starts with (case insensitive)"
+              },
+              {
+                "name": "q[floor_eq]",
+                "value": "3",
+                "type": "query",
+                "description": "filter by exact match on floor (case insensitive)"
+              },
+              {
+                "name": "q[building_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on building id"
+              },
+              {
+                "name": "q[building_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by building id in list"
+              },
+              {
+                "name": "q[id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by id in list"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "A Unit is a physical space within a Building in which one or multiple\ntenants can reside.\n"
+        },
+        {
+          "info": {
+            "name": "show unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/units/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show unit"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,356 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Devices API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Devices
+paths:
+  /v4/devices:
+    get:
+      summary: list devices
+      tags:
+      - Devices
+      description: 'A **Device** is a physical device that is installed in a building,
+
+        through which one can control access to one or multiple
+
+        **Access Points**, to an amenity like the KeyLocker, or to common rooms
+
+        controlled by devices from 3rd parties.
+
+        '
+      security:
+      - Bearer: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[type_eq]
+        in: query
+        description: filter by exact match on type (case insensitive)
+        example: Keypad
+        schema:
+          type: string
+      - name: q[name_eq]
+        in: query
+        description: filter by exact match on name (case insensitive)
+        example: Front Door
+        schema:
+          type: string
+      - name: q[name_start]
+        in: query
+        description: filter by name starts with (case insensitive)
+        example: Front
+        schema:
+          type: string
+      - name: q[serial_number_eq]
+        in: query
+        description: filter by exact match on serial number (case insensitive)
+        example: 07N12345
+        schema:
+          type: string
+      - name: q[serial_number_start]
+        in: query
+        description: filter by serial number starts with (case insensitive)
+        example: 07N
+        schema:
+          type: string
+      - name: q[building_id_eq]
+        in: query
+        description: filter by exact match on building_id (case insensitive)
+        example: 123
+        schema:
+          type: string
+      - name: q[building_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by building id in list
+        example:
+        - 123
+        - 456
+      - name: q[id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by id in list
+        example:
+        - 123
+        - 456
+      responses:
+        '200':
+          description: fetch all devices that your user can see
+          content:
+            application/json:
+              examples:
+                fetch all devices that your user can see:
+                  value:
+                    data:
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 94566002
+                      model: null
+                      name: Rooftop
+                      serial_number: null
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: cloud_based_access_controller
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 106694916
+                      model: null
+                      name: Side Entrance
+                      serial_number: KP01-401C9
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 505753268
+                      type: keypad
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 126685867
+                      model: null
+                      name: Crimson Building Door
+                      serial_number: SL-CRIM-BD
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: smart_lock
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 127952958
+                      model: null
+                      name: Front Entrance
+                      serial_number: 07S21N3208
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 505753268
+                      type: panel
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 249138326
+                      model: null
+                      name: Virtual Entrance
+                      serial_number: VI01-BARD-001
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 750989427
+                      type: virtual_intercom
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 260221615
+                      model: null
+                      name: Crimson Left Elevator Control
+                      serial_number: BCLEC-1234
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: elevator_control
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 271679546
+                      model: null
+                      name: Self-guided Touring Key Exchange
+                      serial_number: KL01-40152
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: key_locker
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 282245290
+                      model: null
+                      name: Crimson Right Elevator Control
+                      serial_number: BCLREC-9876
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: elevator_control
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 339975782
+                      model: null
+                      name: Crimson Unit Door 1
+                      serial_number: SL-CRIM-UD1
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: smart_lock
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 408919060
+                      model: null
+                      name: Virtual Lobby
+                      serial_number: VI01-CRIM-001
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: virtual_intercom
+                    - created_at: '2018-08-08T15:15:45Z'
+                      id: 480613715
+                      model: null
+                      name: Elevator
+                      serial_number: null
+                      updated_at: '2023-03-03T10:01:59Z'
+                      building_id: 577696272
+                      type: elevator
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 513627685
+                      model: null
+                      name: Crimson Lobby
+                      serial_number: Crimson Lobby
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: front_desk_station
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 566540595
+                      model: null
+                      name: Package room
+                      serial_number: KP01-401B4
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: keypad
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 603131347
+                      model: null
+                      name: Eye of Sauron
+                      serial_number: see_you_everywhere
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 750989427
+                      type: front_desk_station
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 680596031
+                      model: null
+                      name: Crimson Remote Lock
+                      serial_number: RL-CRIM-1
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: remote_lock
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 681422089
+                      model: null
+                      name: Virtual Main Entrance
+                      serial_number: VI01-BLUE-001
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 505753268
+                      type: virtual_intercom
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 698963383
+                      model: null
+                      name: Main Gate
+                      serial_number: knock_knock
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 750989427
+                      type: panel
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 708353660
+                      model: null
+                      name: Main Entrance
+                      serial_number: 07S21N3209
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: panel
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 709680845
+                      model: null
+                      name: Crimson Backdoor
+                      serial_number: Crimson Backdoor
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: front_desk_station
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 924129489
+                      model: null
+                      name: Crimson Unit Door 2
+                      serial_number: SL-CRIM-UD2
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 577696272
+                      type: smart_lock
+                    - created_at: '2018-08-08T15:15:45Z'
+                      id: 970854738
+                      model: null
+                      name: Elevator
+                      serial_number: null
+                      updated_at: '2023-03-03T10:01:59Z'
+                      building_id: 505753268
+                      type: elevator
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 21
+                      page_item_count: 21
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/devices/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show device
+      tags:
+      - Devices
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:20Z'
+                      id: 127952958
+                      model: null
+                      name: Front Entrance
+                      serial_number: 07S21N3208
+                      updated_at: '2026-06-17T15:12:20Z'
+                      building_id: 505753268
+                      type: panel
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

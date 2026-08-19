@@ -1,0 +1,1361 @@
+{
+  "item": [
+    {
+      "id": "e884b61d-d1b4-49a5-82fb-a923a4500131",
+      "name": "Access Tools",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3995706e-06b0-46dd-87ab-5dc1a6c84c36",
+          "name": "create a PIN access tool",
+          "request": {
+            "name": "create a PIN access tool",
+            "description": {
+              "content": "Create a PIN access tool.\n\nPINs have strict complexity requirements. They can't be\nsequences (like 123456 or 654321), or repeated numbers\n(like 111111 or 222222), and some additional rules apply.\nIf a PIN has 4 digits then the above rule doesn't apply. 4-digit PINs\nare grandfathered in and require people to enter a Unit label along with\ntheir PIN to be granted access.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "access_tools",
+                "pins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pin\": {\n    \"tenant_id\": \"<integer>\",\n    \"code\": \"<string,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8320b8ad-7862-452e-8c0f-166f4b0e1292",
+              "name": "created with a specific PIN code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    "pins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pin\": {\n    \"code\": null,\n    \"tenant_id\": 377389742\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:21Z\",\n    \"id\": 989034169,\n    \"updated_at\": \"2026-06-17T15:12:21Z\",\n    \"code\": \"636254\",\n    \"type\": \"pin\",\n    \"building_id\": 577696272,\n    \"tenant_id\": 377389742\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e166061-cb38-4a27-8a1c-50aafe5d1124",
+              "name": "unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    "pins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pin\": {\n    \"code\": null,\n    \"tenant_id\": 377389742\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"code\",\n      \"message\": \"isn't strong enough, try a different value\",\n      \"code\": \"low_entropy\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7096d28-6baf-426d-a66e-5206570c19ac",
+          "name": "change the PIN of an access tool",
+          "request": {
+            "name": "change the PIN of an access tool",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "access_tools",
+                "pins",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1d14109-f3ab-4763-97e5-ab43f675add5",
+              "name": "ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    "pins",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pin\": {\n    \"code\": \"336901\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:20Z\",\n    \"id\": 479403019,\n    \"updated_at\": \"2026-06-17T15:12:21Z\",\n    \"code\": \"336901\",\n    \"type\": \"pin\",\n    \"building_id\": 577696272,\n    \"tenant_id\": 377389742\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57b7f1eb-d9f8-448e-8880-fe718dda42cb",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    "pins",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pin\": {\n    \"code\": \"336901\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"not_found\",\n      \"message\": \"Resource not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cecd03ea-1b02-4ffe-8f6b-ec1f1c7c02c5",
+              "name": "unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    "pins",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pin\": {\n    \"code\": \"336901\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"code\",\n      \"message\": \"isn't strong enough, try a different value\",\n      \"code\": \"low_entropy\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b1e29a9-023b-4eb9-a1ac-68a7f89c3680",
+          "name": "create a RFID tag access tool",
+          "request": {
+            "name": "create a RFID tag access tool",
+            "description": {
+              "content": "Creates a RFID tag access tool.\n\nNote that RFID access tools can't be updated. If you wish to \"update\"\nan RFID access tool, you must delete it and create a new one.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "access_tools",
+                "rfid_tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenant_id\": \"<integer>\",\n  \"identifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4b4b4eb-2dae-41de-adf9-b16b42083702",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    "rfid_tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rfid_tag\": {\n    \"identifier\": \"E66CBDF31EAB570792CC\",\n    \"tenant_id\": 377389742\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:21Z\",\n    \"id\": 989034171,\n    \"updated_at\": \"2026-06-17T15:12:21Z\",\n    \"code\": \"E66CBDF31EAB570792CC\",\n    \"type\": \"rfid_tag\",\n    \"building_id\": 577696272,\n    \"tenant_id\": 377389742\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "399daec1-e3fc-4807-aa8f-7e078f80006c",
+              "name": "unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    "rfid_tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rfid_tag\": {\n    \"identifier\": \"E66CBDF31EAB570792CC\",\n    \"tenant_id\": 377389742\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"item.identifier\",\n      \"message\": \"can't be blank\",\n      \"code\": \"blank\"\n    },\n    {\n      \"field\": \"item.identifier\",\n      \"message\": \"Unrecognized character. The fobs, cards, and tags do not accept special characters or letters outside of a-f\",\n      \"code\": \"invalid\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ef8548c-f608-4171-b86f-60a91d4ebe48",
+          "name": "list access tools",
+          "request": {
+            "name": "list access tools",
+            "description": {
+              "content": "An **Access Tool** is anything that gives a person permanent access to\nthe building. This includes personal door **PINs** and **RFID Tags**\n(like **Keyfobs**, **Keycards**, and **Vehicle stickers**).\n\nPlease look at the documentation for creating **PINs** and **RFID Tags**\nfor more information on how to create and update them.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "access_tools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[tenant_id_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on tenant id (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[tenant_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by tenant id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[tenant_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by tenant id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[item_type_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on type (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on building id"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b3a35b91-b122-45ab-9bc3-0526c2bbf62f",
+              "name": "fetch all access tools that your user can see",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[tenant_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[tenant_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[tenant_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[item_type_eq]",
+                      "value": "Pin"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 90420773,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"code\": \"678134\",\n      \"type\": \"pin\",\n      \"building_id\": 845676935,\n      \"tenant_id\": 147873805\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 297274798,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"code\": \"123ABCD\",\n      \"type\": \"vehicle\",\n      \"building_id\": 577696272,\n      \"tenant_id\": 990619226\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 479403019,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"code\": \"683104\",\n      \"type\": \"pin\",\n      \"building_id\": 577696272,\n      \"tenant_id\": 377389742\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 682331376,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"code\": \"643108\",\n      \"type\": \"pin\",\n      \"building_id\": 577696272,\n      \"tenant_id\": 636166899\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 989034087,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"code\": \"25c064d101\",\n      \"type\": \"rfid_tag\",\n      \"building_id\": 577696272,\n      \"tenant_id\": 377389742\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 5,\n    \"page_item_count\": 5,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6fff7bf-9dcc-49c0-b839-5c09d0855e13",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[tenant_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[tenant_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[tenant_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[item_type_eq]",
+                      "value": "Pin"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e64234e2-5906-4588-a43d-d2581d390418",
+          "name": "show access tool",
+          "request": {
+            "name": "show access tool",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "access_tools",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "759565e5-8f19-4622-b38b-330db90b9bf7",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:20Z\",\n    \"id\": 479403019,\n    \"updated_at\": \"2026-06-17T15:12:20Z\",\n    \"code\": \"683104\",\n    \"type\": \"pin\",\n    \"building_id\": 577696272,\n    \"tenant_id\": 377389742\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98659a01-5c96-4175-ac4c-98e4d4c64fc3",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "192eb057-4fa7-4a05-a1c7-560b8cd4d765",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"not_found\",\n      \"message\": \"Resource not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0f8b8b6-52c8-48ab-a679-12c0904ccfab",
+          "name": "delete access tool",
+          "request": {
+            "name": "delete access tool",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "access_tools",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fb644a06-e534-4a77-8031-b4ee0e4b66b5",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "66be8ff3-12a2-4a16-a10a-51fc0668606e",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94246fa4-2f3f-4bdd-b834-5021bb0ee1c4",
+              "name": "unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_tools",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"message\": \"is protected\",\n      \"code\": \"is_protected\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.butterflymx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6677d2ec-6046-447c-acaa-4de7dfdacde6",
+    "name": "ButterflyMX Access Tools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

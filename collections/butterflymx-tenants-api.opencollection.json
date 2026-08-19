@@ -1,0 +1,246 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Tenants API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "resend confirmation email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.butterflymx.com/v4/tenants/:tenant_id/resend_confirmation",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the tenant"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Re-sends the invitation email to a tenant whose status is still `invited`.\n"
+        },
+        {
+          "info": {
+            "name": "list tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/tenants",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[full_name_eq]",
+                "value": "John Doe",
+                "type": "query",
+                "description": "filter by exact match on full name (case insensitive)"
+              },
+              {
+                "name": "q[full_name_start]",
+                "value": "John",
+                "type": "query",
+                "description": "filter by full name starts with (case insensitive)"
+              },
+              {
+                "name": "q[first_name_eq]",
+                "value": "John",
+                "type": "query",
+                "description": "filter by exact match on first name (case insensitive)"
+              },
+              {
+                "name": "q[first_name_start]",
+                "value": "Jo",
+                "type": "query",
+                "description": "filter by first name starts with (case insensitive)"
+              },
+              {
+                "name": "q[last_name_eq]",
+                "value": "Doe",
+                "type": "query",
+                "description": "filter by exact match on last name (case insensitive)"
+              },
+              {
+                "name": "q[last_name_start]",
+                "value": "Do",
+                "type": "query",
+                "description": "filter by last name starts with (case insensitive)"
+              },
+              {
+                "name": "q[building_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on building id"
+              },
+              {
+                "name": "q[building_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by building id in list"
+              },
+              {
+                "name": "q[unit_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on unit id"
+              },
+              {
+                "name": "q[unit_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by unit id in list"
+              },
+              {
+                "name": "q[id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by id in list"
+              },
+              {
+                "name": "scope",
+                "value": "self",
+                "type": "query",
+                "description": "filter by current user"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "A **Tenant** is a person living in a unit.\n\nTenants are the primary way to manage people in a building, and therefore\naccess to the building.\n\nA Tenant can have one or more **Access Tools**\nwith which they gain permanent access to the building.\n\nA Tenant can also\ncreate **Virtual Keys** which they can share with other people to grant\nthem temporary access to the building.\n"
+        },
+        {
+          "info": {
+            "name": "create tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.butterflymx.com/v4/tenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "create tenant"
+        },
+        {
+          "info": {
+            "name": "show tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/tenants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show tenant"
+        },
+        {
+          "info": {
+            "name": "update tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.butterflymx.com/v4/tenants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "update tenant"
+        },
+        {
+          "info": {
+            "name": "delete tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.butterflymx.com/v4/tenants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "delete tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

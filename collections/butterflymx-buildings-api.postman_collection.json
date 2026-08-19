@@ -1,0 +1,539 @@
+{
+  "item": [
+    {
+      "id": "56e12fa1-74f4-45f5-bc3d-7ab68798030f",
+      "name": "Buildings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "04cdffb2-aae3-44ca-bf20-946d877b5ab9",
+          "name": "list buildings",
+          "request": {
+            "name": "list buildings",
+            "description": {
+              "content": "A **Building** represents a physical building that contains one or more\n**Units**, and **Devices**.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "buildings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[name_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on name (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[name_start]",
+                  "value": "<string>",
+                  "description": "filter by name starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "285627ef-a543-46f0-a2a4-b09e282f0ced",
+              "name": "fetch all buildings that your user can see",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[name_eq]",
+                      "value": "Crimson"
+                    },
+                    {
+                      "key": "q[name_start]",
+                      "value": "Cri"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"2023-05-17T15:12:19Z\",\n      \"id\": 30798180,\n      \"name\": \"Airbnb Auto Suggest\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"time_zone\": \"America/New_York\",\n      \"address\": {\n        \"city\": \"New York\",\n        \"country\": \"us\",\n        \"county\": null,\n        \"state\": \"NY\",\n        \"zip_code\": \"334455\",\n        \"address\": \"Street address 23\"\n      }\n    },\n    {\n      \"created_at\": \"2023-05-17T15:12:19Z\",\n      \"id\": 346816226,\n      \"name\": \"Churned Building ONE\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"time_zone\": \"America/New_York\",\n      \"address\": {\n        \"city\": \"New Merrillton\",\n        \"country\": \"us\",\n        \"county\": null,\n        \"state\": \"Nebraska\",\n        \"zip_code\": \"67878-6399\",\n        \"address\": \"Misty Mountains\"\n      }\n    },\n    {\n      \"created_at\": \"2023-05-17T15:12:19Z\",\n      \"id\": 505753268,\n      \"name\": \"Large Blue\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"time_zone\": \"America/New_York\",\n      \"address\": {\n        \"city\": \"New York\",\n        \"country\": \"us\",\n        \"county\": null,\n        \"state\": \"NY\",\n        \"zip_code\": \"10001-6808\",\n        \"address\": \"127 W 26TH St\"\n      }\n    },\n    {\n      \"created_at\": \"2023-05-17T15:12:19Z\",\n      \"id\": 577696272,\n      \"name\": \"Crimson\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"time_zone\": \"America/New_York\",\n      \"address\": {\n        \"city\": \"New York\",\n        \"country\": \"us\",\n        \"county\": null,\n        \"state\": \"NY\",\n        \"zip_code\": \"10001-6808\",\n        \"address\": \"127 W 26TH St\"\n      }\n    },\n    {\n      \"created_at\": \"2023-05-17T15:12:19Z\",\n      \"id\": 750989427,\n      \"name\": \"Barad-dûr\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"time_zone\": \"America/New_York\",\n      \"address\": {\n        \"city\": \"Lake Katheyport\",\n        \"country\": \"us\",\n        \"county\": null,\n        \"state\": \"Wisconsin\",\n        \"zip_code\": \"35027-7134\",\n        \"address\": \"Mount Doom\"\n      }\n    },\n    {\n      \"created_at\": \"2023-05-17T15:12:19Z\",\n      \"id\": 845676935,\n      \"name\": \"Orthanc\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"time_zone\": \"America/New_York\",\n      \"address\": {\n        \"city\": \"New Merrillton\",\n        \"country\": \"us\",\n        \"county\": null,\n        \"state\": \"Nebraska\",\n        \"zip_code\": \"67878-6399\",\n        \"address\": \"Misty Mountains\"\n      }\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 6,\n    \"page_item_count\": 6,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6977938e-feac-4c9c-9498-19cc55a08999",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[name_eq]",
+                      "value": "Crimson"
+                    },
+                    {
+                      "key": "q[name_start]",
+                      "value": "Cri"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bed0c7c-a736-46ec-b761-cf877a622e16",
+          "name": "show building",
+          "request": {
+            "name": "show building",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3557768a-fb1b-480d-becc-3b91d8c06eb2",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2023-05-17T15:12:19Z\",\n    \"id\": 577696272,\n    \"name\": \"Crimson\",\n    \"updated_at\": \"2026-06-17T15:12:20Z\",\n    \"time_zone\": \"America/New_York\",\n    \"address\": {\n      \"city\": \"New York\",\n      \"country\": \"us\",\n      \"county\": null,\n      \"state\": \"NY\",\n      \"zip_code\": \"10001-6808\",\n      \"address\": \"127 W 26TH St\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42dcedb9-2dc7-4228-93b6-c4901e638e75",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8c9814d-58e8-4deb-8306-9a9f4056928b",
+          "name": "show building capabilities",
+          "request": {
+            "name": "show building capabilities",
+            "description": {
+              "content": "Returns the capabilities and configuration options available for a specific building.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":id",
+                "capabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) building id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8b54835a-424b-4c1c-9df3-d4c51695e228",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":id",
+                    "capabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) building id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"delivery_pass_enabled\": true,\n    \"delivery_pickup_pins_enabled\": false,\n    \"user_photo_required\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.butterflymx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0d8790b9-a5b8-4647-8a69-378ecba92136",
+    "name": "ButterflyMX Buildings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

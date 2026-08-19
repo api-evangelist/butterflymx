@@ -1,0 +1,1004 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Keychains API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Keychains
+paths:
+  /v4/keychains/custom:
+    post:
+      summary: create a custom keychain
+      tags:
+      - Keychains
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: created with 2 virtual keys
+          content:
+            application/json:
+              examples:
+                created with 2 virtual keys:
+                  value:
+                    data:
+                      id: 940364935
+                      created_at: '2026-06-17T15:12:24Z'
+                      updated_at: '2026-06-17T15:12:24Z'
+                      name: My Keychain
+                      starts_at: '2026-06-17T15:17:24Z'
+                      ends_at: '2026-06-18T15:12:24Z'
+                      type: custom_keychain
+                      building_id: 577696272
+                      tenant_id: 377389742
+                      unit_id: 474917539
+                      virtual_key_ids:
+                      - 1035872619
+                      - 1035872620
+                      access_point_ids:
+                      - 842395203
+                      device_ids:
+                      - 708353660
+                      - 408919060
+                      - 271679546
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: invalid parameters
+          content:
+            application/json:
+              examples:
+                out-of-scope resource:
+                  value:
+                    errors:
+                    - field: building
+                      message: must exist
+                      code: blank
+                    - field: base
+                      message: must have an associated unit or tenant
+                      code: must_have_an_associated_unit_or_tenant
+                    - field: unit_id
+                      message: must have an associated unit
+                      code: must_have_an_associated_unit
+                    - field: units_user_id
+                      message: must have an associated tenant
+                      code: must_have_an_associated_tenant
+                invalid parameters:
+                  value:
+                    errors:
+                    - field: starts_at
+                      message: Start time must be before the end time
+                      code: start_time_must_be_before_the_end_time
+                    - field: ends_at
+                      message: End time must be after the start time
+                      code: end_time_must_be_after_the_start_time
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                keychain:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    tenant_id:
+                      type:
+                      - integer
+                      - 'null'
+                    unit_id:
+                      type:
+                      - integer
+                      - 'null'
+                    allow_unit_access:
+                      type: boolean
+                    starts_at:
+                      type: string
+                      format: date-time
+                    ends_at:
+                      type: string
+                      format: date-time
+                    recipients:
+                      type: array
+                      items:
+                        type: string
+                    access_point_ids:
+                      type: array
+                      items:
+                        type: integer
+                    device_ids:
+                      type: array
+                      items:
+                        type: integer
+                  required:
+                  - name
+                  - starts_at
+                  - ends_at
+                  additionalProperties: false
+              required:
+              - keychain
+            examples:
+              created with 2 virtual keys:
+                summary: created with 2 virtual keys
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: 377389742
+                    starts_at: '2026-06-17T15:17:24Z'
+                    ends_at: '2026-06-18T15:12:24Z'
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              out-of-scope resource:
+                summary: out-of-scope resource
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: -1
+                    starts_at: '2026-06-17T15:17:24Z'
+                    ends_at: '2026-06-18T15:12:24Z'
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              invalid parameters:
+                summary: invalid parameters
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: 377389742
+                    starts_at: '2026-06-17T15:17:24Z'
+                    ends_at: '2026-06-16T15:12:24Z'
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              unauthorized:
+                summary: unauthorized
+                value: {}
+  /v4/keychains/delivery_pass:
+    post:
+      summary: create a delivery pass keychain
+      tags:
+      - Keychains
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              examples:
+                created:
+                  value:
+                    data:
+                      id: 940364936
+                      created_at: '2026-06-17T15:12:24Z'
+                      updated_at: '2026-06-17T15:12:24Z'
+                      name: DoorDash
+                      starts_at: '2026-06-17T15:12:24Z'
+                      ends_at: '2026-07-17T15:12:24Z'
+                      type: delivery_pass
+                      building_id: 577696272
+                      tenant_id: 377389742
+                      unit_id: 474917539
+                      virtual_key_ids:
+                      - 1035872621
+                      access_point_ids:
+                      - 164770902
+                      - 842395203
+                      device_ids:
+                      - 566540595
+                      - 708353660
+                      - 408919060
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: out-of-scope resource
+          content:
+            application/json:
+              examples:
+                out-of-scope resource:
+                  value:
+                    errors:
+                    - field: building
+                      message: must exist
+                      code: blank
+                    - field: base
+                      message: must have an associated unit or tenant
+                      code: must_have_an_associated_unit_or_tenant
+                    - field: unit_id
+                      message: must have an associated unit
+                      code: must_have_an_associated_unit
+                    - field: units_user_id
+                      message: must have an associated tenant
+                      code: must_have_an_associated_tenant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                keychain:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    tenant_id:
+                      type:
+                      - integer
+                      - 'null'
+                    unit_id:
+                      type:
+                      - integer
+                      - 'null'
+                  additionalProperties: false
+              required:
+              - keychain
+            examples:
+              created:
+                summary: created
+                value:
+                  keychain:
+                    name: DoorDash
+                    tenant_id: 377389742
+              out-of-scope resource:
+                summary: out-of-scope resource
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: -1
+                    starts_at: '2026-06-17T15:17:24Z'
+                    ends_at: '2026-06-18T15:12:24Z'
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              unauthorized:
+                summary: unauthorized
+                value: {}
+  /v4/keychains/one_time:
+    post:
+      summary: create a one-time keychain
+      tags:
+      - Keychains
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: created with 2 virtual keys
+          content:
+            application/json:
+              examples:
+                created with 2 virtual keys:
+                  value:
+                    data:
+                      id: 940364937
+                      created_at: '2026-06-17T15:12:24Z'
+                      updated_at: '2026-06-17T15:12:24Z'
+                      name: My Keychain
+                      starts_at: '2026-06-17T15:17:24Z'
+                      ends_at: '2026-06-18T15:12:24Z'
+                      type: one_time_keychain
+                      building_id: 577696272
+                      tenant_id: 377389742
+                      unit_id: 474917539
+                      virtual_key_ids:
+                      - 1035872622
+                      - 1035872623
+                      access_point_ids:
+                      - 842395203
+                      device_ids:
+                      - 708353660
+                      - 408919060
+                      - 271679546
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: invalid parameters
+          content:
+            application/json:
+              examples:
+                out-of-scope resource:
+                  value:
+                    errors:
+                    - field: building
+                      message: must exist
+                      code: blank
+                    - field: base
+                      message: must have an associated unit or tenant
+                      code: must_have_an_associated_unit_or_tenant
+                    - field: unit_id
+                      message: must have an associated unit
+                      code: must_have_an_associated_unit
+                    - field: units_user_id
+                      message: must have an associated tenant
+                      code: must_have_an_associated_tenant
+                invalid parameters:
+                  value:
+                    errors:
+                    - field: starts_at
+                      message: Start time must be before the end time
+                      code: start_time_must_be_before_the_end_time
+                    - field: ends_at
+                      message: End time must be after the start time
+                      code: end_time_must_be_after_the_start_time
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                keychain:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    tenant_id:
+                      type:
+                      - integer
+                      - 'null'
+                    unit_id:
+                      type:
+                      - integer
+                      - 'null'
+                    allow_unit_access:
+                      type: boolean
+                    starts_at:
+                      type: string
+                      format: date-time
+                    ends_at:
+                      type: string
+                      format: date-time
+                    recipients:
+                      type: array
+                      items:
+                        type: string
+                    access_point_ids:
+                      type: array
+                      items:
+                        type: integer
+                    device_ids:
+                      type: array
+                      items:
+                        type: integer
+                  required:
+                  - name
+                  - starts_at
+                  - ends_at
+                  additionalProperties: false
+              required:
+              - keychain
+            examples:
+              created with 2 virtual keys:
+                summary: created with 2 virtual keys
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: 377389742
+                    starts_at: '2026-06-17T15:17:24Z'
+                    ends_at: '2026-06-18T15:12:24Z'
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              out-of-scope resource:
+                summary: out-of-scope resource
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: -1
+                    starts_at: '2026-06-17T15:17:24Z'
+                    ends_at: '2026-06-18T15:12:24Z'
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              invalid parameters:
+                summary: invalid parameters
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: 377389742
+                    starts_at: '2026-06-17T15:17:24Z'
+                    ends_at: '2026-06-16T15:12:24Z'
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              unauthorized:
+                summary: unauthorized
+                value: {}
+  /v4/keychains/recurring:
+    post:
+      summary: create a recurring keychain
+      tags:
+      - Keychains
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: created with 2 virtual keys
+          content:
+            application/json:
+              examples:
+                created with 2 virtual keys:
+                  value:
+                    data:
+                      id: 940364938
+                      created_at: '2024-03-11T12:00:00Z'
+                      updated_at: '2024-03-11T12:00:00Z'
+                      name: My Keychain
+                      starts_at: '2024-03-11T16:05:00Z'
+                      ends_at: '2024-03-12T19:00:00Z'
+                      type: recurring_keychain
+                      building_id: 577696272
+                      tenant_id: 377389742
+                      unit_id: 474917539
+                      virtual_key_ids:
+                      - 1035872624
+                      - 1035872625
+                      access_point_ids:
+                      - 842395203
+                      device_ids:
+                      - 708353660
+                      - 408919060
+                      - 271679546
+                      start_date: '2024-03-11'
+                      end_date: '2024-03-12'
+                      time_from: '12:05'
+                      time_to: '15:00'
+                      weekdays:
+                      - mon
+                      - tue
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: invalid parameters
+          content:
+            application/json:
+              examples:
+                out-of-scope resource:
+                  value:
+                    errors:
+                    - field: building
+                      message: must exist
+                      code: blank
+                    - field: base
+                      message: must have an associated unit or tenant
+                      code: must_have_an_associated_unit_or_tenant
+                    - field: unit_id
+                      message: must have an associated unit
+                      code: must_have_an_associated_unit
+                    - field: units_user_id
+                      message: must have an associated tenant
+                      code: must_have_an_associated_tenant
+                invalid parameters:
+                  value:
+                    errors:
+                    - field: time_from
+                      message: must be less than time to
+                      code: must_be_less_than_time_to
+                    - field: time_to
+                      message: must be greater than time from
+                      code: must_be_greater_than_time_from
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                keychain:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    tenant_id:
+                      type:
+                      - integer
+                      - 'null'
+                    unit_id:
+                      type:
+                      - integer
+                      - 'null'
+                    allow_unit_access:
+                      type: boolean
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    time_from:
+                      type: string
+                      format: time
+                    time_to:
+                      type: string
+                      format: time
+                    weekdays:
+                      type: array
+                      items:
+                        type: string
+                    recipients:
+                      type: array
+                      items:
+                        type: string
+                    access_point_ids:
+                      type: array
+                      items:
+                        type: integer
+                    device_ids:
+                      type: array
+                      items:
+                        type: integer
+                  required:
+                  - name
+                  - starts_at
+                  - ends_at
+                  additionalProperties: false
+              required:
+              - keychain
+            examples:
+              created with 2 virtual keys:
+                summary: created with 2 virtual keys
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: 377389742
+                    start_date: '2024-03-11'
+                    end_date: '2024-03-12'
+                    time_from: '12:05'
+                    time_to: '15:00'
+                    weekdays:
+                    - mon
+                    - tue
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              out-of-scope resource:
+                summary: out-of-scope resource
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: -1
+                    start_date: '2024-03-11'
+                    end_date: '2024-03-12'
+                    time_from: '12:05'
+                    time_to: '15:00'
+                    weekdays:
+                    - mon
+                    - tue
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              invalid parameters:
+                summary: invalid parameters
+                value:
+                  keychain:
+                    name: My Keychain
+                    tenant_id: 377389742
+                    start_date: '2024-03-11'
+                    end_date: '2024-03-12'
+                    time_from: '15:00'
+                    time_to: '12:05'
+                    weekdays:
+                    - mon
+                    - tue
+                    recipients:
+                    - foo@example.com
+                    - '+12345678900'
+                    access_point_ids:
+                    - 842395203
+                    device_ids:
+                    - 271679546
+              unauthorized:
+                summary: unauthorized
+                value: {}
+  /v4/keychains:
+    get:
+      summary: list keychains
+      tags:
+      - Keychains
+      description: "**Keychains** and **Virtual Keys** provide a mechanism for people to\ngrant temporary access to a building, unit, access points or\nkey lockers.\n\nA **Keychain** is the configuration object for one or more\n**Virtual Keys**. It holds the duration, owner, and other\ninformation about the Virtual Keys attached to it. While the Virtual\nKeys contain the recipient information and usage statistics.\n\nThere are multiple types of Keychains available that provide different\naccess scheduling mechanisms for the Virtual Keys attached to them.\n\n* **Custom** keychains grant access from a given start time and date,\n    to an end time and date.\n* **Recurring** keychains grant access on a recurring schedule,\n    specified by a list of weekdays on which the key is active, a start\n    and an end time. Additionally a start and end date must be specified.\n* **One Time** keychains are alike **custom keychains** but grant the\n    recipient access only once. *After the key is used it can be re-used\n    for an additional 15min after which it expires.*\n* **Delivery Pass** keychains are alike **one time keychains** but have\n    a much shorter grace period of 5min after the key is used. And they\n    always hold exactly one Virtual Key. Not much can be specified or\n    updated on them. Their main purpose is to provide a quick way to\n    generate a virtual key and share it with a delivery person.\n"
+      security:
+      - Bearer: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[name_eq]
+        in: query
+        description: filter by exact match on name (case insensitive)
+        example: Party
+        schema:
+          type: string
+      - name: q[name_start]
+        in: query
+        description: filter by name starts with (case insensitive)
+        example: Par
+        schema:
+          type: string
+      - name: q[tenant_id_eq]
+        in: query
+        description: filter by exact match on tenant id
+        example: 123
+        schema:
+          type: string
+      - name: q[tenant_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by tenant id in list
+        example:
+        - 123
+        - 456
+      - name: q[unit_id_eq]
+        in: query
+        description: filter by exact match on unit id
+        example: 123
+        schema:
+          type: string
+      - name: q[unit_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by unit id in list
+        example:
+        - 123
+        - 456
+      - name: q[starts_at_gteq]
+        in: query
+        description: filter by starts at greater than or equal to
+        example: '2020-01-01T00:00:00Z'
+        schema:
+          type: string
+      - name: q[starts_at_lteq]
+        in: query
+        description: filter by starts at less than or equal to
+        example: '2020-01-01T00:00:00Z'
+        schema:
+          type: string
+      - name: q[ends_at_gteq]
+        in: query
+        description: filter by ends at greater than or equal to
+        example: '2020-01-01T00:00:00Z'
+        schema:
+          type: string
+      - name: q[ends_at_lteq]
+        in: query
+        description: filter by ends at less than or equal to
+        example: '2020-01-01T00:00:00Z'
+        schema:
+          type: string
+      - name: q[building_id_eq]
+        in: query
+        description: filter by exact match on building id
+        example: 123
+        schema:
+          type: string
+      - name: q[building_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by building id in list
+        example:
+        - 123
+        - 456
+      - name: q[id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by id in list
+        example:
+        - 123
+        - 456
+      responses:
+        '200':
+          description: fetch all keychains that your user can see
+          content:
+            application/json:
+              examples:
+                fetch all keychains that your user can see:
+                  value:
+                    data:
+                    - id: 940364922
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      name: Revenge Night
+                      starts_at: '2026-05-17T15:12:20Z'
+                      ends_at: '2027-01-17T15:12:20Z'
+                      type: custom_keychain
+                      building_id: 577696272
+                      tenant_id: 37112193
+                      unit_id: 843107216
+                      virtual_key_ids:
+                      - 1035872582
+                      access_point_ids:
+                      - 22177636
+                      device_ids: []
+                    - id: 803429365
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      name: Active Keychain
+                      starts_at: '2026-05-17T15:12:20Z'
+                      ends_at: '2027-01-17T15:12:20Z'
+                      type: custom_keychain
+                      building_id: 750989427
+                      tenant_id: 467490713
+                      unit_id: 748709450
+                      virtual_key_ids:
+                      - 497669756
+                      access_point_ids:
+                      - 834074842
+                      device_ids: []
+                    - id: 692527966
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      name: Expired Keychain
+                      starts_at: '2026-05-17T15:12:20Z'
+                      ends_at: '2026-06-14T15:12:20Z'
+                      type: custom_keychain
+                      building_id: 750989427
+                      tenant_id: 467490713
+                      unit_id: 748709450
+                      virtual_key_ids:
+                      - 948689649
+                      access_point_ids: []
+                      device_ids: []
+                    - id: 494234073
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      name: Upcoming Keychain
+                      starts_at: '2026-06-22T15:12:20Z'
+                      ends_at: '2027-01-17T15:12:20Z'
+                      type: custom_keychain
+                      building_id: 750989427
+                      tenant_id: 467490713
+                      unit_id: 748709450
+                      virtual_key_ids:
+                      - 1012402508
+                      access_point_ids: []
+                      device_ids: []
+                    - id: 254331397
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      name: D&D Game Night
+                      starts_at: '2026-05-17T15:12:20Z'
+                      ends_at: '2026-12-17T15:12:20Z'
+                      type: custom_keychain
+                      building_id: 577696272
+                      tenant_id: 377389742
+                      unit_id: 474917539
+                      virtual_key_ids:
+                      - 616003833
+                      - 1035872581
+                      access_point_ids:
+                      - 842395203
+                      device_ids: []
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 5
+                      page_item_count: 5
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/keychains/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show keychain
+      tags:
+      - Keychains
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      id: 940364922
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      name: Revenge Night
+                      starts_at: '2026-05-17T15:12:20Z'
+                      ends_at: '2027-01-17T15:12:20Z'
+                      type: custom_keychain
+                      building_id: 577696272
+                      tenant_id: 37112193
+                      unit_id: 843107216
+                      virtual_key_ids:
+                      - 1035872582
+                      access_point_ids:
+                      - 22177636
+                      device_ids: []
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+    delete:
+      summary: delete keychain
+      tags:
+      - Keychains
+      security:
+      - Bearer: []
+      responses:
+        '204':
+          description: successful
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: not found
+          content:
+            application/json:
+              examples:
+                not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+        '422':
+          description: unprocessable content
+          content:
+            application/json:
+              examples:
+                unprocessable content:
+                  value:
+                    errors:
+                    - field: base
+                      message: failed to destroy
+                      code: failed_to_destroy
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

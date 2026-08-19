@@ -1,0 +1,567 @@
+{
+  "item": [
+    {
+      "id": "1d52bd59-9e6f-44b0-897c-8c3966f6829d",
+      "name": "Access Logs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1b65c96-a701-4f29-8649-5e4f146087d1",
+          "name": "list access logs",
+          "request": {
+            "name": "list access logs",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":building_id",
+                "access_logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[unit_label_or_user_full_name_or_delivery_authorization_description_start]",
+                  "value": "<string>",
+                  "description": "search by unit label, user full name or delivery authorization"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[logged_at_gteq]",
+                  "value": "<string>",
+                  "description": "search by logged at date greater than or equal to"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[logged_at_lteq]",
+                  "value": "<string>",
+                  "description": "search by logged at date less than or equal to"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[release_status]",
+                  "value": "<string>",
+                  "description": "search by release status"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[release_method_in][]",
+                  "value": "<string>",
+                  "description": "search by release method"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[release_method_in][]",
+                  "value": "<string>",
+                  "description": "search by release method"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "building_id",
+                  "description": "(Required) id of the building"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3aa80c51-bf5f-4b45-b03d-8cc3e8d63e00",
+              "name": "fetch all access_logs that your user can see",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "access_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[unit_label_or_user_full_name_or_delivery_authorization_description_start]",
+                      "value": "A001"
+                    },
+                    {
+                      "key": "q[logged_at_gteq]",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "q[logged_at_lteq]",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "q[release_status]",
+                      "value": "unlocked"
+                    },
+                    {
+                      "key": "q[release_method_in][]",
+                      "value": "front_door_view"
+                    },
+                    {
+                      "key": "q[release_method_in][]",
+                      "value": "delivery_pass"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 156501242,\n      \"logged_at\": \"2026-06-17T10:12:19Z\",\n      \"access_point\": 22177636,\n      \"release_status\": \"Unlocked\",\n      \"name\": \"Alia Atredis\",\n      \"release_type\": \"Tenant\",\n      \"unit\": 843107216,\n      \"tenant_id\": 37112193,\n      \"entry_method\": \"Swipe to open\",\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/ac628b8b81f1c5deb851b480cf58ee39.png\"\n    },\n    {\n      \"id\": 623072202,\n      \"logged_at\": \"2026-06-16T18:00:00Z\",\n      \"access_point\": 842395203,\n      \"release_status\": \"Locked\",\n      \"name\": null,\n      \"release_type\": null,\n      \"unit\": null,\n      \"tenant_id\": null,\n      \"entry_method\": null,\n      \"image_url\": null\n    },\n    {\n      \"id\": 525036436,\n      \"logged_at\": \"2026-06-16T15:12:19Z\",\n      \"access_point\": 22177636,\n      \"release_status\": \"Unlocked\",\n      \"name\": \"Duncan Idaho\",\n      \"release_type\": \"Visitor\",\n      \"unit\": 474917539,\n      \"tenant_id\": 377389742,\n      \"entry_method\": {\n        \"keychain\": 254331397\n      },\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/bff24a6ae43971bd591b8e856bb9df5b.png\"\n    },\n    {\n      \"id\": 274552142,\n      \"logged_at\": \"2026-06-16T15:12:19Z\",\n      \"access_point\": 22177636,\n      \"release_status\": \"Unlocked\",\n      \"name\": \"Unknown\",\n      \"release_type\": \"Visitor\",\n      \"unit\": null,\n      \"tenant_id\": null,\n      \"entry_method\": \"Visitor Pass (using QR code)\",\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/cb46f7a45b1a40dfcacb20d175fbbddc.png\"\n    },\n    {\n      \"id\": 77457946,\n      \"logged_at\": \"2026-06-16T08:00:00Z\",\n      \"access_point\": 842395203,\n      \"release_status\": \"Unlocked\",\n      \"name\": null,\n      \"release_type\": null,\n      \"unit\": null,\n      \"tenant_id\": null,\n      \"entry_method\": null,\n      \"image_url\": null\n    },\n    {\n      \"id\": 561908629,\n      \"logged_at\": \"2026-06-14T15:12:19Z\",\n      \"access_point\": 842395203,\n      \"release_status\": \"Unlocked\",\n      \"name\": \"USPS\",\n      \"release_type\": \"Delivery\",\n      \"unit\": null,\n      \"tenant_id\": null,\n      \"entry_method\": \"Remote Doorman\",\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/c6cc836a8a3b16c50b2c475798ec5b79.png\"\n    },\n    {\n      \"id\": 129995258,\n      \"logged_at\": \"2026-06-07T15:12:19Z\",\n      \"access_point\": 842395203,\n      \"release_status\": \"Unlocked\",\n      \"name\": \"USPS\",\n      \"release_type\": \"Delivery\",\n      \"unit\": null,\n      \"tenant_id\": null,\n      \"entry_method\": \"Visitor Pass (using PIN)\",\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/4389fa66f01377636186d9cbb4c46427.png\"\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 7,\n    \"page_item_count\": 7,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b2eb62c-84ac-4393-8a2a-e1f143950452",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "access_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[unit_label_or_user_full_name_or_delivery_authorization_description_start]",
+                      "value": "A001"
+                    },
+                    {
+                      "key": "q[logged_at_gteq]",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "q[logged_at_lteq]",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "q[release_status]",
+                      "value": "unlocked"
+                    },
+                    {
+                      "key": "q[release_method_in][]",
+                      "value": "front_door_view"
+                    },
+                    {
+                      "key": "q[release_method_in][]",
+                      "value": "delivery_pass"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7461d562-4497-41e7-be9a-2a754bc5cd25",
+          "name": "show access log",
+          "request": {
+            "name": "show access log",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":building_id",
+                "access_logs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "building_id",
+                  "description": "(Required) id of the building"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "57146635-2917-49e0-a091-428f6db10b91",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "access_logs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 274552142,\n    \"logged_at\": \"2026-06-16T15:12:19Z\",\n    \"access_point\": 22177636,\n    \"release_status\": \"Unlocked\",\n    \"name\": \"Unknown\",\n    \"release_type\": \"Visitor\",\n    \"unit\": null,\n    \"tenant_id\": null,\n    \"entry_method\": \"Visitor Pass (using QR code)\",\n    \"image_url\": \"http://user.butterflymx.localhost/uploads/store/cb46f7a45b1a40dfcacb20d175fbbddc.png\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fad30d95-decd-40a1-a5fb-71dec4c7fd47",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "access_logs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a48673a-4459-4a1e-b02a-298a88e1efd0",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "access_logs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"not_found\",\n      \"message\": \"Resource not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.butterflymx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a607f96b-2e50-40f5-8bd2-6dfb6a7707fb",
+    "name": "ButterflyMX Access Logs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,251 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Access Logs API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Access Logs
+paths:
+  /v4/buildings/{building_id}/access_logs:
+    get:
+      summary: list access logs
+      tags:
+      - Access Logs
+      security:
+      - Bearer: []
+      parameters:
+      - name: building_id
+        in: path
+        description: id of the building
+        required: true
+        schema:
+          type: integer
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[unit_label_or_user_full_name_or_delivery_authorization_description_start]
+        in: query
+        description: search by unit label, user full name or delivery authorization
+        example: A001
+        schema:
+          type: string
+      - name: q[logged_at_gteq]
+        in: query
+        description: search by logged at date greater than or equal to
+        example: '2024-01-01'
+        schema:
+          type: string
+      - name: q[logged_at_lteq]
+        in: query
+        description: search by logged at date less than or equal to
+        example: '2024-01-01'
+        schema:
+          type: string
+      - name: q[release_status]
+        in: query
+        description: search by release status
+        example: unlocked
+        schema:
+          type: string
+      - name: q[release_method_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+        description: search by release method
+        example:
+        - front_door_view
+        - delivery_pass
+      responses:
+        '200':
+          description: fetch all access_logs that your user can see
+          content:
+            application/json:
+              examples:
+                fetch all access_logs that your user can see:
+                  value:
+                    data:
+                    - id: 156501242
+                      logged_at: '2026-06-17T10:12:19Z'
+                      access_point: 22177636
+                      release_status: Unlocked
+                      name: Alia Atredis
+                      release_type: Tenant
+                      unit: 843107216
+                      tenant_id: 37112193
+                      entry_method: Swipe to open
+                      image_url: http://user.butterflymx.localhost/uploads/store/ac628b8b81f1c5deb851b480cf58ee39.png
+                    - id: 623072202
+                      logged_at: '2026-06-16T18:00:00Z'
+                      access_point: 842395203
+                      release_status: Locked
+                      name: null
+                      release_type: null
+                      unit: null
+                      tenant_id: null
+                      entry_method: null
+                      image_url: null
+                    - id: 525036436
+                      logged_at: '2026-06-16T15:12:19Z'
+                      access_point: 22177636
+                      release_status: Unlocked
+                      name: Duncan Idaho
+                      release_type: Visitor
+                      unit: 474917539
+                      tenant_id: 377389742
+                      entry_method:
+                        keychain: 254331397
+                      image_url: http://user.butterflymx.localhost/uploads/store/bff24a6ae43971bd591b8e856bb9df5b.png
+                    - id: 274552142
+                      logged_at: '2026-06-16T15:12:19Z'
+                      access_point: 22177636
+                      release_status: Unlocked
+                      name: Unknown
+                      release_type: Visitor
+                      unit: null
+                      tenant_id: null
+                      entry_method: Visitor Pass (using QR code)
+                      image_url: http://user.butterflymx.localhost/uploads/store/cb46f7a45b1a40dfcacb20d175fbbddc.png
+                    - id: 77457946
+                      logged_at: '2026-06-16T08:00:00Z'
+                      access_point: 842395203
+                      release_status: Unlocked
+                      name: null
+                      release_type: null
+                      unit: null
+                      tenant_id: null
+                      entry_method: null
+                      image_url: null
+                    - id: 561908629
+                      logged_at: '2026-06-14T15:12:19Z'
+                      access_point: 842395203
+                      release_status: Unlocked
+                      name: USPS
+                      release_type: Delivery
+                      unit: null
+                      tenant_id: null
+                      entry_method: Remote Doorman
+                      image_url: http://user.butterflymx.localhost/uploads/store/c6cc836a8a3b16c50b2c475798ec5b79.png
+                    - id: 129995258
+                      logged_at: '2026-06-07T15:12:19Z'
+                      access_point: 842395203
+                      release_status: Unlocked
+                      name: USPS
+                      release_type: Delivery
+                      unit: null
+                      tenant_id: null
+                      entry_method: Visitor Pass (using PIN)
+                      image_url: http://user.butterflymx.localhost/uploads/store/4389fa66f01377636186d9cbb4c46427.png
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 7
+                      page_item_count: 7
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/buildings/{building_id}/access_logs/{id}:
+    parameters:
+    - name: building_id
+      in: path
+      description: id of the building
+      required: true
+      schema:
+        type: integer
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show access log
+      tags:
+      - Access Logs
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      id: 274552142
+                      logged_at: '2026-06-16T15:12:19Z'
+                      access_point: 22177636
+                      release_status: Unlocked
+                      name: Unknown
+                      release_type: Visitor
+                      unit: null
+                      tenant_id: null
+                      entry_method: Visitor Pass (using QR code)
+                      image_url: http://user.butterflymx.localhost/uploads/store/cb46f7a45b1a40dfcacb20d175fbbddc.png
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: not found
+          content:
+            application/json:
+              examples:
+                not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

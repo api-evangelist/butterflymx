@@ -1,0 +1,666 @@
+{
+  "item": [
+    {
+      "id": "65433dbb-4f8e-4eab-a231-0873ec5bb29c",
+      "name": "Access Points",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60a4de7d-dcc6-417f-896d-1f24c1e36ac4",
+          "name": "list access points",
+          "request": {
+            "name": "list access points",
+            "description": {
+              "content": "An **Access Point** is any one, or a set of, doors, ramps, gates, entrances or\nexits that behave as a single entity.\n\nAn Access Point can be one physical door, but in the case of a vestibule\nor a mantrap, it can be two doors that are controlled together.\n\nThrough Access Points one can manage access across the system\nand exercise control over physical doors.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "access_points"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[name_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on name (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[name_start]",
+                  "value": "<string>",
+                  "description": "filter by name starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on building id"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6832564f-9a0e-458f-9204-f143bc15e3c7",
+              "name": "fetch all access points that your user can see",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_points"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[name_eq]",
+                      "value": "A003"
+                    },
+                    {
+                      "key": "q[name_start]",
+                      "value": "A"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 22177636,\n      \"name\": \"Back door\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 577696272,\n      \"device_ids\": [\n        708353660\n      ],\n      \"open_hours\": []\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 157533314,\n      \"name\": \"Rooftop\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 577696272,\n      \"device_ids\": [\n        94566002\n      ],\n      \"open_hours\": []\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 164770902,\n      \"name\": \"Package room\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 577696272,\n      \"device_ids\": [\n        566540595\n      ],\n      \"open_hours\": []\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 232149205,\n      \"name\": \"Middle door\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 577696272,\n      \"device_ids\": [\n        708353660\n      ],\n      \"open_hours\": []\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 239674119,\n      \"name\": \"Front Entrance\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 505753268,\n      \"device_ids\": [\n        127952958\n      ],\n      \"open_hours\": []\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 259697296,\n      \"name\": \"Ball room\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 577696272,\n      \"device_ids\": [],\n      \"open_hours\": []\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 649822440,\n      \"name\": \"Front Delivery Entrance\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 505753268,\n      \"device_ids\": [\n        127952958\n      ],\n      \"open_hours\": []\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 834074842,\n      \"name\": \"Main gate\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 750989427,\n      \"device_ids\": [],\n      \"open_hours\": []\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 842395203,\n      \"name\": \"Front door\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"building_id\": 577696272,\n      \"device_ids\": [\n        708353660,\n        408919060\n      ],\n      \"open_hours\": []\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 9,\n    \"page_item_count\": 9,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d30a928-ca26-4295-b17a-0cda71b87de6",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_points"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[name_eq]",
+                      "value": "A003"
+                    },
+                    {
+                      "key": "q[name_start]",
+                      "value": "A"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d868f3a-3a67-4ef6-ad6c-1cfeae6c7490",
+          "name": "show access point",
+          "request": {
+            "name": "show access point",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "access_points",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3fd131e2-9c25-47d0-9230-869290d12fdf",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_points",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:20Z\",\n    \"id\": 239674119,\n    \"name\": \"Front Entrance\",\n    \"updated_at\": \"2026-06-17T15:12:20Z\",\n    \"building_id\": 505753268,\n    \"device_ids\": [\n      127952958\n    ],\n    \"open_hours\": []\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80f3d9fd-c8c0-4029-b591-8863582d315c",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_points",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "271b60cc-9918-4ff2-9705-e2a3ab80eb21",
+          "name": "show schedules",
+          "request": {
+            "name": "show schedules",
+            "description": {
+              "content": "Times during which this access point can be used by current user.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "access_points",
+                ":id",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eced2b43-5d74-41b0-8651-0714baf19555",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_points",
+                    ":id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 83723449,\n      \"weekdays\": [\n        \"mon\",\n        \"tue\",\n        \"wed\",\n        \"thu\",\n        \"fri\",\n        \"sat\",\n        \"sun\"\n      ],\n      \"from\": \"00:00\",\n      \"to\": \"00:00\"\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 1,\n    \"page_item_count\": 1,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91d655e1-4684-4426-b93f-2ee26ed229b5",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "access_points",
+                    ":id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.butterflymx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dceaf0ea-8933-4ba9-a099-8792696ec3b6",
+    "name": "ButterflyMX Access Points API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

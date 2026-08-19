@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Calls API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list calls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/calls",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[logged_at_gteq]",
+                "value": "2026-06-17 15:12:19 UTC",
+                "type": "query"
+              },
+              {
+                "name": "q[logged_at_lteq]",
+                "value": "2026-06-17 15:12:19 UTC",
+                "type": "query"
+              },
+              {
+                "name": "q[notification_type_eq]",
+                "value": "visitor",
+                "type": "query"
+              },
+              {
+                "name": "q[origin_eq]",
+                "value": "123",
+                "type": "query"
+              },
+              {
+                "name": "q[unit_label_or_user_full_name_start]",
+                "value": "Foo",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "list calls"
+        },
+        {
+          "info": {
+            "name": "show call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/calls/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show call"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

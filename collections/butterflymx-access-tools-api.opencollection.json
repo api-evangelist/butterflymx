@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Access Tools API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create a PIN access tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.butterflymx.com/v4/access_tools/pins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a PIN access tool.\n\nPINs have strict complexity requirements. They can't be\nsequences (like 123456 or 654321), or repeated numbers\n(like 111111 or 222222), and some additional rules apply.\nIf a PIN has 4 digits then the above rule doesn't apply. 4-digit PINs\nare grandfathered in and require people to enter a Unit label along with\ntheir PIN to be granted access.\n"
+        },
+        {
+          "info": {
+            "name": "change the PIN of an access tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.butterflymx.com/v4/access_tools/pins/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "change the PIN of an access tool"
+        },
+        {
+          "info": {
+            "name": "create a RFID tag access tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.butterflymx.com/v4/access_tools/rfid_tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a RFID tag access tool.\n\nNote that RFID access tools can't be updated. If you wish to \"update\"\nan RFID access tool, you must delete it and create a new one.\n"
+        },
+        {
+          "info": {
+            "name": "list access tools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/access_tools",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[tenant_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on tenant id (case insensitive)"
+              },
+              {
+                "name": "q[tenant_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by tenant id in list"
+              },
+              {
+                "name": "q[item_type_eq]",
+                "value": "Pin",
+                "type": "query",
+                "description": "filter by exact match on type (case insensitive)"
+              },
+              {
+                "name": "q[building_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on building id"
+              },
+              {
+                "name": "q[building_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by building id in list"
+              },
+              {
+                "name": "q[id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by id in list"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "An **Access Tool** is anything that gives a person permanent access to\nthe building. This includes personal door **PINs** and **RFID Tags**\n(like **Keyfobs**, **Keycards**, and **Vehicle stickers**).\n\nPlease look at the documentation for creating **PINs** and **RFID Tags**\nfor more information on how to create and update them.\n"
+        },
+        {
+          "info": {
+            "name": "show access tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/access_tools/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show access tool"
+        },
+        {
+          "info": {
+            "name": "delete access tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.butterflymx.com/v4/access_tools/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "delete access tool"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Virtual Keys API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Virtual Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list virtual keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/virtual_keys",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[name_eq]",
+                "value": "George",
+                "type": "query",
+                "description": "filter by exact match on name (case insensitive)"
+              },
+              {
+                "name": "q[name_start]",
+                "value": "Ge",
+                "type": "query",
+                "description": "filter by name starts with (case insensitive)"
+              },
+              {
+                "name": "q[email_eq]",
+                "value": "george@example.com",
+                "type": "query",
+                "description": "filter by exact match on email (case insensitive)"
+              },
+              {
+                "name": "q[email_start]",
+                "value": "george@",
+                "type": "query",
+                "description": "filter by email starts with (case insensitive)"
+              },
+              {
+                "name": "q[sms_number_eq]",
+                "value": "+12345678900",
+                "type": "query",
+                "description": "filter by exact match on SMS number (case insensitive)"
+              },
+              {
+                "name": "q[sms_number_start]",
+                "value": "+123",
+                "type": "query",
+                "description": "filter by SMS number starts with (case insensitive)"
+              },
+              {
+                "name": "q[keychain_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on keychain id"
+              },
+              {
+                "name": "q[keychain_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by keychain id in list"
+              },
+              {
+                "name": "q[building_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on building id"
+              },
+              {
+                "name": "q[building_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by building id in list"
+              },
+              {
+                "name": "q[id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by id in list"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "**Virtual keys** provide temporary access to guests. Please see the\n**Keychain** documentation for more details.\n\nA guest can be sent a Virtual Key via email or via SMS.\n"
+        },
+        {
+          "info": {
+            "name": "create virtual key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.butterflymx.com/v4/virtual_keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "create virtual key"
+        },
+        {
+          "info": {
+            "name": "show virtual keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/virtual_keys/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show virtual keys"
+        },
+        {
+          "info": {
+            "name": "delete virtual key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.butterflymx.com/v4/virtual_keys/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "delete virtual key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Door Release Requests API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Door Release Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create door release requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.butterflymx.com/v4/door_release_requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "**Door Release Requests** enable you to request from a device to open\none or all of its **Access Points**.\n\nThis can be used to build experiences like *swipe-to-open* or *tap-to-open*.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

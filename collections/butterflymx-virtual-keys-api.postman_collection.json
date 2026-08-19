@@ -1,0 +1,995 @@
+{
+  "item": [
+    {
+      "id": "b491ee56-956d-40ed-990f-8a8cd88d6125",
+      "name": "Virtual Keys",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5fe50403-066a-4696-9219-87f158132a07",
+          "name": "list virtual keys",
+          "request": {
+            "name": "list virtual keys",
+            "description": {
+              "content": "**Virtual keys** provide temporary access to guests. Please see the\n**Keychain** documentation for more details.\n\nA guest can be sent a Virtual Key via email or via SMS.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "virtual_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[name_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on name (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[name_start]",
+                  "value": "<string>",
+                  "description": "filter by name starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[email_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on email (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[email_start]",
+                  "value": "<string>",
+                  "description": "filter by email starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[sms_number_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on SMS number (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[sms_number_start]",
+                  "value": "<string>",
+                  "description": "filter by SMS number starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[keychain_id_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on keychain id"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[keychain_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by keychain id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[keychain_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by keychain id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on building id"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "03f5211e-08cb-4fda-8f1a-6f04e8bc5654",
+              "name": "fetch all virtual keys that your user can see",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[name_eq]",
+                      "value": "George"
+                    },
+                    {
+                      "key": "q[name_start]",
+                      "value": "Ge"
+                    },
+                    {
+                      "key": "q[email_eq]",
+                      "value": "george@example.com"
+                    },
+                    {
+                      "key": "q[email_start]",
+                      "value": "george@"
+                    },
+                    {
+                      "key": "q[sms_number_eq]",
+                      "value": "+12345678900"
+                    },
+                    {
+                      "key": "q[sms_number_start]",
+                      "value": "+123"
+                    },
+                    {
+                      "key": "q[keychain_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[keychain_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[keychain_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"email\": \"visitor-1@atreides.org\",\n      \"first_used_at\": \"2026-06-14T15:12:20Z\",\n      \"id\": 1035872582,\n      \"keychain_id\": 940364922,\n      \"last_used_at\": \"2026-06-14T15:12:20Z\",\n      \"name\": \"Visitor 1\",\n      \"sent_at\": \"2026-05-17T15:12:20Z\",\n      \"sms_number\": null,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"usage_count\": 1,\n      \"qr_code_url\": \"http://user.butterflymx.localhosthttps://bmx-rails-staging.s3.amazonaws.com/system/uploads/test-1-1781709139-dbc88a23a0a2960f2afa01e1ddd1d737/store/medium/04.png\",\n      \"pin_code\": null,\n      \"building_id\": 577696272,\n      \"instructions_url\": \"http://user.butterflymx.localhost/public/virtual_keys/1035872582/eec409f6-76ca-4089-b2e6-4a07a0de88e5\"\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"email\": \"visitor-2@example.com\",\n      \"first_used_at\": \"2026-06-14T15:12:20Z\",\n      \"id\": 616003833,\n      \"keychain_id\": 254331397,\n      \"last_used_at\": \"2026-06-14T15:12:20Z\",\n      \"name\": \"Visitor 2\",\n      \"sent_at\": \"2026-05-17T15:12:20Z\",\n      \"sms_number\": null,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"usage_count\": 1,\n      \"qr_code_url\": \"http://user.butterflymx.localhosthttps://bmx-rails-staging.s3.amazonaws.com/system/uploads/test-1-1781709139-dbc88a23a0a2960f2afa01e1ddd1d737/store/medium/01.png\",\n      \"pin_code\": null,\n      \"building_id\": 577696272,\n      \"instructions_url\": \"http://user.butterflymx.localhost/public/virtual_keys/616003833/0423aed0-2188-4703-9b14-86b5f08e111d\"\n    },\n    {\n      \"created_at\": \"2026-06-13T15:12:20Z\",\n      \"email\": \"visitor-1@example.com\",\n      \"first_used_at\": \"2026-06-14T15:12:20Z\",\n      \"id\": 1035872581,\n      \"keychain_id\": 254331397,\n      \"last_used_at\": \"2026-06-14T15:12:20Z\",\n      \"name\": \"Visitor 1\",\n      \"sent_at\": \"2026-05-17T15:12:20Z\",\n      \"sms_number\": null,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"usage_count\": 1,\n      \"qr_code_url\": \"http://user.butterflymx.localhosthttps://bmx-rails-staging.s3.amazonaws.com/system/uploads/test-1-1781709139-dbc88a23a0a2960f2afa01e1ddd1d737/store/medium/02.png\",\n      \"pin_code\": \"683103\",\n      \"building_id\": 577696272,\n      \"instructions_url\": \"http://user.butterflymx.localhost/public/virtual_keys/1035872581/1f05f3f5-1809-4db3-adb9-ccd05e71b6ca\"\n    },\n    {\n      \"created_at\": \"2026-06-13T15:12:20Z\",\n      \"email\": \"visitor-5@example.com\",\n      \"first_used_at\": null,\n      \"id\": 1012402508,\n      \"keychain_id\": 494234073,\n      \"last_used_at\": null,\n      \"name\": \"Upcoming Visitor\",\n      \"sent_at\": \"2026-05-17T15:12:20Z\",\n      \"sms_number\": null,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"usage_count\": 0,\n      \"qr_code_url\": \"http://user.butterflymx.localhosthttps://bmx-rails-staging.s3.amazonaws.com/system/uploads/test-1-1781709139-dbc88a23a0a2960f2afa01e1ddd1d737/store/medium/06.png\",\n      \"pin_code\": \"123450\",\n      \"building_id\": 750989427,\n      \"instructions_url\": \"http://user.butterflymx.localhost/public/virtual_keys/1012402508/db2941fe-8936-4191-b8e8-1e395e0a3977\"\n    },\n    {\n      \"created_at\": \"2026-06-13T15:12:20Z\",\n      \"email\": \"visitor-4@example.com\",\n      \"first_used_at\": \"2026-06-14T15:12:20Z\",\n      \"id\": 948689649,\n      \"keychain_id\": 692527966,\n      \"last_used_at\": \"2026-06-14T15:12:20Z\",\n      \"name\": \"Expired Visitor\",\n      \"sent_at\": \"2026-05-17T15:12:20Z\",\n      \"sms_number\": \"1234567890\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"usage_count\": 1,\n      \"qr_code_url\": \"http://user.butterflymx.localhosthttps://bmx-rails-staging.s3.amazonaws.com/system/uploads/test-1-1781709139-dbc88a23a0a2960f2afa01e1ddd1d737/store/medium/06.png\",\n      \"pin_code\": \"123459\",\n      \"building_id\": 750989427,\n      \"instructions_url\": \"http://user.butterflymx.localhost/public/virtual_keys/948689649/9fc383e3-0434-48b6-9b6b-b2a65d029746\"\n    },\n    {\n      \"created_at\": \"2026-06-13T15:12:20Z\",\n      \"email\": \"visitor-1@example.com\",\n      \"first_used_at\": \"2026-06-14T15:12:20Z\",\n      \"id\": 497669756,\n      \"keychain_id\": 803429365,\n      \"last_used_at\": \"2026-06-14T15:12:20Z\",\n      \"name\": \"Active Visitor\",\n      \"sent_at\": \"2026-05-17T15:12:20Z\",\n      \"sms_number\": null,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"usage_count\": 1,\n      \"qr_code_url\": \"http://user.butterflymx.localhosthttps://bmx-rails-staging.s3.amazonaws.com/system/uploads/test-1-1781709139-dbc88a23a0a2960f2afa01e1ddd1d737/store/medium/06.png\",\n      \"pin_code\": \"123456\",\n      \"building_id\": 750989427,\n      \"instructions_url\": \"http://user.butterflymx.localhost/public/virtual_keys/497669756/aecd4f96-6367-4f82-9ec2-aabbf9808472\"\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 6,\n    \"page_item_count\": 6,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d83c63dc-ebd3-4b44-8be3-37c5ebe5d7c3",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[name_eq]",
+                      "value": "George"
+                    },
+                    {
+                      "key": "q[name_start]",
+                      "value": "Ge"
+                    },
+                    {
+                      "key": "q[email_eq]",
+                      "value": "george@example.com"
+                    },
+                    {
+                      "key": "q[email_start]",
+                      "value": "george@"
+                    },
+                    {
+                      "key": "q[sms_number_eq]",
+                      "value": "+12345678900"
+                    },
+                    {
+                      "key": "q[sms_number_start]",
+                      "value": "+123"
+                    },
+                    {
+                      "key": "q[keychain_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[keychain_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[keychain_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "613512ef-e1d7-42c8-b2ed-d5d926acb94f",
+          "name": "create virtual key",
+          "request": {
+            "name": "create virtual key",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "virtual_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keychain_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"sms_number\": \"<string>\",\n  \"pin_code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b36db56-1c98-45b1-afd0-3b25aad436e9",
+              "name": "created with a recipient and a PIN code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keychain_id\": 254331397,\n  \"email\": \"foo@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:28Z\",\n    \"email\": \"foo@example.com\",\n    \"first_used_at\": null,\n    \"id\": 1035872627,\n    \"keychain_id\": 254331397,\n    \"last_used_at\": null,\n    \"name\": \"D&D Game Night\",\n    \"sent_at\": null,\n    \"sms_number\": null,\n    \"updated_at\": \"2026-06-17T15:12:28Z\",\n    \"usage_count\": 0,\n    \"qr_code_url\": \"http://user.butterflymx.localhosthttps://bmx-rails-staging.s3.amazonaws.com/system/uploads/test-1-1781709139-dbc88a23a0a2960f2afa01e1ddd1d737/store/medium/qr_code_20260617-38996-sjgudw.png\",\n    \"pin_code\": \"319895\",\n    \"building_id\": 577696272,\n    \"instructions_url\": \"http://user.butterflymx.localhost/public/virtual_keys/1035872627/33d30311bfd882a84ec2d177ec1cf658\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49ef5034-fe79-47c9-9a86-3c19c59480da",
+              "name": "returns an error if the PIN is too weak",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keychain_id\": 254331397,\n  \"email\": \"foo@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"code\",\n      \"message\": \"isn't strong enough, try a different value\",\n      \"code\": \"low_entropy\"\n    },\n    {\n      \"field\": \"code\",\n      \"message\": \"is the wrong length (should be 6 characters)\",\n      \"code\": \"wrong_length\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c1c19fc-b1c7-4c00-b5b1-b46767d826a3",
+          "name": "show virtual keys",
+          "request": {
+            "name": "show virtual keys",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "virtual_keys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c0995825-c22b-4f5e-aed1-091b146919b1",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-13T15:12:20Z\",\n    \"email\": \"visitor-1@example.com\",\n    \"first_used_at\": \"2026-06-14T15:12:20Z\",\n    \"id\": 1035872581,\n    \"keychain_id\": 254331397,\n    \"last_used_at\": \"2026-06-14T15:12:20Z\",\n    \"name\": \"Visitor 1\",\n    \"sent_at\": \"2026-05-17T15:12:20Z\",\n    \"sms_number\": null,\n    \"updated_at\": \"2026-06-17T15:12:20Z\",\n    \"usage_count\": 1,\n    \"qr_code_url\": \"http://user.butterflymx.localhosthttps://bmx-rails-staging.s3.amazonaws.com/system/uploads/test-1-1781709139-dbc88a23a0a2960f2afa01e1ddd1d737/store/medium/02.png\",\n    \"pin_code\": \"683103\",\n    \"building_id\": 577696272,\n    \"instructions_url\": \"http://user.butterflymx.localhost/public/virtual_keys/1035872581/1f05f3f5-1809-4db3-adb9-ccd05e71b6ca\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4650d831-8eed-4b53-83cc-763e6d5afe21",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "545b9ede-65dc-4f96-bcee-bffbc367cfcd",
+          "name": "delete virtual key",
+          "request": {
+            "name": "delete virtual key",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "virtual_keys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "177cc268-ae1f-4ce0-9c64-0cedaffb9157",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4a67bfc-bf77-405f-8735-8f8b92298666",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4b94afb-a7d0-4749-aa4c-03d1ff2b10e7",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"not_found\",\n      \"message\": \"Resource not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43d0595f-499d-468e-884c-5da8c83074cf",
+              "name": "unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "virtual_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"message\": \"Failed to delete resource\",\n      \"code\": \"failed_to_delete_resource\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.butterflymx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "abea8486-b14c-4b57-8d3f-4ebf433f69e8",
+    "name": "ButterflyMX Virtual Keys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

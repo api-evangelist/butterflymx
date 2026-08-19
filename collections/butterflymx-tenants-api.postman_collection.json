@@ -1,0 +1,1429 @@
+{
+  "item": [
+    {
+      "id": "4ea21cb6-d2e1-4f4f-91cb-3c49aa49b498",
+      "name": "Tenants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be02ad56-567b-4fa9-bbac-ac1bc4712ad4",
+          "name": "resend confirmation email",
+          "request": {
+            "name": "resend confirmation email",
+            "description": {
+              "content": "Re-sends the invitation email to a tenant whose status is still `invited`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "tenants",
+                ":tenant_id",
+                "resend_confirmation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) id of the tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d1db50ba-eaef-4dbe-b06d-63a831fb4ad8",
+              "name": "enqueues the invitation email",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":tenant_id",
+                    "resend_confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) id of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "238bc1b0-3ebf-489d-b8d0-e83c65f04e41",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":tenant_id",
+                    "resend_confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) id of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5389d291-7070-4eb5-8f02-7dd3519c1ace",
+              "name": "no tenant matches the id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":tenant_id",
+                    "resend_confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) id of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"not_found\",\n      \"message\": \"Resource not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64c477b1-0e01-4704-b750-180caea64d29",
+          "name": "list tenants",
+          "request": {
+            "name": "list tenants",
+            "description": {
+              "content": "A **Tenant** is a person living in a unit.\n\nTenants are the primary way to manage people in a building, and therefore\naccess to the building.\n\nA Tenant can have one or more **Access Tools**\nwith which they gain permanent access to the building.\n\nA Tenant can also\ncreate **Virtual Keys** which they can share with other people to grant\nthem temporary access to the building.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "tenants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[full_name_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on full name (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[full_name_start]",
+                  "value": "<string>",
+                  "description": "filter by full name starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[first_name_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on first name (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[first_name_start]",
+                  "value": "<string>",
+                  "description": "filter by first name starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[last_name_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on last name (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[last_name_start]",
+                  "value": "<string>",
+                  "description": "filter by last name starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on building id"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[unit_id_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on unit id"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[unit_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by unit id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[unit_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by unit id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "filter by current user"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fcfc2480-5d41-4529-b0a5-c5b7cb44fa3d",
+              "name": "fetch all tenants that your user can see",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[full_name_eq]",
+                      "value": "John Doe"
+                    },
+                    {
+                      "key": "q[full_name_start]",
+                      "value": "John"
+                    },
+                    {
+                      "key": "q[first_name_eq]",
+                      "value": "John"
+                    },
+                    {
+                      "key": "q[first_name_start]",
+                      "value": "Jo"
+                    },
+                    {
+                      "key": "q[last_name_eq]",
+                      "value": "Doe"
+                    },
+                    {
+                      "key": "q[last_name_start]",
+                      "value": "Do"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[unit_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[unit_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[unit_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "self"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 37112193,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Alia\",\n      \"last_name\": \"Atredis\",\n      \"building_id\": 577696272,\n      \"building_name\": \"Crimson\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"alia.atredis@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 843107216,\n        \"label\": \"A003\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"1\"\n      },\n      \"notification_preference\": {\n        \"email\": true,\n        \"sms\": true,\n        \"do_not_disturb\": true,\n        \"preferences\": {\n          \"door_opens\": {\n            \"push\": false,\n            \"email\": false,\n            \"sms\": null\n          },\n          \"messages\": {\n            \"push\": true,\n            \"email\": false,\n            \"sms\": false\n          }\n        }\n      }\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 147873805,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Curumo\",\n      \"last_name\": \"Smith\",\n      \"building_id\": 845676935,\n      \"building_name\": \"Orthanc\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"saruman@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 165781594,\n        \"label\": \"palantir_chamber\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"8\"\n      },\n      \"notification_preference\": null\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 310453126,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Mairon\",\n      \"last_name\": \"Smith\",\n      \"building_id\": 845676935,\n      \"building_name\": \"Orthanc\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"sauron@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 165781594,\n        \"label\": \"palantir_chamber\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"8\"\n      },\n      \"notification_preference\": null\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 377389742,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Duncan\",\n      \"last_name\": \"Idaho\",\n      \"building_id\": 577696272,\n      \"building_name\": \"Crimson\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"duncan.idaho@example.com\",\n      \"contact_preference\": \"mobile_app\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 474917539,\n        \"label\": \"A001\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"1\"\n      },\n      \"notification_preference\": {\n        \"email\": true,\n        \"sms\": false,\n        \"do_not_disturb\": false,\n        \"preferences\": {\n          \"door_opens\": {\n            \"push\": false,\n            \"email\": false,\n            \"sms\": null\n          },\n          \"messages\": {\n            \"push\": true,\n            \"email\": false,\n            \"sms\": false\n          }\n        }\n      }\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 467490713,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Mairon\",\n      \"last_name\": \"Smith\",\n      \"building_id\": 750989427,\n      \"building_name\": \"Barad-dûr\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"sauron@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 748709450,\n        \"label\": \"sauron_suite\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"6\"\n      },\n      \"notification_preference\": null\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 588819183,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Leto\",\n      \"last_name\": \"Atredis\",\n      \"building_id\": 577696272,\n      \"building_name\": \"Crimson\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"leto.atredis@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 843107216,\n        \"label\": \"A003\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"1\"\n      },\n      \"notification_preference\": {\n        \"email\": true,\n        \"sms\": true,\n        \"do_not_disturb\": true,\n        \"preferences\": {\n          \"door_opens\": {\n            \"push\": false,\n            \"email\": false,\n            \"sms\": null\n          },\n          \"messages\": {\n            \"push\": true,\n            \"email\": false,\n            \"sms\": false\n          }\n        }\n      }\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 605743730,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Paul\",\n      \"last_name\": \"Atredis\",\n      \"building_id\": 577696272,\n      \"building_name\": \"Crimson\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"paul.atredis@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 843107216,\n        \"label\": \"A003\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"1\"\n      },\n      \"notification_preference\": {\n        \"email\": true,\n        \"sms\": true,\n        \"do_not_disturb\": true,\n        \"preferences\": {\n          \"door_opens\": {\n            \"push\": false,\n            \"email\": false,\n            \"sms\": null\n          },\n          \"messages\": {\n            \"push\": true,\n            \"email\": false,\n            \"sms\": false\n          }\n        }\n      }\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 636166899,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Jessica\",\n      \"last_name\": \"Atredis\",\n      \"building_id\": 577696272,\n      \"building_name\": \"Crimson\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"jessica.atredis@example.com\",\n      \"contact_preference\": \"mobile_app\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 88603419,\n        \"label\": \"A002\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"1\"\n      },\n      \"notification_preference\": {\n        \"email\": true,\n        \"sms\": true,\n        \"do_not_disturb\": true,\n        \"preferences\": {\n          \"door_opens\": {\n            \"push\": false,\n            \"email\": false,\n            \"sms\": null\n          },\n          \"messages\": {\n            \"push\": true,\n            \"email\": false,\n            \"sms\": false\n          }\n        }\n      }\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 677235661,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Mairon\",\n      \"last_name\": \"Smith\",\n      \"building_id\": 750989427,\n      \"building_name\": \"Barad-dûr\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"sauron@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 507948540,\n        \"label\": \"assembly_hall\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"1\"\n      },\n      \"notification_preference\": null\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 714961964,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Mairon\",\n      \"last_name\": \"Smith\",\n      \"building_id\": 750989427,\n      \"building_name\": \"Barad-dûr\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"sauron@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 226743053,\n        \"label\": \"throne_room\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"5\"\n      },\n      \"notification_preference\": {\n        \"email\": true,\n        \"sms\": true,\n        \"do_not_disturb\": true,\n        \"preferences\": {\n          \"door_opens\": {\n            \"push\": false,\n            \"email\": false,\n            \"sms\": null\n          },\n          \"messages\": {\n            \"push\": true,\n            \"email\": false,\n            \"sms\": false\n          }\n        }\n      }\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 990619226,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Vladimir\",\n      \"last_name\": \"Harkonnen\",\n      \"building_id\": 577696272,\n      \"building_name\": \"Crimson\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"vladimir.harkonnen@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 832101109,\n        \"label\": \"00\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"0\"\n      },\n      \"notification_preference\": {\n        \"email\": true,\n        \"sms\": false,\n        \"do_not_disturb\": true,\n        \"preferences\": {\n          \"door_opens\": {\n            \"push\": false,\n            \"email\": false,\n            \"sms\": null\n          },\n          \"messages\": {\n            \"push\": true,\n            \"email\": false,\n            \"sms\": false\n          }\n        }\n      }\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"full_name\": null,\n      \"id\": 1040510921,\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"first_name\": \"Gurney\",\n      \"last_name\": \"Halleck\",\n      \"building_id\": 577696272,\n      \"building_name\": \"Crimson\",\n      \"inactive_after\": null,\n      \"building_timezone\": \"America/New_York\",\n      \"email\": \"gurney.halleck@example.com\",\n      \"contact_preference\": \"phone_call\",\n      \"registration_status\": \"registered\",\n      \"invitation\": null,\n      \"unit\": {\n        \"created_at\": \"2026-06-17T15:12:20Z\",\n        \"id\": 843107216,\n        \"label\": \"A003\",\n        \"updated_at\": \"2026-06-17T15:12:20Z\",\n        \"floor\": \"1\"\n      },\n      \"notification_preference\": {\n        \"email\": true,\n        \"sms\": false,\n        \"do_not_disturb\": true,\n        \"preferences\": {\n          \"door_opens\": {\n            \"push\": false,\n            \"email\": false,\n            \"sms\": null\n          },\n          \"messages\": {\n            \"push\": true,\n            \"email\": false,\n            \"sms\": false\n          }\n        }\n      }\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 12,\n    \"page_item_count\": 12,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88fe9908-3eb8-4251-a235-d4986279177d",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[full_name_eq]",
+                      "value": "John Doe"
+                    },
+                    {
+                      "key": "q[full_name_start]",
+                      "value": "John"
+                    },
+                    {
+                      "key": "q[first_name_eq]",
+                      "value": "John"
+                    },
+                    {
+                      "key": "q[first_name_start]",
+                      "value": "Jo"
+                    },
+                    {
+                      "key": "q[last_name_eq]",
+                      "value": "Doe"
+                    },
+                    {
+                      "key": "q[last_name_start]",
+                      "value": "Do"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[unit_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[unit_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[unit_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "self"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50b6d516-e1ed-4820-8d84-026fb299ecc7",
+          "name": "create tenant",
+          "request": {
+            "name": "create tenant",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "tenants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenant\": {\n    \"unit_id\": \"<integer>\",\n    \"active_at\": \"<dateTime>\",\n    \"qr_key_enabled\": \"<boolean>\",\n    \"delivery_pass_enabled\": \"<boolean>\",\n    \"swipe_to_open_enabled\": \"<boolean>\",\n    \"inactive_at\": \"<dateTime>\",\n    \"virtual_fob_entry_enabled\": \"<boolean>\",\n    \"user_attributes\": {\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"contact_preference\": \"<string>\",\n      \"sms_contact_attributes\": {\n        \"phone_number\": \"<string>\"\n      },\n      \"backup_contact_attributes\": {\n        \"phone_number\": \"<string>\"\n      }\n    },\n    \"user_panel_config_attributes\": {\n      \"display_name_strategy\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"display_only_on_search\": \"<boolean>\",\n      \"display_first_name\": \"<boolean>\",\n      \"display_last_name\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0917063f-443e-4e45-aefa-f0c08616478e",
+              "name": "tenant created with virtual fob when apple access is enabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant\": {\n    \"user_attributes\": {\n      \"first_name\": \"Foo\",\n      \"last_name\": \"Bar\",\n      \"email\": \"example@test.com\",\n      \"sms_contact_attributes\": {\n        \"phone_number\": \"+19169366241\"\n      },\n      \"backup_contact_attributes\": {\n        \"phone_number\": \"+19169366242\"\n      }\n    },\n    \"external_id\": 123,\n    \"delivery_pass_enabled\": \"true\",\n    \"swipe_to_open_enabled\": \"true\",\n    \"virtual_fob_entry_enabled\": \"true\",\n    \"active_at\": \"2026-06-18T15:12:26Z\",\n    \"inactive_at\": \"2026-06-20T15:12:26Z\",\n    \"unit_id\": 843107216,\n    \"user_panel_config_attributes\": {\n      \"display_name_strategy\": \"first_name_and_last_name\",\n      \"display_only_on_search\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:26Z\",\n    \"full_name\": null,\n    \"id\": 1040510965,\n    \"updated_at\": \"2026-06-17T15:12:26Z\",\n    \"first_name\": \"Foo\",\n    \"last_name\": \"Bar\",\n    \"building_id\": 577696272,\n    \"building_name\": \"Crimson\",\n    \"inactive_after\": \"2026-06-20T15:12:26Z\",\n    \"building_timezone\": \"America/New_York\",\n    \"email\": \"example@test.com\",\n    \"contact_preference\": \"phone_call\",\n    \"registration_status\": \"invited\",\n    \"invitation\": {\n      \"confirmation_url\": \"http://accounts.butterflymx.localhost/confirmations/token-string\",\n      \"invited_at\": \"2026-06-18T12:00:00Z\"\n    },\n    \"unit\": {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 843107216,\n      \"label\": \"A003\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\"\n    },\n    \"notification_preference\": {\n      \"email\": false,\n      \"sms\": false,\n      \"do_not_disturb\": false,\n      \"preferences\": {\n        \"door_opens\": {\n          \"push\": false,\n          \"email\": false,\n          \"sms\": null\n        },\n        \"messages\": {\n          \"push\": true,\n          \"email\": true,\n          \"sms\": false\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb201deb-2727-4a78-8db3-9a4e9b34547c",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant\": {\n    \"user_attributes\": {\n      \"first_name\": \"Foo\",\n      \"last_name\": \"Bar\",\n      \"email\": \"example@test.com\",\n      \"sms_contact_attributes\": {\n        \"phone_number\": \"+19169366241\"\n      },\n      \"backup_contact_attributes\": {\n        \"phone_number\": \"+19169366242\"\n      }\n    },\n    \"external_id\": 123,\n    \"delivery_pass_enabled\": \"true\",\n    \"swipe_to_open_enabled\": \"true\",\n    \"virtual_fob_entry_enabled\": \"true\",\n    \"active_at\": \"2026-06-18T15:12:26Z\",\n    \"inactive_at\": \"2026-06-20T15:12:26Z\",\n    \"unit_id\": 843107216,\n    \"user_panel_config_attributes\": {\n      \"display_name_strategy\": \"first_name_and_last_name\",\n      \"display_only_on_search\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d76c701-0d10-4862-afd4-9c08d0bcf1cb",
+              "name": "unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant\": {\n    \"user_attributes\": {\n      \"first_name\": \"Foo\",\n      \"last_name\": \"Bar\",\n      \"email\": \"example@test.com\",\n      \"sms_contact_attributes\": {\n        \"phone_number\": \"+19169366241\"\n      },\n      \"backup_contact_attributes\": {\n        \"phone_number\": \"+19169366242\"\n      }\n    },\n    \"external_id\": 123,\n    \"delivery_pass_enabled\": \"true\",\n    \"swipe_to_open_enabled\": \"true\",\n    \"virtual_fob_entry_enabled\": \"true\",\n    \"active_at\": \"2026-06-18T15:12:26Z\",\n    \"inactive_at\": \"2026-06-20T15:12:26Z\",\n    \"unit_id\": 843107216,\n    \"user_panel_config_attributes\": {\n      \"display_name_strategy\": \"first_name_and_last_name\",\n      \"display_only_on_search\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"user\",\n      \"message\": \"can't be blank\",\n      \"code\": \"blank\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "689fbdd0-736e-40a8-9715-35570ab978d8",
+          "name": "show tenant",
+          "request": {
+            "name": "show tenant",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "tenants",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2766d071-dc36-4943-8bca-5959036e92eb",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:20Z\",\n    \"full_name\": null,\n    \"id\": 990619226,\n    \"updated_at\": \"2026-06-17T15:12:20Z\",\n    \"first_name\": \"Vladimir\",\n    \"last_name\": \"Harkonnen\",\n    \"building_id\": 577696272,\n    \"building_name\": \"Crimson\",\n    \"inactive_after\": null,\n    \"building_timezone\": \"America/New_York\",\n    \"email\": \"vladimir.harkonnen@example.com\",\n    \"contact_preference\": \"phone_call\",\n    \"registration_status\": \"registered\",\n    \"invitation\": null,\n    \"unit\": {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 832101109,\n      \"label\": \"00\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"0\"\n    },\n    \"notification_preference\": {\n      \"email\": true,\n      \"sms\": false,\n      \"do_not_disturb\": true,\n      \"preferences\": {\n        \"door_opens\": {\n          \"push\": false,\n          \"email\": false,\n          \"sms\": null\n        },\n        \"messages\": {\n          \"push\": true,\n          \"email\": false,\n          \"sms\": false\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b40b01c0-dedb-44b5-8bed-311a1304a0ce",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c30029a-5260-4f9b-bde1-b1a386e62d19",
+          "name": "update tenant",
+          "request": {
+            "name": "update tenant",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "tenants",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenant\": {\n    \"active_at\": \"<dateTime>\",\n    \"inactive_at\": \"<dateTime>\",\n    \"sync\": \"<boolean>\",\n    \"qr_key_enabled\": \"<boolean>\",\n    \"delivery_pass_instructions\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"user_attributes\": {\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"contact_preference\": \"<string>\",\n      \"sms_contact_attributes\": {\n        \"phone_number\": \"<string>\"\n      },\n      \"backup_contact_attributes\": {\n        \"phone_number\": \"<string>\"\n      }\n    },\n    \"notification_preference_attributes\": {\n      \"email_notifications\": \"<boolean>\",\n      \"sms_notifications\": \"<boolean>\",\n      \"do_not_disturb\": \"<boolean>\",\n      \"preferences\": {\n        \"door_opens\": {\n          \"push\": \"<boolean>\",\n          \"email\": \"<boolean>\"\n        },\n        \"messages\": {\n          \"push\": \"<boolean>\",\n          \"email\": \"<boolean>\",\n          \"sms\": \"<boolean>\"\n        }\n      }\n    },\n    \"user_panel_config_attributes\": {\n      \"display_name_strategy\": \"<string>\",\n      \"directory_message\": \"<string>\",\n      \"display_only_on_search\": \"<boolean>\",\n      \"display_first_name\": \"<boolean>\",\n      \"display_last_name\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e4b887d-ccfe-4297-a92c-a84c60dbde27",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant\": {\n    \"sync\": true,\n    \"qr_key_enabled\": true,\n    \"external_id\": 123,\n    \"delivery_pass_enabled\": \"true\",\n    \"swipe_to_open_enabled\": \"true\",\n    \"virtual_fob_entry_enabled\": \"true\",\n    \"active_at\": \"2026-06-24T15:12:27Z\",\n    \"inactive_at\": \"2026-06-26T15:12:27Z\",\n    \"unit_id\": 843107216,\n    \"user_attributes\": {\n      \"first_name\": \"Foo\",\n      \"last_name\": \"Bar\",\n      \"email\": \"example@test.com\",\n      \"sms_contact_attributes\": {\n        \"phone_number\": \"+19169366241\"\n      },\n      \"backup_contact_attributes\": {\n        \"phone_number\": \"+19169366242\"\n      }\n    },\n    \"notification_preference_attributes\": {\n      \"email\": true,\n      \"sms\": true,\n      \"do_not_disturb\": true,\n      \"preferences\": {\n        \"door_opens\": {\n          \"push\": true,\n          \"email\": true\n        },\n        \"messages\": {\n          \"push\": true,\n          \"email\": true,\n          \"sms\": true\n        }\n      }\n    },\n    \"user_panel_config_attributes\": {\n      \"display_name_strategy\": \"first_name_and_last_name\",\n      \"display_only_on_search\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:20Z\",\n    \"full_name\": null,\n    \"id\": 990619226,\n    \"updated_at\": \"2026-06-17T15:12:27Z\",\n    \"first_name\": \"Foo\",\n    \"last_name\": \"Bar\",\n    \"building_id\": 577696272,\n    \"building_name\": \"Crimson\",\n    \"inactive_after\": \"2026-06-26T15:12:27Z\",\n    \"building_timezone\": \"America/New_York\",\n    \"email\": \"example@test.com\",\n    \"contact_preference\": \"phone_call\",\n    \"registration_status\": \"registered\",\n    \"invitation\": null,\n    \"unit\": {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 843107216,\n      \"label\": \"A003\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\"\n    },\n    \"notification_preference\": {\n      \"email\": true,\n      \"sms\": true,\n      \"do_not_disturb\": true,\n      \"preferences\": {\n        \"door_opens\": {\n          \"push\": true,\n          \"email\": true\n        },\n        \"messages\": {\n          \"push\": true,\n          \"email\": true,\n          \"sms\": true\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "607a62e5-7c16-4318-baec-a095ae84feaf",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant\": {\n    \"sync\": true,\n    \"qr_key_enabled\": true,\n    \"external_id\": 123,\n    \"delivery_pass_enabled\": \"true\",\n    \"swipe_to_open_enabled\": \"true\",\n    \"virtual_fob_entry_enabled\": \"true\",\n    \"active_at\": \"2026-06-24T15:12:27Z\",\n    \"inactive_at\": \"2026-06-26T15:12:27Z\",\n    \"unit_id\": 843107216,\n    \"user_attributes\": {\n      \"first_name\": \"Foo\",\n      \"last_name\": \"Bar\",\n      \"email\": \"example@test.com\",\n      \"sms_contact_attributes\": {\n        \"phone_number\": \"+19169366241\"\n      },\n      \"backup_contact_attributes\": {\n        \"phone_number\": \"+19169366242\"\n      }\n    },\n    \"notification_preference_attributes\": {\n      \"email\": true,\n      \"sms\": true,\n      \"do_not_disturb\": true,\n      \"preferences\": {\n        \"door_opens\": {\n          \"push\": true,\n          \"email\": true\n        },\n        \"messages\": {\n          \"push\": true,\n          \"email\": true,\n          \"sms\": true\n        }\n      }\n    },\n    \"user_panel_config_attributes\": {\n      \"display_name_strategy\": \"first_name_and_last_name\",\n      \"display_only_on_search\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfe3f872-6963-45d2-b814-dea9b523163a",
+              "name": "unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant\": {\n    \"sync\": true,\n    \"qr_key_enabled\": true,\n    \"external_id\": 123,\n    \"delivery_pass_enabled\": \"true\",\n    \"swipe_to_open_enabled\": \"true\",\n    \"virtual_fob_entry_enabled\": \"true\",\n    \"active_at\": \"2026-06-24T15:12:27Z\",\n    \"inactive_at\": \"2026-06-26T15:12:27Z\",\n    \"unit_id\": 843107216,\n    \"user_attributes\": {\n      \"first_name\": \"Foo\",\n      \"last_name\": \"Bar\",\n      \"email\": \"example@test.com\",\n      \"sms_contact_attributes\": {\n        \"phone_number\": \"+19169366241\"\n      },\n      \"backup_contact_attributes\": {\n        \"phone_number\": \"+19169366242\"\n      }\n    },\n    \"notification_preference_attributes\": {\n      \"email\": true,\n      \"sms\": true,\n      \"do_not_disturb\": true,\n      \"preferences\": {\n        \"door_opens\": {\n          \"push\": true,\n          \"email\": true\n        },\n        \"messages\": {\n          \"push\": true,\n          \"email\": true,\n          \"sms\": true\n        }\n      }\n    },\n    \"user_panel_config_attributes\": {\n      \"display_name_strategy\": \"first_name_and_last_name\",\n      \"display_only_on_search\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"active_at\",\n      \"message\": \"can't be blank\",\n      \"code\": \"blank\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c676e89-d7b8-4c94-a00a-a888b69e8ba1",
+          "name": "delete tenant",
+          "request": {
+            "name": "delete tenant",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "tenants",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3de6b1ee-e54a-4f91-b240-c887905d09c8",
+              "name": "tenant deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ebfdfdd-5527-40f3-a78e-cf428d4f52c9",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "tenants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.butterflymx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2a4d1b85-cf41-4ba8-9ed1-4624938c8e3f",
+    "name": "ButterflyMX Tenants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

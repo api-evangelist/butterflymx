@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Buildings API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Buildings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list buildings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[name_eq]",
+                "value": "Crimson",
+                "type": "query",
+                "description": "filter by exact match on name (case insensitive)"
+              },
+              {
+                "name": "q[name_start]",
+                "value": "Cri",
+                "type": "query",
+                "description": "filter by name starts with (case insensitive)"
+              },
+              {
+                "name": "q[id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by id in list"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "A **Building** represents a physical building that contains one or more\n**Units**, and **Devices**.\n"
+        },
+        {
+          "info": {
+            "name": "show building",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show building"
+        },
+        {
+          "info": {
+            "name": "show building capabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings/:id/capabilities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "building id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the capabilities and configuration options available for a specific building.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

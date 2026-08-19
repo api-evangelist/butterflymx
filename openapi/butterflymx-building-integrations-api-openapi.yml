@@ -1,0 +1,257 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Building Integrations API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Building Integrations
+paths:
+  /v4/buildings/{building_id}/integrations:
+    get:
+      summary: list integrations
+      tags:
+      - Building Integrations
+      security:
+      - Bearer: []
+      parameters:
+      - name: building_id
+        in: path
+        description: id of the building
+        required: true
+        schema:
+          type: integer
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      responses:
+        '200':
+          description: fetch all integrations
+        '401':
+          description: unauthorized
+    post:
+      summary: create integration
+      tags:
+      - Building Integrations
+      security:
+      - Bearer: []
+      parameters:
+      - name: building_id
+        in: path
+        description: id of the building
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: create integration
+        '401':
+          description: unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: integrations
+                    attributes:
+                      type: object
+                      properties:
+                        integrator:
+                          type: string
+                          example: webhook
+                        configuration:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: https://webhook.site/49a0cc36-4193-42b4-9a6e-3e61bb299947
+                            method:
+                              type: string
+                              example: post
+                        bindings:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              actions:
+                                type: array
+                                items:
+                                  type: string
+                                example:
+                                - create
+                              resource_type:
+                                type: string
+                                example: call
+                              resource_id:
+                                type: string
+                                example: null
+                      required:
+                      - integrator
+                      - configuration
+                      - bindings
+                  required:
+                  - type
+                  - attributes
+              required:
+              - data
+              additionalProperties: false
+  /v4/buildings/{building_id}/integrations/{id}:
+    get:
+      summary: show integration
+      tags:
+      - Building Integrations
+      security:
+      - Bearer: []
+      parameters:
+      - name: building_id
+        in: path
+        description: id of the building
+        required: true
+        schema:
+          type: integer
+      - name: id
+        in: path
+        description: id of the integration
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: fetch integration
+        '401':
+          description: unauthorized
+    put:
+      summary: update integration
+      tags:
+      - Building Integrations
+      security:
+      - Bearer: []
+      parameters:
+      - name: building_id
+        in: path
+        description: id of the building
+        required: true
+        schema:
+          type: integer
+      - name: id
+        in: path
+        description: id of the integration
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: update integration
+        '401':
+          description: unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: integrations
+                    attributes:
+                      type: object
+                      properties:
+                        integrator:
+                          type: string
+                          example: webhook
+                        configuration:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: https://test.site/49a0cc36-4193-42b4-9a6e-3e61bb299947
+                            method:
+                              type: string
+                              example: post
+                        bindings:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              actions:
+                                type: array
+                                items:
+                                  type: string
+                                example:
+                                - create
+                              resource_type:
+                                type: string
+                                example: call
+                              resource_id:
+                                type: string
+                                example: null
+                      required:
+                      - integrator
+                      - configuration
+                      - bindings
+                  required:
+                  - type
+                  - attributes
+              required:
+              - data
+              additionalProperties: false
+    delete:
+      summary: delete integration
+      tags:
+      - Building Integrations
+      security:
+      - Bearer: []
+      parameters:
+      - name: building_id
+        in: path
+        description: id of the building
+        required: true
+        schema:
+          type: integer
+      - name: id
+        in: path
+        description: id of the integration
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: delete integration
+        '401':
+          description: unauthorized
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

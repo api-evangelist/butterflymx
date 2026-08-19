@@ -1,0 +1,668 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Access groups API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Access groups
+paths:
+  /v4/access_groups/{id}/tenants:
+    post:
+      summary: Add tenants to access group
+      tags:
+      - Access groups
+      security:
+      - Bearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tenants added successfully
+          content:
+            application/json:
+              examples:
+                Tenants added successfully:
+                  value:
+                    message: Tenants added successfully
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              examples:
+                Unprocessable Content:
+                  value:
+                    errors:
+                    - field: tenant_ids
+                      code: not_found
+                      message: No valid tenants found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_group:
+                  type: object
+                  properties:
+                    tenant_ids:
+                      type: array
+                      items:
+                        type: integer
+                      example:
+                      - 1
+                      - 2
+                  required:
+                  - tenant_ids
+              required:
+              - access_group
+              additionalProperties: false
+            examples:
+              Tenants added successfully:
+                summary: Tenants added successfully
+                value:
+                  access_group:
+                    tenant_ids:
+                    - 377389742
+              Not found:
+                summary: Not found
+                value:
+                  access_group:
+                    tenant_ids:
+                    - 377389742
+              Unprocessable Content:
+                summary: Unprocessable Content
+                value:
+                  access_group:
+                    tenant_ids: []
+              unauthorized:
+                summary: unauthorized
+                value:
+                  access_group:
+                    tenant_ids:
+                    - 377389742
+  /v4/access_groups/{id}/tenants/bulk_destroy:
+    delete:
+      summary: Remove tenants from access group
+      tags:
+      - Access groups
+      security:
+      - Bearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tenants removed successfully
+          content:
+            application/json:
+              examples:
+                Tenants removed successfully:
+                  value:
+                    message: Tenants removed successfully
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              examples:
+                Unprocessable Content:
+                  value:
+                    errors:
+                    - field: tenant_ids
+                      code: not_found
+                      message: No valid tenants found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_group:
+                  type: object
+                  properties:
+                    tenant_ids:
+                      type: array
+                      items:
+                        type: integer
+                      example:
+                      - 1
+                      - 2
+                  required:
+                  - tenant_ids
+              required:
+              - access_group
+              additionalProperties: false
+            examples:
+              Tenants removed successfully:
+                summary: Tenants removed successfully
+                value:
+                  access_group:
+                    tenant_ids:
+                    - 377389742
+              Not found:
+                summary: Not found
+                value:
+                  access_group:
+                    tenant_ids:
+                    - 377389742
+              Unprocessable Content:
+                summary: Unprocessable Content
+                value:
+                  access_group:
+                    tenant_ids: []
+              unauthorized:
+                summary: unauthorized
+                value:
+                  access_group:
+                    tenant_ids:
+                    - 377389742
+  /v4/access_groups/{id}/units:
+    post:
+      summary: Add units to access group
+      tags:
+      - Access groups
+      security:
+      - Bearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Units added successfully
+          content:
+            application/json:
+              examples:
+                Units added successfully:
+                  value:
+                    message: Units added successfully
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              examples:
+                Unprocessable Content:
+                  value:
+                    errors:
+                    - field: unit_ids
+                      code: not_found
+                      message: No valid units found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_group:
+                  type: object
+                  properties:
+                    unit_ids:
+                      type: array
+                      items:
+                        type: integer
+                      example:
+                      - 1
+                      - 2
+                  required:
+                  - unit_ids
+              required:
+              - access_group
+              additionalProperties: false
+            examples:
+              Units added successfully:
+                summary: Units added successfully
+                value:
+                  access_group:
+                    unit_ids:
+                    - 832101109
+              Not found:
+                summary: Not found
+                value:
+                  access_group:
+                    unit_ids:
+                    - 832101109
+              Unprocessable Content:
+                summary: Unprocessable Content
+                value:
+                  access_group:
+                    unit_ids: []
+              unauthorized:
+                summary: unauthorized
+                value:
+                  access_group:
+                    unit_ids:
+                    - 832101109
+  /v4/access_groups/{id}/units/bulk_destroy:
+    delete:
+      summary: Remove units from access group
+      tags:
+      - Access groups
+      security:
+      - Bearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Units removed successfully
+          content:
+            application/json:
+              examples:
+                Units removed successfully:
+                  value:
+                    message: Units removed successfully
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                Not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              examples:
+                Unprocessable Content:
+                  value:
+                    errors:
+                    - field: unit_ids
+                      code: not_found
+                      message: No valid units found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_group:
+                  type: object
+                  properties:
+                    unit_ids:
+                      type: array
+                      items:
+                        type: integer
+                      example:
+                      - 1
+                      - 2
+                  required:
+                  - unit_ids
+              required:
+              - access_group
+              additionalProperties: false
+            examples:
+              Units removed successfully:
+                summary: Units removed successfully
+                value:
+                  access_group:
+                    unit_ids:
+                    - 832101109
+              Not found:
+                summary: Not found
+                value:
+                  access_group:
+                    unit_ids:
+                    - 832101109
+              Unprocessable Content:
+                summary: Unprocessable Content
+                value:
+                  access_group:
+                    unit_ids: []
+              unauthorized:
+                summary: unauthorized
+                value:
+                  access_group:
+                    unit_ids:
+                    - 832101109
+  /v4/access_groups:
+    get:
+      summary: list access groups
+      tags:
+      - Access groups
+      description: "**Access Group** access lets you grant certain tenants and building staff\n access to different parts of your property at different times.\n"
+      security:
+      - Bearer: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[name_eq]
+        in: query
+        description: filter by exact match on name (case insensitive)
+        example: Front Door
+        schema:
+          type: string
+      - name: q[name_start]
+        in: query
+        description: filter by name starts with (case insensitive)
+        example: Front
+        schema:
+          type: string
+      - name: q[building_id_eq]
+        in: query
+        description: filter by exact match on building_id (case insensitive)
+        example: 123
+        schema:
+          type: string
+      - name: q[building_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by building id in list
+        example:
+        - 123
+        - 456
+      - name: q[id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by id in list
+        example:
+        - 123
+        - 456
+      responses:
+        '200':
+          description: fetch all access groups that your user can see
+          content:
+            application/json:
+              examples:
+                fetch all access groups that your user can see:
+                  value:
+                    data:
+                    - id: 6156222
+                      building_id: 577696272
+                      name: Ball room access
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids: []
+                      units_ids: []
+                    - id: 57978351
+                      building_id: 577696272
+                      name: Middle door access
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids:
+                      - 636166899
+                      units_ids: []
+                    - id: 72643159
+                      building_id: 577696272
+                      name: Package room access
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids:
+                      - 377389742
+                      units_ids: []
+                    - id: 140668954
+                      building_id: 577696272
+                      name: Back door access
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids:
+                      - 588819183
+                      units_ids: []
+                    - id: 297003321
+                      building_id: 577696272
+                      name: Default
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids:
+                      - 1040510921
+                      - 588819183
+                      - 605743730
+                      - 37112193
+                      - 636166899
+                      - 990619226
+                      - 377389742
+                      units_ids: []
+                    - id: 400097285
+                      building_id: 845676935
+                      name: Default
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids:
+                      - 310453126
+                      - 147873805
+                      units_ids: []
+                    - id: 423889942
+                      building_id: 577696272
+                      name: Staff
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids: []
+                      units_ids: []
+                    - id: 448668747
+                      building_id: 750989427
+                      name: Default
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids:
+                      - 467490713
+                      - 714961964
+                      - 677235661
+                      units_ids: []
+                    - id: 533133512
+                      building_id: 577696272
+                      name: All Smart Locks
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids: []
+                      units_ids: []
+                    - id: 621838159
+                      building_id: 505753268
+                      name: Default
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids: []
+                      units_ids: []
+                    - id: 1038156163
+                      building_id: 750989427
+                      name: Throne room access
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids: []
+                      units_ids: []
+                    - id: 1045492360
+                      building_id: 577696272
+                      name: Front door access
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids:
+                      - 377389742
+                      units_ids: []
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 12
+                      page_item_count: 12
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/access_groups/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show access group
+      tags:
+      - Access groups
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      id: 297003321
+                      building_id: 577696272
+                      name: Default
+                      created_at: '2026-06-17T15:12:20Z'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      tenants_ids:
+                      - 1040510921
+                      - 588819183
+                      - 605743730
+                      - 37112193
+                      - 636166899
+                      - 990619226
+                      - 377389742
+                      units_ids: []
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

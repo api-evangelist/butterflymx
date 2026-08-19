@@ -1,0 +1,517 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Access Tools API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Access Tools
+paths:
+  /v4/access_tools/pins:
+    post:
+      summary: create a PIN access tool
+      tags:
+      - Access Tools
+      description: 'Create a PIN access tool.
+
+
+        PINs have strict complexity requirements. They can''t be
+
+        sequences (like 123456 or 654321), or repeated numbers
+
+        (like 111111 or 222222), and some additional rules apply.
+
+        If a PIN has 4 digits then the above rule doesn''t apply. 4-digit PINs
+
+        are grandfathered in and require people to enter a Unit label along with
+
+        their PIN to be granted access.
+
+        '
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: created with a specific PIN code
+          content:
+            application/json:
+              examples:
+                created:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:21Z'
+                      id: 989034169
+                      updated_at: '2026-06-17T15:12:21Z'
+                      code: '636254'
+                      type: pin
+                      building_id: 577696272
+                      tenant_id: 377389742
+                created with a specific PIN code:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:21Z'
+                      id: 989034170
+                      updated_at: '2026-06-17T15:12:21Z'
+                      code: '336901'
+                      type: pin
+                      building_id: 577696272
+                      tenant_id: 377389742
+        '422':
+          description: unprocessable content
+          content:
+            application/json:
+              examples:
+                unprocessable content:
+                  value:
+                    errors:
+                    - field: code
+                      message: isn't strong enough, try a different value
+                      code: low_entropy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pin:
+                  type: object
+                  properties:
+                    code:
+                      type:
+                      - string
+                      - 'null'
+                      example: '336901'
+                    tenant_id:
+                      type: integer
+                      example: 123
+                  required:
+                  - tenant_id
+                  additionalProperties: false
+              required:
+              - pin
+            examples:
+              created:
+                summary: created
+                value:
+                  pin:
+                    code: null
+                    tenant_id: 377389742
+              created with a specific PIN code:
+                summary: created with a specific PIN code
+                value:
+                  pin:
+                    code: '336901'
+                    tenant_id: 377389742
+              unprocessable content:
+                summary: unprocessable content
+                value:
+                  pin:
+                    code: '123456'
+                    tenant_id: 377389742
+  /v4/access_tools/pins/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: change the PIN of an access tool
+      tags:
+      - Access Tools
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                ok:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:20Z'
+                      id: 479403019
+                      updated_at: '2026-06-17T15:12:21Z'
+                      code: '336901'
+                      type: pin
+                      building_id: 577696272
+                      tenant_id: 377389742
+        '404':
+          description: not found
+          content:
+            application/json:
+              examples:
+                not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+        '422':
+          description: unprocessable content
+          content:
+            application/json:
+              examples:
+                unprocessable content:
+                  value:
+                    errors:
+                    - field: code
+                      message: isn't strong enough, try a different value
+                      code: low_entropy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  example: '336901'
+              required:
+              - code
+              additionalProperties: false
+            examples:
+              ok:
+                summary: ok
+                value:
+                  pin:
+                    code: '336901'
+              unprocessable content:
+                summary: unprocessable content
+                value:
+                  pin:
+                    code: '123456'
+              not found:
+                summary: not found
+                value:
+                  pin:
+                    code: '336901'
+  /v4/access_tools/rfid_tags:
+    post:
+      summary: create a RFID tag access tool
+      tags:
+      - Access Tools
+      description: 'Creates a RFID tag access tool.
+
+
+        Note that RFID access tools can''t be updated. If you wish to "update"
+
+        an RFID access tool, you must delete it and create a new one.
+
+        '
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              examples:
+                created:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:21Z'
+                      id: 989034171
+                      updated_at: '2026-06-17T15:12:21Z'
+                      code: E66CBDF31EAB570792CC
+                      type: rfid_tag
+                      building_id: 577696272
+                      tenant_id: 377389742
+        '422':
+          description: unprocessable content
+          content:
+            application/json:
+              examples:
+                unprocessable content:
+                  value:
+                    errors:
+                    - field: item.identifier
+                      message: can't be blank
+                      code: blank
+                    - field: item.identifier
+                      message: Unrecognized character. The fobs, cards, and tags do not accept special characters or letters outside of a-f
+                      code: invalid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identifier:
+                  type: string
+                  example: C97FBE9BAFDD4BAD67ED
+                tenant_id:
+                  type: integer
+                  example: 123
+              required:
+              - tenant_id
+              additionalProperties: false
+            examples:
+              created:
+                summary: created
+                value:
+                  rfid_tag:
+                    identifier: E66CBDF31EAB570792CC
+                    tenant_id: 377389742
+              unprocessable content:
+                summary: unprocessable content
+                value:
+                  rfid_tag:
+                    identifier: ''
+                    tenant_id: 377389742
+  /v4/access_tools:
+    get:
+      summary: list access tools
+      tags:
+      - Access Tools
+      description: 'An **Access Tool** is anything that gives a person permanent access to
+
+        the building. This includes personal door **PINs** and **RFID Tags**
+
+        (like **Keyfobs**, **Keycards**, and **Vehicle stickers**).
+
+
+        Please look at the documentation for creating **PINs** and **RFID Tags**
+
+        for more information on how to create and update them.
+
+        '
+      security:
+      - Bearer: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[tenant_id_eq]
+        in: query
+        description: filter by exact match on tenant id (case insensitive)
+        example: 123
+        schema:
+          type: string
+      - name: q[tenant_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by tenant id in list
+        example:
+        - 123
+        - 456
+      - name: q[item_type_eq]
+        in: query
+        description: filter by exact match on type (case insensitive)
+        example: Pin
+        schema:
+          type: string
+      - name: q[building_id_eq]
+        in: query
+        description: filter by exact match on building id
+        example: 123
+        schema:
+          type: string
+      - name: q[building_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by building id in list
+        example:
+        - 123
+        - 456
+      - name: q[id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by id in list
+        example:
+        - 123
+        - 456
+      responses:
+        '200':
+          description: fetch all access tools that your user can see
+          content:
+            application/json:
+              examples:
+                fetch all access tools that your user can see:
+                  value:
+                    data:
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 90420773
+                      updated_at: '2026-06-17T15:12:20Z'
+                      code: '678134'
+                      type: pin
+                      building_id: 845676935
+                      tenant_id: 147873805
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 297274798
+                      updated_at: '2026-06-17T15:12:20Z'
+                      code: 123ABCD
+                      type: vehicle
+                      building_id: 577696272
+                      tenant_id: 990619226
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 479403019
+                      updated_at: '2026-06-17T15:12:20Z'
+                      code: '683104'
+                      type: pin
+                      building_id: 577696272
+                      tenant_id: 377389742
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 682331376
+                      updated_at: '2026-06-17T15:12:20Z'
+                      code: '643108'
+                      type: pin
+                      building_id: 577696272
+                      tenant_id: 636166899
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 989034087
+                      updated_at: '2026-06-17T15:12:20Z'
+                      code: 25c064d101
+                      type: rfid_tag
+                      building_id: 577696272
+                      tenant_id: 377389742
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 5
+                      page_item_count: 5
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/access_tools/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show access tool
+      tags:
+      - Access Tools
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:20Z'
+                      id: 479403019
+                      updated_at: '2026-06-17T15:12:20Z'
+                      code: '683104'
+                      type: pin
+                      building_id: 577696272
+                      tenant_id: 377389742
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: not found
+          content:
+            application/json:
+              examples:
+                not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+    delete:
+      summary: delete access tool
+      tags:
+      - Access Tools
+      security:
+      - Bearer: []
+      responses:
+        '204':
+          description: successful
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: unprocessable content
+          content:
+            application/json:
+              examples:
+                unprocessable content:
+                  value:
+                    errors:
+                    - field: base
+                      message: is protected
+                      code: is_protected
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

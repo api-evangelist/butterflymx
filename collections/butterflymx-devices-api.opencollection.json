@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Devices API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/devices",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[type_eq]",
+                "value": "Keypad",
+                "type": "query",
+                "description": "filter by exact match on type (case insensitive)"
+              },
+              {
+                "name": "q[name_eq]",
+                "value": "Front Door",
+                "type": "query",
+                "description": "filter by exact match on name (case insensitive)"
+              },
+              {
+                "name": "q[name_start]",
+                "value": "Front",
+                "type": "query",
+                "description": "filter by name starts with (case insensitive)"
+              },
+              {
+                "name": "q[serial_number_eq]",
+                "value": "07N12345",
+                "type": "query",
+                "description": "filter by exact match on serial number (case insensitive)"
+              },
+              {
+                "name": "q[serial_number_start]",
+                "value": "07N",
+                "type": "query",
+                "description": "filter by serial number starts with (case insensitive)"
+              },
+              {
+                "name": "q[building_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on building_id (case insensitive)"
+              },
+              {
+                "name": "q[building_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by building id in list"
+              },
+              {
+                "name": "q[id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by id in list"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "A **Device** is a physical device that is installed in a building,\nthrough which one can control access to one or multiple\n**Access Points**, to an amenity like the KeyLocker, or to common rooms\ncontrolled by devices from 3rd parties.\n"
+        },
+        {
+          "info": {
+            "name": "show device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/devices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show device"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

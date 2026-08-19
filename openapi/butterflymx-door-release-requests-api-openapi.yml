@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Door Release Requests API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Door Release Requests
+paths:
+  /v4/door_release_requests:
+    post:
+      summary: create door release requests
+      tags:
+      - Door Release Requests
+      description: '**Door Release Requests** enable you to request from a device to open
+
+        one or all of its **Access Points**.
+
+
+        This can be used to build experiences like *swipe-to-open* or *tap-to-open*.
+
+        '
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: trigger device to open device
+          content:
+            application/json:
+              examples:
+                open a specific access point:
+                  value:
+                    data:
+                      access_point_id: 842395203
+                      created_at: '2026-06-17T15:12:23Z'
+                      device_id: null
+                      guid: e2934b71-fd23-4c5f-80c7-d209c74a2f5e
+                      id: 9
+                      release_method: api
+                      updated_at: '2026-06-17T15:12:23Z'
+                      tenant_id: 377389742
+                trigger device to open device:
+                  value:
+                    data:
+                      access_point_id: null
+                      created_at: '2026-06-17T15:12:24Z'
+                      device_id: 708353660
+                      guid: ec1282dd-2bca-4681-8d1e-765dd08a4417
+                      id: 10
+                      release_method: api
+                      updated_at: '2026-06-17T15:12:24Z'
+                      tenant_id: 377389742
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                door_release_request:
+                  type: object
+                  properties:
+                    access_point_id:
+                      type:
+                      - integer
+                      - 'null'
+                    device_id:
+                      type:
+                      - integer
+                      - 'null'
+                    tenant_id:
+                      type: integer
+                  required:
+                  - tenant_id
+                  oneOf:
+                  - required:
+                    - access_point_id
+                  - required:
+                    - device_id
+                  additionalProperties: false
+              required:
+              - door_release_request
+            examples:
+              open a specific access point:
+                summary: open a specific access point
+                value:
+                  door_release_request:
+                    tenant_id: 377389742
+                    access_point_id: 842395203
+              trigger device to open device:
+                summary: trigger device to open device
+                value:
+                  door_release_request:
+                    tenant_id: 377389742
+                    device_id: 708353660
+              unauthorized:
+                summary: unauthorized
+                value:
+                  door_release_request:
+                    tenant_id: 377389742
+                    access_point_id: 842395203
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

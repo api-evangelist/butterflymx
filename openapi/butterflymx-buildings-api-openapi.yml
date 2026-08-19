@@ -1,0 +1,253 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Buildings API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Buildings
+paths:
+  /v4/buildings:
+    get:
+      summary: list buildings
+      tags:
+      - Buildings
+      description: 'A **Building** represents a physical building that contains one or more
+
+        **Units**, and **Devices**.
+
+        '
+      security:
+      - Bearer: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[name_eq]
+        in: query
+        description: filter by exact match on name (case insensitive)
+        example: Crimson
+        schema:
+          type: string
+      - name: q[name_start]
+        in: query
+        description: filter by name starts with (case insensitive)
+        example: Cri
+        schema:
+          type: string
+      - name: q[id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by id in list
+        example:
+        - 123
+        - 456
+      responses:
+        '200':
+          description: fetch all buildings that your user can see
+          content:
+            application/json:
+              examples:
+                fetch all buildings that your user can see:
+                  value:
+                    data:
+                    - created_at: '2023-05-17T15:12:19Z'
+                      id: 30798180
+                      name: Airbnb Auto Suggest
+                      updated_at: '2026-06-17T15:12:20Z'
+                      time_zone: America/New_York
+                      address:
+                        city: New York
+                        country: us
+                        county: null
+                        state: NY
+                        zip_code: '334455'
+                        address: Street address 23
+                    - created_at: '2023-05-17T15:12:19Z'
+                      id: 346816226
+                      name: Churned Building ONE
+                      updated_at: '2026-06-17T15:12:20Z'
+                      time_zone: America/New_York
+                      address:
+                        city: New Merrillton
+                        country: us
+                        county: null
+                        state: Nebraska
+                        zip_code: 67878-6399
+                        address: Misty Mountains
+                    - created_at: '2023-05-17T15:12:19Z'
+                      id: 505753268
+                      name: Large Blue
+                      updated_at: '2026-06-17T15:12:20Z'
+                      time_zone: America/New_York
+                      address:
+                        city: New York
+                        country: us
+                        county: null
+                        state: NY
+                        zip_code: 10001-6808
+                        address: 127 W 26TH St
+                    - created_at: '2023-05-17T15:12:19Z'
+                      id: 577696272
+                      name: Crimson
+                      updated_at: '2026-06-17T15:12:20Z'
+                      time_zone: America/New_York
+                      address:
+                        city: New York
+                        country: us
+                        county: null
+                        state: NY
+                        zip_code: 10001-6808
+                        address: 127 W 26TH St
+                    - created_at: '2023-05-17T15:12:19Z'
+                      id: 750989427
+                      name: Barad-dûr
+                      updated_at: '2026-06-17T15:12:20Z'
+                      time_zone: America/New_York
+                      address:
+                        city: Lake Katheyport
+                        country: us
+                        county: null
+                        state: Wisconsin
+                        zip_code: 35027-7134
+                        address: Mount Doom
+                    - created_at: '2023-05-17T15:12:19Z'
+                      id: 845676935
+                      name: Orthanc
+                      updated_at: '2026-06-17T15:12:20Z'
+                      time_zone: America/New_York
+                      address:
+                        city: New Merrillton
+                        country: us
+                        county: null
+                        state: Nebraska
+                        zip_code: 67878-6399
+                        address: Misty Mountains
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 6
+                      page_item_count: 6
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/buildings/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show building
+      tags:
+      - Buildings
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      created_at: '2023-05-17T15:12:19Z'
+                      id: 577696272
+                      name: Crimson
+                      updated_at: '2026-06-17T15:12:20Z'
+                      time_zone: America/New_York
+                      address:
+                        city: New York
+                        country: us
+                        county: null
+                        state: NY
+                        zip_code: 10001-6808
+                        address: 127 W 26TH St
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/buildings/{id}/capabilities:
+    parameters:
+    - name: id
+      in: path
+      description: building id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show building capabilities
+      tags:
+      - Buildings
+      description: 'Returns the capabilities and configuration options available for a specific building.
+
+        '
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      delivery_pass_enabled: true
+                      delivery_pickup_pins_enabled: false
+                      user_photo_required: false
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

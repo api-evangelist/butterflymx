@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Access Points API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Points",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list access points",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/access_points",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[name_eq]",
+                "value": "A003",
+                "type": "query",
+                "description": "filter by exact match on name (case insensitive)"
+              },
+              {
+                "name": "q[name_start]",
+                "value": "A",
+                "type": "query",
+                "description": "filter by name starts with (case insensitive)"
+              },
+              {
+                "name": "q[building_id_eq]",
+                "value": "123",
+                "type": "query",
+                "description": "filter by exact match on building id"
+              },
+              {
+                "name": "q[building_id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by building id in list"
+              },
+              {
+                "name": "q[id_in][]",
+                "value": "123,456",
+                "type": "query",
+                "description": "filter by id in list"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "An **Access Point** is any one, or a set of, doors, ramps, gates, entrances or\nexits that behave as a single entity.\n\nAn Access Point can be one physical door, but in the case of a vestibule\nor a mantrap, it can be two doors that are controlled together.\n\nThrough Access Points one can manage access across the system\nand exercise control over physical doors.\n"
+        },
+        {
+          "info": {
+            "name": "show access point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/access_points/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show access point"
+        },
+        {
+          "info": {
+            "name": "show schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/access_points/:id/schedules",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Times during which this access point can be used by current user.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

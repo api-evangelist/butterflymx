@@ -1,0 +1,1214 @@
+{
+  "item": [
+    {
+      "id": "43eaa638-4a7d-4be8-8660-eac766a7d9b3",
+      "name": "Units",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2cc0dcd2-3ea3-4b49-96ff-b499c6142c1d",
+          "name": "create unit",
+          "request": {
+            "name": "create unit",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":building_id",
+                "units"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "building_id",
+                  "description": "(Required) id of the building"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit\": {\n    \"label\": \"<string>\",\n    \"floor\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74bd6dba-adf0-42ec-bc35-c59c316d554f",
+              "name": "unit created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unit\": {\n    \"label\": \"C404\",\n    \"floor\": \"4\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:23Z\",\n    \"id\": 1043099566,\n    \"label\": \"C404\",\n    \"updated_at\": \"2026-06-17T15:12:23Z\",\n    \"floor\": \"4\",\n    \"building_id\": 577696272\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63ab582a-43cf-4f07-8f18-817d4a89c6a7",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unit\": {\n    \"label\": \"C404\",\n    \"floor\": \"4\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a763286b-69e0-4788-8a9f-4f68f8fe5c58",
+              "name": "unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unit\": {\n    \"label\": \"C404\",\n    \"floor\": \"4\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"label\",\n      \"message\": \"can't be blank\",\n      \"code\": \"blank\"\n    },\n    {\n      \"field\": \"floor_id\",\n      \"message\": \"can't be blank\",\n      \"code\": \"blank\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e64f2555-bc5b-4f6c-b20a-4394fc97a5bb",
+          "name": "update unit",
+          "request": {
+            "name": "update unit",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":building_id",
+                "units",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "building_id",
+                  "description": "(Required) id of the building"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id of the unit"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit\": {\n    \"label\": \"<string>\",\n    \"floor\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6185e1b1-e051-49a0-a126-ad8b30fa5ed2",
+              "name": "unit updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "units",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id of the unit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unit\": {\n    \"label\": \"A990\",\n    \"floor\": \"7\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:20Z\",\n    \"id\": 843107216,\n    \"label\": \"A990\",\n    \"updated_at\": \"2026-06-17T15:12:23Z\",\n    \"floor\": \"7\",\n    \"building_id\": 577696272\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc216ab4-8b23-4ce9-9314-65ef3b3da1ce",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "units",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id of the unit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unit\": {\n    \"label\": \"A990\",\n    \"floor\": \"7\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e78c0fcc-cb1a-4679-b9f4-6402e5f75f53",
+              "name": "unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "units",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id of the unit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unit\": {\n    \"label\": \"A990\",\n    \"floor\": \"7\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"label\",\n      \"message\": \"can't be blank\",\n      \"code\": \"blank\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37a47917-0a41-4553-a327-67f1090e1691",
+          "name": "delete unit",
+          "request": {
+            "name": "delete unit",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":building_id",
+                "units",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "building_id",
+                  "description": "(Required) id of the building"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id of the unit"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b0755d35-1514-451c-b1f9-4d7b1f8a301c",
+              "name": "unit deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "units",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id of the unit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4dc8b782-6038-4273-a75f-6ecc342ac929",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "units",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id of the unit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07f10c6f-d4c9-4fd5-b893-f31a77c15bd2",
+          "name": "list units",
+          "request": {
+            "name": "list units",
+            "description": {
+              "content": "A Unit is a physical space within a Building in which one or multiple\ntenants can reside.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "units"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[label_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on label (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[label_start]",
+                  "value": "<string>",
+                  "description": "filter by label starts with (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[floor_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on floor (case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_eq]",
+                  "value": "<string>",
+                  "description": "filter by exact match on building id"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[building_id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by building id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[id_in][]",
+                  "value": "<integer>",
+                  "description": "filter by id in list"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2bfa0e5b-4585-4cac-83c5-9fea83add8c4",
+              "name": "fetch all units that your user can see",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[label_eq]",
+                      "value": "A003"
+                    },
+                    {
+                      "key": "q[label_start]",
+                      "value": "A"
+                    },
+                    {
+                      "key": "q[floor_eq]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 88603419,\n      \"label\": \"A002\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\",\n      \"building_id\": 577696272\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 115647182,\n      \"label\": \"xyz\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\",\n      \"building_id\": 30798180\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 165781594,\n      \"label\": \"palantir_chamber\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"8\",\n      \"building_id\": 845676935\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 226743053,\n      \"label\": \"throne_room\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"5\",\n      \"building_id\": 750989427\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 230905375,\n      \"label\": \"B100\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\",\n      \"building_id\": 577696272\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 244638688,\n      \"label\": \"A001\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\",\n      \"building_id\": 505753268\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 474917539,\n      \"label\": \"A001\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\",\n      \"building_id\": 577696272\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 507948540,\n      \"label\": \"assembly_hall\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\",\n      \"building_id\": 750989427\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 748709450,\n      \"label\": \"sauron_suite\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"6\",\n      \"building_id\": 750989427\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 832101109,\n      \"label\": \"00\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"0\",\n      \"building_id\": 577696272\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 843107216,\n      \"label\": \"A003\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\",\n      \"building_id\": 577696272\n    },\n    {\n      \"created_at\": \"2026-06-17T15:12:20Z\",\n      \"id\": 1043099559,\n      \"label\": \"B002\",\n      \"updated_at\": \"2026-06-17T15:12:20Z\",\n      \"floor\": \"1\",\n      \"building_id\": 577696272\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 12,\n    \"page_item_count\": 12,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2981956-a26b-46f4-a47b-f74c199d523e",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[label_eq]",
+                      "value": "A003"
+                    },
+                    {
+                      "key": "q[label_start]",
+                      "value": "A"
+                    },
+                    {
+                      "key": "q[floor_eq]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "q[building_id_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[building_id_in][]",
+                      "value": "456"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "123"
+                    },
+                    {
+                      "key": "q[id_in][]",
+                      "value": "456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ad7fe86-da8f-497d-931a-79e98f89b849",
+          "name": "show unit",
+          "request": {
+            "name": "show unit",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "units",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e2af3a0-2f50-4faa-abcb-bdb5c78637a2",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "units",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2026-06-17T15:12:20Z\",\n    \"id\": 843107216,\n    \"label\": \"A003\",\n    \"updated_at\": \"2026-06-17T15:12:20Z\",\n    \"floor\": \"1\",\n    \"building_id\": 577696272\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cc108e7-ce83-4d30-bd43-7f3083020db2",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "units",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.butterflymx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e6ddef9d-b98e-40e1-b85a-85c59897d9c0",
+    "name": "ButterflyMX Units API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Building Integrations API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Building Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/integrations",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "list integrations"
+        },
+        {
+          "info": {
+            "name": "create integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/integrations",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "create integration"
+        },
+        {
+          "info": {
+            "name": "show integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/integrations/:id",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the integration"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show integration"
+        },
+        {
+          "info": {
+            "name": "update integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/integrations/:id",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the integration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "update integration"
+        },
+        {
+          "info": {
+            "name": "delete integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/integrations/:id",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the integration"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "delete integration"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

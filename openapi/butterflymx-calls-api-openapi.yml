@@ -1,0 +1,339 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Calls API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Calls
+paths:
+  /v4/buildings/{building_id}/calls:
+    get:
+      summary: list calls
+      tags:
+      - Calls
+      security:
+      - Bearer: []
+      parameters:
+      - name: building_id
+        in: path
+        description: id of the building
+        required: true
+        schema:
+          type: integer
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[logged_at_gteq]
+        in: query
+        example: 2026-06-17 15:12:19 UTC
+        schema:
+          type: string
+      - name: q[logged_at_lteq]
+        in: query
+        example: 2026-06-17 15:12:19 UTC
+        schema:
+          type: string
+      - name: q[notification_type_eq]
+        in: query
+        example: visitor
+        schema:
+          type: string
+      - name: q[origin_eq]
+        in: query
+        example: 123
+        schema:
+          type: string
+      - name: q[unit_label_or_user_full_name_start]
+        in: query
+        example: Foo
+        schema:
+          type: string
+      responses:
+        '200':
+          description: fetch all access logs
+          content:
+            application/json:
+              examples:
+                fetch all access logs:
+                  value:
+                    data:
+                    - id: 784634795
+                      building_id: 577696272
+                      logged_at: '2026-06-16T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 636166899
+                        type: Tenant
+                      unit:
+                        id: 88603419
+                      device:
+                        id: 408919060
+                        name: Virtual Lobby
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/a38b31dad4b95fd01b41641ae99b088a.png
+                    - id: 248929811
+                      building_id: 577696272
+                      logged_at: '2026-06-14T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 377389742
+                        type: Tenant
+                      unit:
+                        id: 474917539
+                      device:
+                        id: 708353660
+                        name: Main Entrance
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/acbfa9ce4bec95ff3e78bed3a01b6679.png
+                    - id: 970026630
+                      building_id: 577696272
+                      logged_at: '2026-06-14T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 377389742
+                        type: Tenant
+                      unit:
+                        id: 474917539
+                      device:
+                        id: 708353660
+                        name: Main Entrance
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/25749b0600da4c22b49c431c3967e705.png
+                    - id: 666237737
+                      building_id: 577696272
+                      logged_at: '2026-06-14T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 377389742
+                        type: Tenant
+                      unit:
+                        id: 474917539
+                      device:
+                        id: 708353660
+                        name: Main Entrance
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/4213d194ec4404b3065865df07f6dce5.png
+                    - id: 400494507
+                      building_id: 577696272
+                      logged_at: '2026-06-14T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 377389742
+                        type: Tenant
+                      unit:
+                        id: 474917539
+                      device:
+                        id: 708353660
+                        name: Main Entrance
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/1840652b7ab4216e2079a71a87155ea6.png
+                    - id: 804861260
+                      building_id: 577696272
+                      logged_at: '2026-06-12T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 990619226
+                        type: Tenant
+                      unit:
+                        id: 832101109
+                      device:
+                        id: 513627685
+                        name: Crimson Lobby
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/867d856be215d25671b7e646714c38c7.png
+                    - id: 798294574
+                      building_id: 577696272
+                      logged_at: '2026-06-11T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 990619226
+                        type: Tenant
+                      unit:
+                        id: 832101109
+                      device:
+                        id: 708353660
+                        name: Main Entrance
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/9e73feac37d4bba348c3a9e05675744f.png
+                    - id: 832413931
+                      building_id: 577696272
+                      logged_at: '2026-06-02T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 990619226
+                        type: Tenant
+                      unit:
+                        id: 832101109
+                      device:
+                        id: 709680845
+                        name: Crimson Backdoor
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/ce0299af29b241c363d761152317e9fc.png
+                    - id: 334730487
+                      building_id: 577696272
+                      logged_at: '2026-06-02T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: null
+                        type: Attendant
+                      unit: null
+                      device:
+                        id: 708353660
+                        name: Main Entrance
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/2ea77f19f485251cc90425116322a43c.png
+                    - id: 110792828
+                      building_id: 577696272
+                      logged_at: '2026-05-23T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 990619226
+                        type: Tenant
+                      unit:
+                        id: 832101109
+                      device:
+                        id: 513627685
+                        name: Crimson Lobby
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/6c3dc0f44a52a8210d27583fbd955826.png
+                    - id: 184206671
+                      building_id: 577696272
+                      logged_at: '2026-05-13T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: null
+                        type: Attendant
+                      unit: null
+                      device:
+                        id: 708353660
+                        name: Main Entrance
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/6fdda40e6ed62458ba418327e863d7e4.png
+                    - id: 529777096
+                      building_id: 577696272
+                      logged_at: '2026-05-13T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 990619226
+                        type: Tenant
+                      unit:
+                        id: 832101109
+                      device:
+                        id: 513627685
+                        name: Crimson Lobby
+                      status: null
+                      image_url: http://user.butterflymx.localhost/uploads/store/918eb0e7026643b6c4a012f61dafe5ae.png
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 12
+                      page_item_count: 12
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/buildings/{building_id}/calls/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    - name: building_id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show call
+      tags:
+      - Calls
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      id: 400494507
+                      building_id: 577696272
+                      logged_at: '2026-06-14T15:12:19Z'
+                      notification_type: visitor
+                      recipient:
+                        id: 377389742
+                        type: Tenant
+                      unit:
+                        id: 474917539
+                      device:
+                        id: 708353660
+                        name: Main Entrance
+                      status: initializing
+                      image_url: http://user.butterflymx.localhost/uploads/store/1840652b7ab4216e2079a71a87155ea6.png
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: not found
+          content:
+            application/json:
+              examples:
+                not found:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

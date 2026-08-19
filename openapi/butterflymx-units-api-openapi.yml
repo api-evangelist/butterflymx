@@ -1,0 +1,508 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Units API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Units
+paths:
+  /v4/buildings/{building_id}/units:
+    post:
+      summary: create unit
+      tags:
+      - Units
+      security:
+      - Bearer: []
+      parameters:
+      - name: building_id
+        in: path
+        description: id of the building
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: unit created
+          content:
+            application/json:
+              examples:
+                unit created:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:23Z'
+                      id: 1043099566
+                      label: C404
+                      updated_at: '2026-06-17T15:12:23Z'
+                      floor: '4'
+                      building_id: 577696272
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              examples:
+                unprocessable entity:
+                  value:
+                    errors:
+                    - field: label
+                      message: can't be blank
+                      code: blank
+                    - field: floor_id
+                      message: can't be blank
+                      code: blank
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                      example: A101
+                    floor:
+                      type: string
+                      description: floor label
+                      example: '1'
+                  required:
+                  - label
+                  - floor
+              required:
+              - unit
+            examples:
+              unit created:
+                summary: unit created
+                value:
+                  unit:
+                    label: C404
+                    floor: '4'
+              a building admin can create a unit in a building they manage:
+                summary: a building admin can create a unit in a building they manage
+                value:
+                  unit:
+                    label: C500
+                    floor: '5'
+              cannot create a unit in a building the user cannot see:
+                summary: cannot create a unit in a building the user cannot see
+                value:
+                  unit:
+                    label: B500
+                    floor: '99'
+              cannot create a unit in a visible building without admin rights:
+                summary: cannot create a unit in a visible building without admin rights
+                value:
+                  unit:
+                    label: C501
+                    floor: '5'
+              cannot create a unit in a building the user can see but does not administer:
+                summary: cannot create a unit in a building the user can see but does not administer
+                value:
+                  unit:
+                    label: B600
+                    floor: '3'
+              floor is required:
+                summary: floor is required
+                value:
+                  unit:
+                    label: C405
+              unprocessable entity:
+                summary: unprocessable entity
+                value:
+                  unit:
+                    label: ''
+              duplicate label in the building's default zone:
+                summary: duplicate label in the building's default zone
+                value:
+                  unit:
+                    label: A003
+              does not leave an orphan floor behind when the unit cannot be saved:
+                summary: does not leave an orphan floor behind when the unit cannot be saved
+                value:
+                  unit:
+                    label: A003
+                    floor: '999'
+              unauthorized:
+                summary: unauthorized
+                value:
+                  unit:
+                    label: C404
+  /v4/buildings/{building_id}/units/{id}:
+    parameters:
+    - name: building_id
+      in: path
+      description: id of the building
+      required: true
+      schema:
+        type: integer
+    - name: id
+      in: path
+      description: id of the unit
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: update unit
+      tags:
+      - Units
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: unit updated
+          content:
+            application/json:
+              examples:
+                unit updated:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:20Z'
+                      id: 843107216
+                      label: A990
+                      updated_at: '2026-06-17T15:12:23Z'
+                      floor: '7'
+                      building_id: 577696272
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              examples:
+                unprocessable entity:
+                  value:
+                    errors:
+                    - field: label
+                      message: can't be blank
+                      code: blank
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                      example: A101
+                    floor:
+                      type: string
+                      description: floor label
+                      example: '1'
+              required:
+              - unit
+            examples:
+              unit updated:
+                summary: unit updated
+                value:
+                  unit:
+                    label: A990
+                    floor: '7'
+              updates only the supplied attributes:
+                summary: updates only the supplied attributes
+                value:
+                  unit:
+                    label: A991
+              ignores attributes explicitly set to null:
+                summary: ignores attributes explicitly set to null
+                value:
+                  unit:
+                    label: A992
+                    floor: null
+              cannot update a unit in a visible building without admin rights:
+                summary: cannot update a unit in a visible building without admin rights
+                value:
+                  unit:
+                    label: A992
+              cannot update a unit that does not belong to the building:
+                summary: cannot update a unit that does not belong to the building
+                value:
+                  unit:
+                    label: A990
+              unprocessable entity:
+                summary: unprocessable entity
+                value:
+                  unit:
+                    label: ''
+              unauthorized:
+                summary: unauthorized
+                value:
+                  unit:
+                    label: A990
+    delete:
+      summary: delete unit
+      tags:
+      - Units
+      security:
+      - Bearer: []
+      responses:
+        '204':
+          description: unit deleted
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/units:
+    get:
+      summary: list units
+      tags:
+      - Units
+      description: 'A Unit is a physical space within a Building in which one or multiple
+
+        tenants can reside.
+
+        '
+      security:
+      - Bearer: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[label_eq]
+        in: query
+        description: filter by exact match on label (case insensitive)
+        example: A003
+        schema:
+          type: string
+      - name: q[label_start]
+        in: query
+        description: filter by label starts with (case insensitive)
+        example: A
+        schema:
+          type: string
+      - name: q[floor_eq]
+        in: query
+        description: filter by exact match on floor (case insensitive)
+        example: '3'
+        schema:
+          type: string
+      - name: q[building_id_eq]
+        in: query
+        description: filter by exact match on building id
+        example: 123
+        schema:
+          type: string
+      - name: q[building_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by building id in list
+        example:
+        - 123
+        - 456
+      - name: q[id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by id in list
+        example:
+        - 123
+        - 456
+      responses:
+        '200':
+          description: fetch all units that your user can see
+          content:
+            application/json:
+              examples:
+                fetch all units that your user can see:
+                  value:
+                    data:
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 88603419
+                      label: A002
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 577696272
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 115647182
+                      label: xyz
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 30798180
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 165781594
+                      label: palantir_chamber
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '8'
+                      building_id: 845676935
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 226743053
+                      label: throne_room
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '5'
+                      building_id: 750989427
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 230905375
+                      label: B100
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 577696272
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 244638688
+                      label: A001
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 505753268
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 474917539
+                      label: A001
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 577696272
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 507948540
+                      label: assembly_hall
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 750989427
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 748709450
+                      label: sauron_suite
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '6'
+                      building_id: 750989427
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 832101109
+                      label: '00'
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '0'
+                      building_id: 577696272
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 843107216
+                      label: A003
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 577696272
+                    - created_at: '2026-06-17T15:12:20Z'
+                      id: 1043099559
+                      label: B002
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 577696272
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 12
+                      page_item_count: 12
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+  /v4/units/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show unit
+      tags:
+      - Units
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:20Z'
+                      id: 843107216
+                      label: A003
+                      updated_at: '2026-06-17T15:12:20Z'
+                      floor: '1'
+                      building_id: 577696272
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

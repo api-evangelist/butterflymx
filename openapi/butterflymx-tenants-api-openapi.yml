@@ -1,0 +1,1153 @@
+openapi: 3.2.0
+info:
+  title: ButterflyMX Tenants API
+  version: v4
+servers:
+- description: Production
+  url: https://api.butterflymx.com
+- description: Sandbox
+  url: https://api.na.sandbox.butterflymx.com
+- description: Other environment
+  url: https://{environment_name}.butterflymx.com
+  variables:
+    environment_name:
+      default: foobar
+tags:
+- name: Tenants
+paths:
+  /v4/tenants/{tenant_id}/resend_confirmation:
+    post:
+      summary: resend confirmation email
+      tags:
+      - Tenants
+      description: 'Re-sends the invitation email to a tenant whose status is still `invited`.
+
+        '
+      security:
+      - Bearer: []
+      parameters:
+      - name: tenant_id
+        in: path
+        description: id of the tenant
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: enqueues the invitation email
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '404':
+          description: no tenant matches the id
+          content:
+            application/json:
+              examples:
+                no tenant matches the id:
+                  value:
+                    errors:
+                    - field: base
+                      code: not_found
+                      message: Resource not found
+  /v4/tenants:
+    get:
+      summary: list tenants
+      tags:
+      - Tenants
+      description: 'A **Tenant** is a person living in a unit.
+
+
+        Tenants are the primary way to manage people in a building, and therefore
+
+        access to the building.
+
+
+        A Tenant can have one or more **Access Tools**
+
+        with which they gain permanent access to the building.
+
+
+        A Tenant can also
+
+        create **Virtual Keys** which they can share with other people to grant
+
+        them temporary access to the building.
+
+        '
+      security:
+      - Bearer: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: requested page
+        example: 3
+      - name: per
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        description: page size
+        example: 50
+      - name: q[full_name_eq]
+        in: query
+        description: filter by exact match on full name (case insensitive)
+        example: John Doe
+        schema:
+          type: string
+      - name: q[full_name_start]
+        in: query
+        description: filter by full name starts with (case insensitive)
+        example: John
+        schema:
+          type: string
+      - name: q[first_name_eq]
+        in: query
+        description: filter by exact match on first name (case insensitive)
+        example: John
+        schema:
+          type: string
+      - name: q[first_name_start]
+        in: query
+        description: filter by first name starts with (case insensitive)
+        example: Jo
+        schema:
+          type: string
+      - name: q[last_name_eq]
+        in: query
+        description: filter by exact match on last name (case insensitive)
+        example: Doe
+        schema:
+          type: string
+      - name: q[last_name_start]
+        in: query
+        description: filter by last name starts with (case insensitive)
+        example: Do
+        schema:
+          type: string
+      - name: q[building_id_eq]
+        in: query
+        description: filter by exact match on building id
+        example: 123
+        schema:
+          type: string
+      - name: q[building_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by building id in list
+        example:
+        - 123
+        - 456
+      - name: q[unit_id_eq]
+        in: query
+        description: filter by exact match on unit id
+        example: 123
+        schema:
+          type: string
+      - name: q[unit_id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by unit id in list
+        example:
+        - 123
+        - 456
+      - name: q[id_in][]
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+        description: filter by id in list
+        example:
+        - 123
+        - 456
+      - name: scope
+        in: query
+        description: filter by current user
+        required: false
+        example: self
+        schema:
+          type: string
+      responses:
+        '200':
+          description: fetch all tenants that your user can see
+          content:
+            application/json:
+              examples:
+                fetch all tenants that your user can see:
+                  value:
+                    data:
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 37112193
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Alia
+                      last_name: Atredis
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: alia.atredis@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 843107216
+                        label: A003
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: true
+                        sms: true
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 147873805
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Curumo
+                      last_name: Smith
+                      building_id: 845676935
+                      building_name: Orthanc
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: saruman@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 165781594
+                        label: palantir_chamber
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '8'
+                      notification_preference: null
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 310453126
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Mairon
+                      last_name: Smith
+                      building_id: 845676935
+                      building_name: Orthanc
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: sauron@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 165781594
+                        label: palantir_chamber
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '8'
+                      notification_preference: null
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 377389742
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Duncan
+                      last_name: Idaho
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: duncan.idaho@example.com
+                      contact_preference: mobile_app
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 474917539
+                        label: A001
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: true
+                        sms: false
+                        do_not_disturb: false
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 467490713
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Mairon
+                      last_name: Smith
+                      building_id: 750989427
+                      building_name: Barad-dûr
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: sauron@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 748709450
+                        label: sauron_suite
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '6'
+                      notification_preference: null
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 588819183
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Leto
+                      last_name: Atredis
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: leto.atredis@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 843107216
+                        label: A003
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: true
+                        sms: true
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 605743730
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Paul
+                      last_name: Atredis
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: paul.atredis@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 843107216
+                        label: A003
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: true
+                        sms: true
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 636166899
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Jessica
+                      last_name: Atredis
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: jessica.atredis@example.com
+                      contact_preference: mobile_app
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 88603419
+                        label: A002
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: true
+                        sms: true
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 677235661
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Mairon
+                      last_name: Smith
+                      building_id: 750989427
+                      building_name: Barad-dûr
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: sauron@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 507948540
+                        label: assembly_hall
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference: null
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 714961964
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Mairon
+                      last_name: Smith
+                      building_id: 750989427
+                      building_name: Barad-dûr
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: sauron@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 226743053
+                        label: throne_room
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '5'
+                      notification_preference:
+                        email: true
+                        sms: true
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 990619226
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Vladimir
+                      last_name: Harkonnen
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: vladimir.harkonnen@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 832101109
+                        label: '00'
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '0'
+                      notification_preference:
+                        email: true
+                        sms: false
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+                    - created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 1040510921
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Gurney
+                      last_name: Halleck
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: gurney.halleck@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 843107216
+                        label: A003
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: true
+                        sms: false
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+                    page_info:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 12
+                      page_item_count: 12
+                      page_size: 50
+                      next_page: null
+                      prev_page: null
+                      first_page: true
+                      last_page: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+    post:
+      summary: create tenant
+      tags:
+      - Tenants
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: tenant created with virtual fob when apple access is enabled
+          content:
+            application/json:
+              examples:
+                tenant created:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:26Z'
+                      full_name: null
+                      id: 1040510965
+                      updated_at: '2026-06-17T15:12:26Z'
+                      first_name: Foo
+                      last_name: Bar
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: '2026-06-20T15:12:26Z'
+                      building_timezone: America/New_York
+                      email: example@test.com
+                      contact_preference: phone_call
+                      registration_status: invited
+                      invitation:
+                        confirmation_url: http://accounts.butterflymx.localhost/confirmations/token-string
+                        invited_at: '2026-06-18T12:00:00Z'
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 843107216
+                        label: A003
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: false
+                        sms: false
+                        do_not_disturb: false
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: true
+                            sms: false
+                tenant created with virtual fob when apple access is enabled:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:27Z'
+                      full_name: null
+                      id: 1040510966
+                      updated_at: '2026-06-17T15:12:27Z'
+                      first_name: Foo
+                      last_name: Bar
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: '2026-06-20T15:12:27Z'
+                      building_timezone: America/New_York
+                      email: example@test.com
+                      contact_preference: phone_call
+                      registration_status: invited
+                      invitation:
+                        confirmation_url: http://accounts.butterflymx.localhost/confirmations/token-string
+                        invited_at: '2026-06-18T12:00:00Z'
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 843107216
+                        label: A003
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: false
+                        sms: false
+                        do_not_disturb: false
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: true
+                            sms: false
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              examples:
+                unprocessable entity:
+                  value:
+                    errors:
+                    - field: user
+                      message: can't be blank
+                      code: blank
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tenant:
+                  type: object
+                  properties:
+                    qr_key_enabled:
+                      type: boolean
+                    delivery_pass_enabled:
+                      type: boolean
+                    swipe_to_open_enabled:
+                      type: boolean
+                    active_at:
+                      type: string
+                      format: date-time
+                    inactive_at:
+                      type: string
+                      format: date-time
+                    virtual_fob_entry_enabled:
+                      type: boolean
+                    unit_id:
+                      type: integer
+                    user_attributes:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                        first_name:
+                          type: string
+                        last_name:
+                          type: string
+                        contact_preference:
+                          type: string
+                          enum:
+                          - mobile_app
+                          - phone_call
+                        sms_contact_attributes:
+                          type: object
+                          properties:
+                            phone_number:
+                              type: string
+                        backup_contact_attributes:
+                          type: object
+                          properties:
+                            phone_number:
+                              type: string
+                      required:
+                      - email
+                      - first_name
+                      - last_name
+                      additionalProperties: false
+                    user_panel_config_attributes:
+                      type: object
+                      properties:
+                        display_name_strategy:
+                          type: string
+                          example:
+                          - first_name_and_last_name
+                          - last_name_and_first_name
+                          - first_name_initial_and_last_name
+                          - first_name_and_last_name_initial
+                          - last_name_and_first_name_initial
+                          - anonymous
+                        display_name:
+                          type: string
+                        display_only_on_search:
+                          type: boolean
+                        display_first_name:
+                          type: boolean
+                        display_last_name:
+                          type: boolean
+                      additionalProperties: false
+                  required:
+                  - first_name
+                  - last_name
+                  - email
+                  - unit_id
+                  - active_at
+              required:
+              - tenant
+            examples:
+              tenant created:
+                summary: tenant created
+                value:
+                  tenant:
+                    user_attributes:
+                      first_name: Foo
+                      last_name: Bar
+                      email: example@test.com
+                      sms_contact_attributes:
+                        phone_number: '+19169366241'
+                      backup_contact_attributes:
+                        phone_number: '+19169366242'
+                    external_id: 123
+                    delivery_pass_enabled: 'true'
+                    swipe_to_open_enabled: 'true'
+                    virtual_fob_entry_enabled: 'true'
+                    active_at: '2026-06-18T15:12:26Z'
+                    inactive_at: '2026-06-20T15:12:26Z'
+                    unit_id: 843107216
+                    user_panel_config_attributes:
+                      display_name_strategy: first_name_and_last_name
+                      display_only_on_search: false
+              tenant created with virtual fob when apple access is enabled:
+                summary: tenant created with virtual fob when apple access is enabled
+                value:
+                  tenant:
+                    user_attributes:
+                      first_name: Foo
+                      last_name: Bar
+                      email: example@test.com
+                      sms_contact_attributes:
+                        phone_number: '+19169366241'
+                      backup_contact_attributes:
+                        phone_number: '+19169366242'
+                    external_id: 123
+                    delivery_pass_enabled: 'true'
+                    swipe_to_open_enabled: 'true'
+                    virtual_fob_entry_enabled: 'true'
+                    active_at: '2026-06-18T15:12:27Z'
+                    inactive_at: '2026-06-20T15:12:27Z'
+                    unit_id: 843107216
+                    user_panel_config_attributes:
+                      display_name_strategy: first_name_and_last_name
+                      display_only_on_search: false
+              unprocessable entity:
+                summary: unprocessable entity
+                value:
+                  tenant:
+                    user_attributes:
+                      first_name: Foo
+                      last_name: Bar
+                      email: ''
+                    sync: true
+                    qr_key_enabled: true
+                    delivery_pass_enabled: 'true'
+                    swipe_to_open_enabled: 'true'
+                    virtual_fob_entry_enabled: 'true'
+                    active_at: '2026-06-18T15:12:27Z'
+                    inactive_at: '2026-06-20T15:12:27Z'
+                    unit_id: 843107216
+              unauthorized:
+                summary: unauthorized
+                value:
+                  tenant:
+                    user_attributes:
+                      first_name: Foo
+                      last_name: Bar
+                      email: example@test.com
+                    sync: true
+                    qr_key_enabled: true
+                    delivery_pass_enabled: 'true'
+                    swipe_to_open_enabled: 'true'
+                    virtual_fob_entry_enabled: 'true'
+                    active_at: '2026-06-18T15:12:27Z'
+                    inactive_at: '2026-06-20T15:12:27Z'
+                    unit_id: 843107216
+  /v4/tenants/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show tenant
+      tags:
+      - Tenants
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 990619226
+                      updated_at: '2026-06-17T15:12:20Z'
+                      first_name: Vladimir
+                      last_name: Harkonnen
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: null
+                      building_timezone: America/New_York
+                      email: vladimir.harkonnen@example.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 832101109
+                        label: '00'
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '0'
+                      notification_preference:
+                        email: true
+                        sms: false
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: false
+                            email: false
+                            sms: null
+                          messages:
+                            push: true
+                            email: false
+                            sms: false
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+    put:
+      summary: update tenant
+      tags:
+      - Tenants
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    data:
+                      created_at: '2026-06-17T15:12:20Z'
+                      full_name: null
+                      id: 990619226
+                      updated_at: '2026-06-17T15:12:27Z'
+                      first_name: Foo
+                      last_name: Bar
+                      building_id: 577696272
+                      building_name: Crimson
+                      inactive_after: '2026-06-26T15:12:27Z'
+                      building_timezone: America/New_York
+                      email: example@test.com
+                      contact_preference: phone_call
+                      registration_status: registered
+                      invitation: null
+                      unit:
+                        created_at: '2026-06-17T15:12:20Z'
+                        id: 843107216
+                        label: A003
+                        updated_at: '2026-06-17T15:12:20Z'
+                        floor: '1'
+                      notification_preference:
+                        email: true
+                        sms: true
+                        do_not_disturb: true
+                        preferences:
+                          door_opens:
+                            push: true
+                            email: true
+                          messages:
+                            push: true
+                            email: true
+                            sms: true
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              examples:
+                unprocessable entity:
+                  value:
+                    errors:
+                    - field: active_at
+                      message: can't be blank
+                      code: blank
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tenant:
+                  type: object
+                  properties:
+                    active_at:
+                      type: string
+                      format: date-time
+                    inactive_at:
+                      type: string
+                      format: date-time
+                    sync:
+                      type: boolean
+                    qr_key_enabled:
+                      type: boolean
+                    delivery_pass_instructions:
+                      type: string
+                    external_id:
+                      type: string
+                    user_attributes:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                        first_name:
+                          type: string
+                        last_name:
+                          type: string
+                        contact_preference:
+                          type: string
+                          enum:
+                          - mobile_app
+                          - phone_call
+                        sms_contact_attributes:
+                          type: object
+                          properties:
+                            phone_number:
+                              type: string
+                        backup_contact_attributes:
+                          type: object
+                          properties:
+                            phone_number:
+                              type: string
+                      additionalProperties: false
+                    notification_preference_attributes:
+                      type: object
+                      properties:
+                        email_notifications:
+                          type: boolean
+                        sms_notifications:
+                          type: boolean
+                        do_not_disturb:
+                          type: boolean
+                        preferences:
+                          type: object
+                          properties:
+                            door_opens:
+                              type: object
+                              properties:
+                                push:
+                                  type: boolean
+                                email:
+                                  type: boolean
+                            messages:
+                              type: object
+                              properties:
+                                push:
+                                  type: boolean
+                                email:
+                                  type: boolean
+                                sms:
+                                  type: boolean
+                    user_panel_config_attributes:
+                      type: object
+                      properties:
+                        display_name_strategy:
+                          type: string
+                        directory_message:
+                          type: string
+                        display_only_on_search:
+                          type: boolean
+                        display_first_name:
+                          type: boolean
+                        display_last_name:
+                          type: boolean
+            examples:
+              successful:
+                summary: successful
+                value:
+                  tenant:
+                    sync: true
+                    qr_key_enabled: true
+                    external_id: 123
+                    delivery_pass_enabled: 'true'
+                    swipe_to_open_enabled: 'true'
+                    virtual_fob_entry_enabled: 'true'
+                    active_at: '2026-06-24T15:12:27Z'
+                    inactive_at: '2026-06-26T15:12:27Z'
+                    unit_id: 843107216
+                    user_attributes:
+                      first_name: Foo
+                      last_name: Bar
+                      email: example@test.com
+                      sms_contact_attributes:
+                        phone_number: '+19169366241'
+                      backup_contact_attributes:
+                        phone_number: '+19169366242'
+                    notification_preference_attributes:
+                      email: true
+                      sms: true
+                      do_not_disturb: true
+                      preferences:
+                        door_opens:
+                          push: true
+                          email: true
+                        messages:
+                          push: true
+                          email: true
+                          sms: true
+                    user_panel_config_attributes:
+                      display_name_strategy: first_name_and_last_name
+                      display_only_on_search: false
+              toggles do_not_disturb:
+                summary: toggles do_not_disturb
+                value:
+                  tenant:
+                    notification_preference_attributes:
+                      do_not_disturb: true
+              unprocessable entity:
+                summary: unprocessable entity
+                value:
+                  tenant:
+                    sync: true
+                    qr_key_enabled: true
+                    active_at: null
+              unauthorized:
+                summary: unauthorized
+                value:
+                  tenant:
+                    sync: true
+                    qr_key_enabled: true
+                    active_at: '2026-06-24T15:12:27Z'
+                    inactive_at: '2026-06-26T15:12:27Z'
+    delete:
+      summary: delete tenant
+      tags:
+      - Tenants
+      security:
+      - Bearer: []
+      responses:
+        '204':
+          description: tenant deleted
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    errors:
+                    - field: base
+                      code: unauthorized
+                      messages: Unauthorized
+components:
+  securitySchemes:
+    Bearer:
+      description: JWT necessary to make API calls
+      type: apiKey
+      name: Authorization
+      in: header

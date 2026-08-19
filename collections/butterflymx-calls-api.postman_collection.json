@@ -1,0 +1,548 @@
+{
+  "item": [
+    {
+      "id": "d3ab2408-aaf1-4bbc-a691-9b027e043f44",
+      "name": "Calls",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50c6f73a-9dec-491d-a8d2-4572c94ed620",
+          "name": "list calls",
+          "request": {
+            "name": "list calls",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":building_id",
+                "calls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "requested page"
+                },
+                {
+                  "disabled": false,
+                  "key": "per",
+                  "value": "<integer>",
+                  "description": "page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[logged_at_gteq]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[logged_at_lteq]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[notification_type_eq]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[origin_eq]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "q[unit_label_or_user_full_name_start]",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "building_id",
+                  "description": "(Required) id of the building"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2d0d8301-4591-461a-8b15-3a88eb80407b",
+              "name": "fetch all access logs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[logged_at_gteq]",
+                      "value": "2026-06-17 15:12:19 UTC"
+                    },
+                    {
+                      "key": "q[logged_at_lteq]",
+                      "value": "2026-06-17 15:12:19 UTC"
+                    },
+                    {
+                      "key": "q[notification_type_eq]",
+                      "value": "visitor"
+                    },
+                    {
+                      "key": "q[origin_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[unit_label_or_user_full_name_start]",
+                      "value": "Foo"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 784634795,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-16T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 636166899,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 88603419\n      },\n      \"device\": {\n        \"id\": 408919060,\n        \"name\": \"Virtual Lobby\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/a38b31dad4b95fd01b41641ae99b088a.png\"\n    },\n    {\n      \"id\": 248929811,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-14T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 377389742,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 474917539\n      },\n      \"device\": {\n        \"id\": 708353660,\n        \"name\": \"Main Entrance\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/acbfa9ce4bec95ff3e78bed3a01b6679.png\"\n    },\n    {\n      \"id\": 970026630,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-14T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 377389742,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 474917539\n      },\n      \"device\": {\n        \"id\": 708353660,\n        \"name\": \"Main Entrance\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/25749b0600da4c22b49c431c3967e705.png\"\n    },\n    {\n      \"id\": 666237737,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-14T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 377389742,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 474917539\n      },\n      \"device\": {\n        \"id\": 708353660,\n        \"name\": \"Main Entrance\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/4213d194ec4404b3065865df07f6dce5.png\"\n    },\n    {\n      \"id\": 400494507,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-14T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 377389742,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 474917539\n      },\n      \"device\": {\n        \"id\": 708353660,\n        \"name\": \"Main Entrance\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/1840652b7ab4216e2079a71a87155ea6.png\"\n    },\n    {\n      \"id\": 804861260,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-12T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 990619226,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 832101109\n      },\n      \"device\": {\n        \"id\": 513627685,\n        \"name\": \"Crimson Lobby\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/867d856be215d25671b7e646714c38c7.png\"\n    },\n    {\n      \"id\": 798294574,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-11T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 990619226,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 832101109\n      },\n      \"device\": {\n        \"id\": 708353660,\n        \"name\": \"Main Entrance\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/9e73feac37d4bba348c3a9e05675744f.png\"\n    },\n    {\n      \"id\": 832413931,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-02T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 990619226,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 832101109\n      },\n      \"device\": {\n        \"id\": 709680845,\n        \"name\": \"Crimson Backdoor\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/ce0299af29b241c363d761152317e9fc.png\"\n    },\n    {\n      \"id\": 334730487,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-06-02T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": null,\n        \"type\": \"Attendant\"\n      },\n      \"unit\": null,\n      \"device\": {\n        \"id\": 708353660,\n        \"name\": \"Main Entrance\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/2ea77f19f485251cc90425116322a43c.png\"\n    },\n    {\n      \"id\": 110792828,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-05-23T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 990619226,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 832101109\n      },\n      \"device\": {\n        \"id\": 513627685,\n        \"name\": \"Crimson Lobby\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/6c3dc0f44a52a8210d27583fbd955826.png\"\n    },\n    {\n      \"id\": 184206671,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-05-13T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": null,\n        \"type\": \"Attendant\"\n      },\n      \"unit\": null,\n      \"device\": {\n        \"id\": 708353660,\n        \"name\": \"Main Entrance\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/6fdda40e6ed62458ba418327e863d7e4.png\"\n    },\n    {\n      \"id\": 529777096,\n      \"building_id\": 577696272,\n      \"logged_at\": \"2026-05-13T15:12:19Z\",\n      \"notification_type\": \"visitor\",\n      \"recipient\": {\n        \"id\": 990619226,\n        \"type\": \"Tenant\"\n      },\n      \"unit\": {\n        \"id\": 832101109\n      },\n      \"device\": {\n        \"id\": 513627685,\n        \"name\": \"Crimson Lobby\"\n      },\n      \"status\": null,\n      \"image_url\": \"http://user.butterflymx.localhost/uploads/store/918eb0e7026643b6c4a012f61dafe5ae.png\"\n    }\n  ],\n  \"page_info\": {\n    \"current_page\": 1,\n    \"total_pages\": 1,\n    \"total_item_count\": 12,\n    \"page_item_count\": 12,\n    \"page_size\": 50,\n    \"next_page\": null,\n    \"prev_page\": null,\n    \"first_page\": true,\n    \"last_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c946d788-da3c-4ebc-84dc-74ed36194328",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q[logged_at_gteq]",
+                      "value": "2026-06-17 15:12:19 UTC"
+                    },
+                    {
+                      "key": "q[logged_at_lteq]",
+                      "value": "2026-06-17 15:12:19 UTC"
+                    },
+                    {
+                      "key": "q[notification_type_eq]",
+                      "value": "visitor"
+                    },
+                    {
+                      "key": "q[origin_eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q[unit_label_or_user_full_name_start]",
+                      "value": "Foo"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id of the building"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65fc12c4-84d9-4b2b-9028-fcdc906db039",
+          "name": "show call",
+          "request": {
+            "name": "show call",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "buildings",
+                ":building_id",
+                "calls",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "building_id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "61d66232-163d-4015-b2fa-84ff8c76e1af",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "calls",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 400494507,\n    \"building_id\": 577696272,\n    \"logged_at\": \"2026-06-14T15:12:19Z\",\n    \"notification_type\": \"visitor\",\n    \"recipient\": {\n      \"id\": 377389742,\n      \"type\": \"Tenant\"\n    },\n    \"unit\": {\n      \"id\": 474917539\n    },\n    \"device\": {\n      \"id\": 708353660,\n      \"name\": \"Main Entrance\"\n    },\n    \"status\": \"initializing\",\n    \"image_url\": \"http://user.butterflymx.localhost/uploads/store/1840652b7ab4216e2079a71a87155ea6.png\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d00efc50-aeb0-4865-9b75-494ad3c7a395",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "calls",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"unauthorized\",\n      \"messages\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a019b4f-8aa1-448c-85c4-1722d8c1e5de",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "buildings",
+                    ":building_id",
+                    "calls",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "building_id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"field\": \"base\",\n      \"code\": \"not_found\",\n      \"message\": \"Resource not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.butterflymx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bba81626-112f-4921-8785-d9b6f09f1c42",
+    "name": "ButterflyMX Calls API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

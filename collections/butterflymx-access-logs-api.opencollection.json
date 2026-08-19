@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ButterflyMX Access Logs API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list access logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/access_logs",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "requested page"
+              },
+              {
+                "name": "per",
+                "value": "50",
+                "type": "query",
+                "description": "page size"
+              },
+              {
+                "name": "q[unit_label_or_user_full_name_or_delivery_authorization_description_start]",
+                "value": "A001",
+                "type": "query",
+                "description": "search by unit label, user full name or delivery authorization"
+              },
+              {
+                "name": "q[logged_at_gteq]",
+                "value": "2024-01-01",
+                "type": "query",
+                "description": "search by logged at date greater than or equal to"
+              },
+              {
+                "name": "q[logged_at_lteq]",
+                "value": "2024-01-01",
+                "type": "query",
+                "description": "search by logged at date less than or equal to"
+              },
+              {
+                "name": "q[release_status]",
+                "value": "unlocked",
+                "type": "query",
+                "description": "search by release status"
+              },
+              {
+                "name": "q[release_method_in][]",
+                "value": "front_door_view,delivery_pass",
+                "type": "query",
+                "description": "search by release method"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "list access logs"
+        },
+        {
+          "info": {
+            "name": "show access log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.butterflymx.com/v4/buildings/:building_id/access_logs/:id",
+            "params": [
+              {
+                "name": "building_id",
+                "value": "",
+                "type": "path",
+                "description": "id of the building"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "show access log"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
