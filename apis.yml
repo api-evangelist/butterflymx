@@ -19,6 +19,19 @@ specificationVersion: '0.23'
 created: '2026-08-08'
 modified: '2026-08-08'
 tags:
+- Access Control
+- physical-access
+- smart-intercom
+- PropTech
+- Property Management
+- Multifamily
+- Building Automation
+- Visitor Management
+- IoT
+- smart-locks
+- Authentication
+- Webhook
+tags_raw:
 - access-control
 - physical-access
 - smart-intercom
@@ -38,6 +51,8 @@ apis:
   humanURL: https://apidocs.butterflymx.com/reference/get_v4-buildings-1
   baseURL: https://api.butterflymx.com
   tags:
+  - Access Groups
+  tags_raw:
   - Access groups
   properties:
   - type: OpenAPI
