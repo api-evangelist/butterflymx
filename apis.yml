@@ -11,6 +11,18 @@ description: >-
   integrations, and native iOS and Android SDKs add in-app video-call handling on top of the REST surface.
   Authorization is OAuth 2.0 authorization-code, issued by an OpenID-Connect-discoverable authorization
   server at accounts.butterflymx.com, with a full sandbox replica for pre-production testing.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://butterflymx.com/wp-content/uploads/2023/10/gated-community-intercom.webp
 url: https://raw.githubusercontent.com/api-evangelist/butterflymx/refs/heads/main/apis.yml
 x-type: company
