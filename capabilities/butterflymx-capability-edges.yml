@@ -1,0 +1,75 @@
+slug: butterflymx
+provider: ButterflyMX
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Real Estate
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Door Release Requests
+  spec_file: butterflymx-door-release-requests-api-openapi.yml
+  capability_id: BC-4940.50
+  capability_id_l1: BC-4940
+  capability_name: Property Security & Life Safety Operations
+  confidence: 0.8
+  evidence: POST /v4/door_release_requests "create door release requests"
+  reason: Unambiguously a physical door-unlock action at a managed property — the core of property access-control
+    and security operations. Chose property security operations over enterprise Identity & Access Management
+    because this is physical building entry on landlord-managed real estate, not corporate IT identity.
+- tag: Access Logs
+  spec_file: butterflymx-access-logs-api-openapi.yml
+  capability_id: BC-4940.50
+  capability_id_l1: BC-4940
+  capability_name: Property Security & Life Safety Operations
+  confidence: 0.72
+  evidence: 'GET /v4/buildings/{building_id}/access_logs  list access logs — vendor: "smart video intercoms,
+    keypads, smart locks ... installed in more than 20,000 multifamily, commercial, gated-community" buildings'
+  reason: Building-scoped physical access event logs are part of property-level security operations for
+    multifamily/commercial buildings, not enterprise IT identity logging.
+- tag: Access Points
+  spec_file: butterflymx-access-points-api-openapi.yml
+  capability_id: BC-4940.50
+  capability_id_l1: BC-4940
+  capability_name: Property Security & Life Safety Operations
+  confidence: 0.72
+  evidence: GET /v4/access_points  list access points; GET /v4/access_points/{id}/schedules  show schedules
+  reason: Inventory and scheduling of physical entry points (intercoms, doors, gates) in managed buildings
+    realises property security and access operations.
+- tag: Access Tools
+  spec_file: butterflymx-access-tools-api-openapi.yml
+  capability_id: BC-4940.50
+  capability_id_l1: BC-4940
+  capability_name: Property Security & Life Safety Operations
+  confidence: 0.72
+  evidence: POST /v4/access_tools/pins  create a PIN access tool; POST /v4/access_tools/rfid_tags  create
+    a RFID tag access tool
+  reason: Issuance and revocation of physical credentials (PINs, RFID tags) for building entry is property-level
+    security and access control, distinct from enterprise IAM.
+- tag: Keychains
+  spec_file: butterflymx-keychains-api-openapi.yml
+  capability_id: BC-4940.50
+  capability_id_l1: BC-4940
+  capability_name: Property Security & Life Safety Operations
+  confidence: 0.7
+  evidence: POST /v4/keychains/delivery_pass "create a delivery pass keychain"; POST /v4/keychains/one_time
+    "create a one-time keychain"
+  reason: 'Keychains are issued physical-access credentials (one-time, recurring, delivery pass) governing
+    entry to the building, i.e. property access and security operations. Not IT credential management:
+    the credentials open doors, not systems.'
+- tag: Virtual Keys
+  spec_file: butterflymx-virtual-keys-api-openapi.yml
+  capability_id: BC-4940.50
+  capability_id_l1: BC-4940
+  capability_name: Property Security & Life Safety Operations
+  confidence: 0.7
+  evidence: POST /v4/virtual_keys "create virtual key"; DELETE /v4/virtual_keys/{id} "delete virtual key"
+  reason: 'Issuance and revocation of virtual (mobile) keys for building entry — property access control
+    and security operations. Not cryptographic key management despite the word ''key'': the vendor''s
+    keys open doors and smart locks.'

@@ -487,6 +487,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/butterflymx-capability-edges.yml
+  name: ButterflyMX Business Capability Map
 - type: MCPServer
   url: mcp/butterflymx-mcp.yml
 - type: Overlay
