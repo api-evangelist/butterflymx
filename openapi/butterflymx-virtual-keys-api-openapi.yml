@@ -25,9 +25,7 @@ paths:
         **Keychain** documentation for more details.
 
 
-        A guest can be sent a Virtual Key via email or via SMS.
-
-        '
+        A guest can be sent a Virtual Key via email or via SMS.'
       security:
       - Bearer: []
       parameters:
@@ -250,6 +248,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4VirtualKeys
+      x-operation-id-source: derived
     post:
       summary: create virtual key
       tags:
@@ -406,6 +406,8 @@ paths:
                   name: John Doe
                   email: john.doe@example.com
                   pin_code: '468931'
+      operationId: postV4VirtualKeys
+      x-operation-id-source: derived
   /v4/virtual_keys/{id}:
     parameters:
     - name: id
@@ -455,6 +457,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4VirtualKeysById
+      x-operation-id-source: derived
     delete:
       summary: delete virtual key
       tags:
@@ -497,6 +501,8 @@ paths:
                     - field: base
                       message: Failed to delete resource
                       code: failed_to_delete_resource
+      operationId: deleteV4VirtualKeysById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

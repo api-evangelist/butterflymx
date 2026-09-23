@@ -49,6 +49,8 @@ paths:
           description: fetch all integrations
         '401':
           description: unauthorized
+      operationId: getV4TenantsByTenantIdIntegrations
+      x-operation-id-source: derived
     post:
       summary: create integration
       tags:
@@ -121,6 +123,8 @@ paths:
               required:
               - data
               additionalProperties: false
+      operationId: postV4TenantsByTenantIdIntegrations
+      x-operation-id-source: derived
   /v4/tenants/{tenant_id}/integrations/{id}:
     get:
       summary: show integration
@@ -146,6 +150,8 @@ paths:
           description: fetch integration
         '401':
           description: unauthorized
+      operationId: getV4TenantsByTenantIdIntegrationsById
+      x-operation-id-source: derived
     put:
       summary: update integration
       tags:
@@ -224,6 +230,8 @@ paths:
               required:
               - data
               additionalProperties: false
+      operationId: putV4TenantsByTenantIdIntegrationsById
+      x-operation-id-source: derived
     delete:
       summary: delete integration
       tags:
@@ -248,6 +256,8 @@ paths:
           description: delete integration
         '401':
           description: unauthorized
+      operationId: deleteV4TenantsByTenantIdIntegrationsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

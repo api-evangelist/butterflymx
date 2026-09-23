@@ -186,6 +186,8 @@ paths:
               unauthorized:
                 summary: unauthorized
                 value: {}
+      operationId: postV4KeychainsCustom
+      x-operation-id-source: derived
   /v4/keychains/delivery_pass:
     post:
       summary: create a delivery pass keychain
@@ -300,6 +302,8 @@ paths:
               unauthorized:
                 summary: unauthorized
                 value: {}
+      operationId: postV4KeychainsDeliveryPass
+      x-operation-id-source: derived
   /v4/keychains/one_time:
     post:
       summary: create a one-time keychain
@@ -471,6 +475,8 @@ paths:
               unauthorized:
                 summary: unauthorized
                 value: {}
+      operationId: postV4KeychainsOneTime
+      x-operation-id-source: derived
   /v4/keychains/recurring:
     post:
       summary: create a recurring keychain
@@ -674,12 +680,59 @@ paths:
               unauthorized:
                 summary: unauthorized
                 value: {}
+      operationId: postV4KeychainsRecurring
+      x-operation-id-source: derived
   /v4/keychains:
     get:
       summary: list keychains
       tags:
       - Keychains
-      description: "**Keychains** and **Virtual Keys** provide a mechanism for people to\ngrant temporary access to a building, unit, access points or\nkey lockers.\n\nA **Keychain** is the configuration object for one or more\n**Virtual Keys**. It holds the duration, owner, and other\ninformation about the Virtual Keys attached to it. While the Virtual\nKeys contain the recipient information and usage statistics.\n\nThere are multiple types of Keychains available that provide different\naccess scheduling mechanisms for the Virtual Keys attached to them.\n\n* **Custom** keychains grant access from a given start time and date,\n    to an end time and date.\n* **Recurring** keychains grant access on a recurring schedule,\n    specified by a list of weekdays on which the key is active, a start\n    and an end time. Additionally a start and end date must be specified.\n* **One Time** keychains are alike **custom keychains** but grant the\n    recipient access only once. *After the key is used it can be re-used\n    for an additional 15min after which it expires.*\n* **Delivery Pass** keychains are alike **one time keychains** but have\n    a much shorter grace period of 5min after the key is used. And they\n    always hold exactly one Virtual Key. Not much can be specified or\n    updated on them. Their main purpose is to provide a quick way to\n    generate a virtual key and share it with a delivery person.\n"
+      description: '**Keychains** and **Virtual Keys** provide a mechanism for people to
+
+        grant temporary access to a building, unit, access points or
+
+        key lockers.
+
+
+        A **Keychain** is the configuration object for one or more
+
+        **Virtual Keys**. It holds the duration, owner, and other
+
+        information about the Virtual Keys attached to it. While the Virtual
+
+        Keys contain the recipient information and usage statistics.
+
+
+        There are multiple types of Keychains available that provide different
+
+        access scheduling mechanisms for the Virtual Keys attached to them.
+
+
+        * **Custom** keychains grant access from a given start time and date,
+
+        to an end time and date.
+
+        * **Recurring** keychains grant access on a recurring schedule,
+
+        specified by a list of weekdays on which the key is active, a start
+
+        and an end time. Additionally a start and end date must be specified.
+
+        * **One Time** keychains are alike **custom keychains** but grant the
+
+        recipient access only once. *After the key is used it can be re-used
+
+        for an additional 15min after which it expires.*
+
+        * **Delivery Pass** keychains are alike **one time keychains** but have
+
+        a much shorter grace period of 5min after the key is used. And they
+
+        always hold exactly one Virtual Key. Not much can be specified or
+
+        updated on them. Their main purpose is to provide a quick way to
+
+        generate a virtual key and share it with a delivery person.'
       security:
       - Bearer: []
       parameters:
@@ -904,6 +957,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4Keychains
+      x-operation-id-source: derived
   /v4/keychains/{id}:
     parameters:
     - name: id
@@ -953,6 +1008,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4KeychainsById
+      x-operation-id-source: derived
     delete:
       summary: delete keychain
       tags:
@@ -995,6 +1052,8 @@ paths:
                     - field: base
                       message: failed to destroy
                       code: failed_to_destroy
+      operationId: deleteV4KeychainsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

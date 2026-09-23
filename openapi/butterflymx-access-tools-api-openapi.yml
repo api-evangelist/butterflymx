@@ -33,9 +33,7 @@ paths:
 
         are grandfathered in and require people to enter a Unit label along with
 
-        their PIN to be granted access.
-
-        '
+        their PIN to be granted access.'
       security:
       - Bearer: []
       parameters: []
@@ -117,6 +115,8 @@ paths:
                   pin:
                     code: '123456'
                     tenant_id: 377389742
+      operationId: postV4AccessToolsPins
+      x-operation-id-source: derived
   /v4/access_tools/pins/{id}:
     parameters:
     - name: id
@@ -197,6 +197,8 @@ paths:
                 value:
                   pin:
                     code: '336901'
+      operationId: putV4AccessToolsPinsById
+      x-operation-id-source: derived
   /v4/access_tools/rfid_tags:
     post:
       summary: create a RFID tag access tool
@@ -207,9 +209,7 @@ paths:
 
         Note that RFID access tools can''t be updated. If you wish to "update"
 
-        an RFID access tool, you must delete it and create a new one.
-
-        '
+        an RFID access tool, you must delete it and create a new one.'
       security:
       - Bearer: []
       parameters: []
@@ -271,6 +271,8 @@ paths:
                   rfid_tag:
                     identifier: ''
                     tenant_id: 377389742
+      operationId: postV4AccessToolsRfidTags
+      x-operation-id-source: derived
   /v4/access_tools:
     get:
       summary: list access tools
@@ -285,9 +287,7 @@ paths:
 
         Please look at the documentation for creating **PINs** and **RFID Tags**
 
-        for more information on how to create and update them.
-
-        '
+        for more information on how to create and update them.'
       security:
       - Bearer: []
       parameters:
@@ -425,6 +425,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4AccessTools
+      x-operation-id-source: derived
   /v4/access_tools/{id}:
     parameters:
     - name: id
@@ -477,6 +479,8 @@ paths:
                     - field: base
                       code: not_found
                       message: Resource not found
+      operationId: getV4AccessToolsById
+      x-operation-id-source: derived
     delete:
       summary: delete access tool
       tags:
@@ -508,6 +512,8 @@ paths:
                     - field: base
                       message: is protected
                       code: is_protected
+      operationId: deleteV4AccessToolsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

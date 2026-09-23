@@ -265,6 +265,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4BuildingsByBuildingIdCalls
+      x-operation-id-source: derived
   /v4/buildings/{building_id}/calls/{id}:
     parameters:
     - name: id
@@ -330,6 +332,8 @@ paths:
                     - field: base
                       code: not_found
                       message: Resource not found
+      operationId: getV4BuildingsByBuildingIdCallsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

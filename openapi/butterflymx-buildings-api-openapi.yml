@@ -22,9 +22,7 @@ paths:
       - Buildings
       description: 'A **Building** represents a physical building that contains one or more
 
-        **Units**, and **Devices**.
-
-        '
+        **Units**, and **Devices**.'
       security:
       - Bearer: []
       parameters:
@@ -169,6 +167,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4Buildings
+      x-operation-id-source: derived
   /v4/buildings/{id}:
     parameters:
     - name: id
@@ -215,6 +215,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4BuildingsById
+      x-operation-id-source: derived
   /v4/buildings/{id}/capabilities:
     parameters:
     - name: id
@@ -227,9 +229,7 @@ paths:
       summary: show building capabilities
       tags:
       - Buildings
-      description: 'Returns the capabilities and configuration options available for a specific building.
-
-        '
+      description: Returns the capabilities and configuration options available for a specific building.
       security:
       - Bearer: []
       responses:
@@ -244,6 +244,8 @@ paths:
                       delivery_pass_enabled: true
                       delivery_pickup_pins_enabled: false
                       user_photo_required: false
+      operationId: getV4BuildingsByIdCapabilities
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

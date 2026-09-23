@@ -147,6 +147,8 @@ paths:
                 value:
                   unit:
                     label: C404
+      operationId: postV4BuildingsByBuildingIdUnits
+      x-operation-id-source: derived
   /v4/buildings/{building_id}/units/{id}:
     parameters:
     - name: building_id
@@ -261,6 +263,8 @@ paths:
                 value:
                   unit:
                     label: A990
+      operationId: putV4BuildingsByBuildingIdUnitsById
+      x-operation-id-source: derived
     delete:
       summary: delete unit
       tags:
@@ -281,6 +285,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: deleteV4BuildingsByBuildingIdUnitsById
+      x-operation-id-source: derived
   /v4/units:
     get:
       summary: list units
@@ -288,9 +294,7 @@ paths:
       - Units
       description: 'A Unit is a physical space within a Building in which one or multiple
 
-        tenants can reside.
-
-        '
+        tenants can reside.'
       security:
       - Bearer: []
       parameters:
@@ -459,6 +463,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4Units
+      x-operation-id-source: derived
   /v4/units/{id}:
     parameters:
     - name: id
@@ -499,6 +505,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4UnitsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

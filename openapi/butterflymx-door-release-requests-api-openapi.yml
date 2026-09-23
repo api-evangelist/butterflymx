@@ -25,9 +25,7 @@ paths:
         one or all of its **Access Points**.
 
 
-        This can be used to build experiences like *swipe-to-open* or *tap-to-open*.
-
-        '
+        This can be used to build experiences like *swipe-to-open* or *tap-to-open*.'
       security:
       - Bearer: []
       parameters: []
@@ -118,6 +116,8 @@ paths:
                   door_release_request:
                     tenant_id: 377389742
                     access_point_id: 842395203
+      operationId: postV4DoorReleaseRequests
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

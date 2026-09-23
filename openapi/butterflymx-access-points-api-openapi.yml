@@ -32,9 +32,7 @@ paths:
 
         Through Access Points one can manage access across the system
 
-        and exercise control over physical doors.
-
-        '
+        and exercise control over physical doors.'
       security:
       - Bearer: []
       parameters:
@@ -196,6 +194,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4AccessPoints
+      x-operation-id-source: derived
   /v4/access_points/{id}:
     parameters:
     - name: id
@@ -238,6 +238,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4AccessPointsById
+      x-operation-id-source: derived
   /v4/access_points/{id}/schedules:
     parameters:
     - name: id
@@ -267,9 +269,7 @@ paths:
       - Access Points
       security:
       - Bearer: []
-      description: 'Times during which this access point can be used by current user.
-
-        '
+      description: Times during which this access point can be used by current user.
       responses:
         '200':
           description: successful
@@ -311,6 +311,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4AccessPointsByIdSchedules
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

@@ -26,9 +26,7 @@ paths:
 
         **Access Points**, to an amenity like the KeyLocker, or to common rooms
 
-        controlled by devices from 3rd parties.
-
-        '
+        controlled by devices from 3rd parties.'
       security:
       - Bearer: []
       parameters:
@@ -305,6 +303,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4Devices
+      x-operation-id-source: derived
   /v4/devices/{id}:
     parameters:
     - name: id
@@ -347,6 +347,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4DevicesById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

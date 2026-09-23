@@ -20,9 +20,7 @@ paths:
       summary: resend confirmation email
       tags:
       - Tenants
-      description: 'Re-sends the invitation email to a tenant whose status is still `invited`.
-
-        '
+      description: Re-sends the invitation email to a tenant whose status is still `invited`.
       security:
       - Bearer: []
       parameters:
@@ -57,6 +55,8 @@ paths:
                     - field: base
                       code: not_found
                       message: Resource not found
+      operationId: postV4TenantsByTenantIdResendConfirmation
+      x-operation-id-source: derived
   /v4/tenants:
     get:
       summary: list tenants
@@ -79,9 +79,7 @@ paths:
 
         create **Virtual Keys** which they can share with other people to grant
 
-        them temporary access to the building.
-
-        '
+        them temporary access to the building.'
       security:
       - Bearer: []
       parameters:
@@ -569,6 +567,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4Tenants
+      x-operation-id-source: derived
     post:
       summary: create tenant
       tags:
@@ -840,6 +840,8 @@ paths:
                     active_at: '2026-06-18T15:12:27Z'
                     inactive_at: '2026-06-20T15:12:27Z'
                     unit_id: 843107216
+      operationId: postV4Tenants
+      x-operation-id-source: derived
   /v4/tenants/{id}:
     parameters:
     - name: id
@@ -907,6 +909,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4TenantsById
+      x-operation-id-source: derived
     put:
       summary: update tenant
       tags:
@@ -1124,6 +1128,8 @@ paths:
                     qr_key_enabled: true
                     active_at: '2026-06-24T15:12:27Z'
                     inactive_at: '2026-06-26T15:12:27Z'
+      operationId: putV4TenantsById
+      x-operation-id-source: derived
     delete:
       summary: delete tenant
       tags:
@@ -1144,6 +1150,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: deleteV4TenantsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

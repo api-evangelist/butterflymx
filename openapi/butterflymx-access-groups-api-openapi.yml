@@ -13,13 +13,13 @@ servers:
     environment_name:
       default: foobar
 tags:
-- name: Access groups
+- name: Access Groups
 paths:
   /v4/access_groups/{id}/tenants:
     post:
       summary: Add tenants to access group
       tags:
-      - Access groups
+      - Access Groups
       security:
       - Bearer: []
       parameters:
@@ -115,11 +115,13 @@ paths:
                   access_group:
                     tenant_ids:
                     - 377389742
+      operationId: postV4AccessGroupsByIdTenants
+      x-operation-id-source: derived
   /v4/access_groups/{id}/tenants/bulk_destroy:
     delete:
       summary: Remove tenants from access group
       tags:
-      - Access groups
+      - Access Groups
       security:
       - Bearer: []
       parameters:
@@ -215,11 +217,13 @@ paths:
                   access_group:
                     tenant_ids:
                     - 377389742
+      operationId: deleteV4AccessGroupsByIdTenantsBulkDestroy
+      x-operation-id-source: derived
   /v4/access_groups/{id}/units:
     post:
       summary: Add units to access group
       tags:
-      - Access groups
+      - Access Groups
       security:
       - Bearer: []
       parameters:
@@ -315,11 +319,13 @@ paths:
                   access_group:
                     unit_ids:
                     - 832101109
+      operationId: postV4AccessGroupsByIdUnits
+      x-operation-id-source: derived
   /v4/access_groups/{id}/units/bulk_destroy:
     delete:
       summary: Remove units from access group
       tags:
-      - Access groups
+      - Access Groups
       security:
       - Bearer: []
       parameters:
@@ -415,12 +421,16 @@ paths:
                   access_group:
                     unit_ids:
                     - 832101109
+      operationId: deleteV4AccessGroupsByIdUnitsBulkDestroy
+      x-operation-id-source: derived
   /v4/access_groups:
     get:
       summary: list access groups
       tags:
-      - Access groups
-      description: "**Access Group** access lets you grant certain tenants and building staff\n access to different parts of your property at different times.\n"
+      - Access Groups
+      description: '**Access Group** access lets you grant certain tenants and building staff
+
+        access to different parts of your property at different times.'
       security:
       - Bearer: []
       parameters:
@@ -611,6 +621,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4AccessGroups
+      x-operation-id-source: derived
   /v4/access_groups/{id}:
     parameters:
     - name: id
@@ -622,7 +634,7 @@ paths:
     get:
       summary: show access group
       tags:
-      - Access groups
+      - Access Groups
       security:
       - Bearer: []
       responses:
@@ -659,6 +671,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4AccessGroupsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

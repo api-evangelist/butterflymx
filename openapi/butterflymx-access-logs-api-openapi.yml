@@ -181,6 +181,8 @@ paths:
                     - field: base
                       code: unauthorized
                       messages: Unauthorized
+      operationId: getV4BuildingsByBuildingIdAccessLogs
+      x-operation-id-source: derived
   /v4/buildings/{building_id}/access_logs/{id}:
     parameters:
     - name: building_id
@@ -242,6 +244,8 @@ paths:
                     - field: base
                       code: not_found
                       message: Resource not found
+      operationId: getV4BuildingsByBuildingIdAccessLogsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:
