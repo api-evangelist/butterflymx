@@ -64,50 +64,155 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-ButterflyMX is a property-access technology company — smart video intercoms, keypads, smart locks,
-elevator controls, vehicle-access readers and package rooms installed in 20,000+ multifamily, commercial,
-gated-community, student-housing and senior-living buildings.
+ButterflyMX is a property-access technology company whose smart video intercoms, keypads, smart locks, elevator controls, vehicle-access readers, package rooms and front-desk stations are installed in more than 20,000 multifamily, commercial, gated-community, student-housing and senior-living buildings. Its public ButterflyMX API (v4) exposes the same access-control core to partners and property-technology platforms: buildings, units, tenants, access points, devices, access groups, permanent access tools (PINs and RFID tags), keychains and virtual keys for visitor passes, door-release requests for programmatic swipe-to-open, and access and video-call logs. Real-time delivery is handled by building- and tenant-scoped webhook integrations, and native iOS and Android SDKs add in-app video-call handling on top of the REST surface. Authorization is OAuth 2.0 authorization-code, issued by an OpenID-Connect-discoverable authorization server at accounts.butterflymx.com, with a full sandbox replica for pre-production testing.
 
-## The API surface
+**Areas:** Access Control · physical-access · smart-intercom · PropTech · Property Management · Multifamily · Building Automation · Visitor Management · IoT · smart-locks · Authentication · Webhook
 
-- **Developer hub:** <https://apidocs.butterflymx.com/> (ReadMe)
-- **API:** ButterflyMX API **v4** — `https://api.butterflymx.com`
-- **Sandbox:** `https://api.na.sandbox.butterflymx.com` (NDA + Developer ToS required)
-- **OpenAPI:** 3.0.1, 43 paths / **57 operations**, harvested from the provider's own reference pages
-  and saved verbatim at [`openapi/_original/butterflymx-api-openapi.json`](openapi/_original/butterflymx-api-openapi.json)
-- **Auth:** OAuth 2.0 authorization-code, issuer `https://accounts.butterflymx.com`, with live OIDC and
-  RFC 8414 discovery documents
-- **Events:** building- and tenant-scoped webhook integrations for `door_release.create` and `call.create`
-- **SDKs:** iOS (Swift Package Manager / CocoaPods) and Android (raw AAR); **no server-side SDK in any language**
+## ButterflyMX on APIs.io
 
-## What the profile records
+Everything profiled for ButterflyMX is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/butterflymx/](https://apis.io/providers/butterflymx/)** — or go straight to one of the APIs or properties below.
 
-| Area | File |
+### APIs (14)
+
+- [ButterflyMX Access groups API](https://apis.io/apis/butterflymx/butterflymx-access-groups-api/) — The Access groups API from ButterflyMX — 6 operation(s) for access groups.
+- [ButterflyMX Access Logs API](https://apis.io/apis/butterflymx/butterflymx-access-logs-api/) — The Access Logs API from ButterflyMX — 2 operation(s) for access logs.
+- [ButterflyMX Access Points API](https://apis.io/apis/butterflymx/butterflymx-access-points-api/) — The Access Points API from ButterflyMX — 3 operation(s) for access points.
+- [ButterflyMX Access Tools API](https://apis.io/apis/butterflymx/butterflymx-access-tools-api/) — The Access Tools API from ButterflyMX — 5 operation(s) for access tools.
+- [ButterflyMX Building Integrations API](https://apis.io/apis/butterflymx/butterflymx-building-integrations-api/) — The Building Integrations API from ButterflyMX — 2 operation(s) for building integrations.
+- [ButterflyMX Buildings API](https://apis.io/apis/butterflymx/butterflymx-buildings-api/) — The Buildings API from ButterflyMX — 3 operation(s) for buildings.
+- [ButterflyMX Calls API](https://apis.io/apis/butterflymx/butterflymx-calls-api/) — The Calls API from ButterflyMX — 2 operation(s) for calls.
+- [ButterflyMX Devices API](https://apis.io/apis/butterflymx/butterflymx-devices-api/) — The Devices API from ButterflyMX — 2 operation(s) for devices.
+- [ButterflyMX Door Release Requests API](https://apis.io/apis/butterflymx/butterflymx-door-release-requests-api/) — The Door Release Requests API from ButterflyMX — 1 operation(s) for door release requests.
+- [ButterflyMX Keychains API](https://apis.io/apis/butterflymx/butterflymx-keychains-api/) — The Keychains API from ButterflyMX — 6 operation(s) for keychains.
+- [ButterflyMX Tenant Integrations API](https://apis.io/apis/butterflymx/butterflymx-tenant-integrations-api/) — The Tenant Integrations API from ButterflyMX — 2 operation(s) for tenant integrations.
+- [ButterflyMX Tenants API](https://apis.io/apis/butterflymx/butterflymx-tenants-api/) — The Tenants API from ButterflyMX — 3 operation(s) for tenants.
+- [ButterflyMX Units API](https://apis.io/apis/butterflymx/butterflymx-units-api/) — The Units API from ButterflyMX — 4 operation(s) for units.
+- [ButterflyMX Virtual Keys API](https://apis.io/apis/butterflymx/butterflymx-virtual-keys-api/) — The Virtual Keys API from ButterflyMX — 2 operation(s) for virtual keys.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Butterflymx Webhooks](https://apis.io/asyncapis/butterflymx/butterflymx-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [butterflymx](https://apis.io/servers/butterflymx/butterflymx/)
+
+#### Collections (14)
+
+Postman and Open Collection request collections.
+
+- [ButterflyMX Access groups API](https://apis.io/collections/butterflymx/open-butterflymx-access-groups-api/)
+- [ButterflyMX Access Logs API](https://apis.io/collections/butterflymx/open-butterflymx-access-logs-api/)
+- [ButterflyMX Access Points API](https://apis.io/collections/butterflymx/open-butterflymx-access-points-api/)
+- [ButterflyMX Access Tools API](https://apis.io/collections/butterflymx/open-butterflymx-access-tools-api/)
+- [ButterflyMX Building Integrations API](https://apis.io/collections/butterflymx/open-butterflymx-building-integrations-api/)
+- [ButterflyMX Buildings API](https://apis.io/collections/butterflymx/open-butterflymx-buildings-api/)
+- [ButterflyMX Calls API](https://apis.io/collections/butterflymx/open-butterflymx-calls-api/)
+- [ButterflyMX Devices API](https://apis.io/collections/butterflymx/open-butterflymx-devices-api/)
+- [ButterflyMX Door Release Requests API](https://apis.io/collections/butterflymx/open-butterflymx-door-release-requests-api/)
+- [ButterflyMX Keychains API](https://apis.io/collections/butterflymx/open-butterflymx-keychains-api/)
+- [ButterflyMX Tenant Integrations API](https://apis.io/collections/butterflymx/open-butterflymx-tenant-integrations-api/)
+- [ButterflyMX Tenants API](https://apis.io/collections/butterflymx/open-butterflymx-tenants-api/)
+- [ButterflyMX Units API](https://apis.io/collections/butterflymx/open-butterflymx-units-api/)
+- [ButterflyMX Virtual Keys API](https://apis.io/collections/butterflymx/open-butterflymx-virtual-keys-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Butterflymx Api Overlay](https://apis.io/overlays/butterflymx/butterflymx-api-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Butterflymx Authentication](https://apis.io/security/butterflymx/butterflymx-authentication/)
+- [Butterflymx Domain Security](https://apis.io/security/butterflymx/butterflymx-domain-security/)
+- [Butterflymx Trust Center](https://apis.io/security/butterflymx/butterflymx-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Butterflymx Scopes](https://apis.io/scopes/butterflymx/butterflymx-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://butterflymx.com/)
+- [Documentation](https://apidocs.butterflymx.com/)
+- [Getting started](https://apidocs.butterflymx.com/docs/getting-started-in-the-sandbox)
+- [API reference](https://apidocs.butterflymx.com/reference/get_v4-buildings-1)
+- [Pricing](https://butterflymx.com/cost/)
+- [Support](https://help.butterflymx.com/hc/en-us)
+- [Changelog](https://apidocs.butterflymx.com/changelog)
+- [Blog](https://butterflymx.com/blog/)
+- [Trust centre](https://trust.butterflymx.com/)
+- [Terms of service](https://butterflymx.com/terms-of-service/)
+- [Privacy policy](https://butterflymx.com/privacy-policy/)
+- [GitHub](https://github.com/runslikebutter)
+- [Status](https://status.butterflymx.com/)
+
+## API Evangelist rating
+
+**Kin Score 42.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| OpenAPI (verbatim + YAML) | `openapi/` |
-| Our enhancements (57 missing operationIds, root security, tag declarations) | `overlays/butterflymx-api-overlay.yaml` |
-| OAuth 2.0 / OIDC profile | `authentication/`, `scopes/`, `well-known/` |
-| Request/response semantics | `conventions/butterflymx-conventions.yml` |
-| Error catalog derived from the spec's own examples | `errors/butterflymx-problem-types.yml` |
-| Webhook catalog (no AsyncAPI published) | `asyncapi/butterflymx-webhooks.yml` |
-| Entity graph (the spec ships zero reusable schemas) | `data-model/butterflymx-data-model.yml` |
-| Sandbox and onboarding | `sandbox/butterflymx-sandbox.yml` |
-| Packages / SDKs | `packages/butterflymx-packages.yml` |
-| Standards conformance | `conformance/butterflymx-conformance.yml` |
-| Domain security, trust center | `security/` |
-| Versioning, status page, changelog | `lifecycle/`, `changelog/` |
-| Agent skills for the four marquee flows | `skills/` |
-| Candidate MCP tool surface (ButterflyMX operates no MCP server) | `mcp/butterflymx-mcp.yml` |
+| Discoverability | 73.2 |
+| Contract quality | 55.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 51.8 |
+| Access clarity | 14.5 |
 
-## Notable gaps found in this pass
+**Agent readiness 36.1** — agent-ready
 
-- **Zero `operationId`s** across all 57 operations, and `components.schemas` is **empty** — nothing in the
-  contract is addressable or reusable by name.
-- **No idempotency contract**, on an API whose write path physically unlocks doors.
-- **No webhook signature** by default; the docs make verification the integrator's problem.
-- **No AsyncAPI**, no rate-limit contract, no `403`, no `5xx` declared on any operation.
-- **No security.txt** and no vulnerability-disclosure program on any host.
-- The developer-hub **changelog holds one entry, a welcome post from 2019**, while the spec itself was
-  regenerated in June 2026 — the contract moves silently.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
 
-Company reference: <https://forgeglobal.com/butterflymx_stock/>
+**Regulatory alignment 31.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/butterflymx/](https://apis.io/providers/butterflymx/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ButterflyMX: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/butterflymx/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
